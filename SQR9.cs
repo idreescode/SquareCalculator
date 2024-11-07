@@ -39,6 +39,12 @@ namespace SquareCalculator
 
             tabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl.DrawItem += TabControl_DrawItem;
+
+            cntrlSPIData myControl = new cntrlSPIData();
+            // Set location or dock as per your preference
+            myControl.Dock = DockStyle.Fill; // Fills the entire TabPage
+            // Add the user control to the TabPage
+            tabPage5.Controls.Add(myControl);
             //Clear controls
             ClearControls();
             ClearControls("SPO");
