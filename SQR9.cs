@@ -231,15 +231,15 @@ namespace SquareCalculator
             {
                 ProcessInput(txtInput90, ref range90, dgView90, "90");
             }
-            else if (buttonName == "btnPriceAngleDataSort180")
+            else if (buttonName == "btnProcessInputPAD180")
             {
                 ProcessInput(txtInputPAD180, ref rangeSPO180, dgViewPAD180, "180", "PAD");
             }
-            else if (buttonName == "btnPriceAngleDataSort120")
+            else if (buttonName == "btnProcessInputPAD120")
             {
                 ProcessInput(txtInputPAD120, ref rangeSPO120, dgViewPAD120, "120", "PAD");
             }
-            else if (buttonName == "btnPriceAngleDataSort90")
+            else if (buttonName == "btnProcessInputPAD90")
             {
                 ProcessInput(txtInputPAD90, ref rangeSPO90, dgViewPAD90, "90", "PAD");
             }
