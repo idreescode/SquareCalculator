@@ -187,7 +187,7 @@ namespace SquareCalculator
                     }
 
                     // Position the "C" button
-                    System.Windows.Forms.Button btnClear = selectedTab.Controls.Find("btnClear", true).FirstOrDefault() as System.Windows.Forms.Button;
+                    System.Windows.Forms.Button btnClear = selectedTab.Controls.Find("btnSPODataClear", true).FirstOrDefault() as System.Windows.Forms.Button;
                     if (btnClear != null)
                     {
                         btnClear.SetBounds(currentX - 5, padding, cButtonWidth, textBoxHeight);
@@ -1162,5 +1162,7 @@ namespace SquareCalculator
             if (spoCustomSearch != null)
                 spoCustomSearch.Clear();
         }
+
+       
     }
 }
