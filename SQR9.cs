@@ -15,6 +15,11 @@ namespace SquareCalculator
         private List<Range> range180;
         private List<Range> range120;
         private List<Range> range90;
+        private List<Range> rangePAD180;
+        private List<Range> rangePAD120;
+        private List<Range> rangePAD90;
+
+
         private List<(string colName, List<double> inputRange)> spoCustomSearch;
         private static List<int> numberList = new List<int>
         {
@@ -197,6 +202,51 @@ namespace SquareCalculator
                 // Display the data in the DataGridView
                 PopulateGrid(ref range90, dgView90, "90");
             }
+            if ((sender as System.Windows.Forms.Button).Name.Equals("btnPriceAngleDataSort180"))
+            {
+                rangePAD180 = new List<Range>();
+                List<double> inputRanges = GetInputRanges(txtInputPAD180);
+
+                foreach (double range in inputRanges.OrderBy(x => x))
+                {
+                    rangePAD180.Add(new Range(range));
+                }
+
+                // Display the data in the DataGridView
+                PopulateGrid(ref rangePAD180, dgViewPAD180, "180", "PAD");
+            }
+            else if ((sender as System.Windows.Forms.Button).Name.Equals("btnPriceAngleDataSort120"))
+            {
+                rangePAD120 = new List<Range>();
+                List<double> inputRanges = GetInputRanges(txtInputPAD120);
+
+                if (inputRanges.Count == 0) return;
+
+                foreach (double range in inputRanges.OrderBy(x => x))
+                {
+                    rangePAD120.Add(new Range(range));
+                }
+
+                // Display the data in the DataGridView
+                PopulateGrid(ref rangePAD120, dgViewPAD120, "120", "PAD");
+            }
+            else if ((sender as System.Windows.Forms.Button).Name.Equals("btnPriceAngleDataSort90"))
+            {
+                rangePAD90 = new List<Range>();
+                List<double> inputRanges = GetInputRanges(txtInputPAD90);
+
+                if (inputRanges.Count == 0) return;
+
+                foreach (double range in inputRanges.OrderBy(x => x))
+                {
+                    rangePAD90.Add(new Range(range));
+                }
+
+                // Display the data in the DataGridView
+                PopulateGrid(ref rangePAD90, dgViewPAD90, "90", "PAD");
+            }
+
+
         }
 
         private void dgView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -517,10 +567,10 @@ namespace SquareCalculator
 
             //var lstSPO = new List<SPORange>();
             var lstPEPs = new List<(string colName, double matchedRange)>();
-            if (range180 != null && chkInclude180.Checked)
+            if (rangePAD180 != null && chkInclude180.Checked)
             {
                 // Create a list of tuples with the correct type based on your filtering criteria
-                var filteredValues = range180
+                var filteredValues = rangePAD180
                     .SelectMany(r => r.Data)
                     .Where(d => d.Value >= minSPO && d.Value <= maxSPO)
                     .Select(d => (colName: "180", matchedRange: d.Value)) // Use tuples here
@@ -529,10 +579,10 @@ namespace SquareCalculator
                 // Add the filtered tuples to lstPEPs
                 lstPEPs.AddRange(filteredValues);
             }
-            if (range120 != null && chkInclude120.Checked)
+            if (rangePAD120 != null && chkInclude120.Checked)
             {
                 // Create a list of tuples with the correct type based on your filtering criteria
-                var filteredValues = range120
+                var filteredValues = rangePAD120
                     .SelectMany(r => r.Data)
                     .Where(d => d.Value >= minSPO && d.Value <= maxSPO)
                     .Select(d => (colName: "120", matchedRange: d.Value)) // Use tuples here
@@ -541,10 +591,10 @@ namespace SquareCalculator
                 // Add the filtered tuples to lstPEPs
                 lstPEPs.AddRange(filteredValues);
             }
-            if (range90 != null && chkInclude90.Checked)
+            if (rangePAD90 != null && chkInclude90.Checked)
             {
                 // Create a list of tuples with the correct type based on your filtering criteria
-                var filteredValues = range90
+                var filteredValues = rangePAD90
                     .SelectMany(r => r.Data)
                     .Where(d => d.Value >= minSPO && d.Value <= maxSPO)
                     .Select(d => (colName: "90", matchedRange: d.Value)) // Use tuples here
@@ -600,7 +650,7 @@ namespace SquareCalculator
                 {
                     case "180":
                         // Create a list of tuples with the correct type based on your filtering criteria
-                        var filteredValues180 = range180
+                        var filteredValues180 = rangePAD180
                             .SelectMany(r => r.Data)
                             .Where(r => r.Value >= minSPOTol && r.Value <= maxSPOTol)
                             .Select(r => (colName: "180", matchedRange: r.Value)) // Use tuples here
@@ -616,7 +666,7 @@ namespace SquareCalculator
                         break;
                     case "120":
                         // Create a list of tuples with the correct type based on your filtering criteria
-                        var filteredValues120 = range120
+                        var filteredValues120 = rangePAD120
                             .SelectMany(r => r.Data)
                             .Where(r => r.Value >= minSPOTol && r.Value <= maxSPOTol)
                             .Select(r => (colName: "120", matchedRange: r.Value)) // Use tuples here
@@ -632,7 +682,7 @@ namespace SquareCalculator
                         break;
                     case "90":
                         // Create a list of tuples with the correct type based on your filtering criteria
-                        var filteredValues90 = range90
+                        var filteredValues90 = rangePAD90
                             .SelectMany(r => r.Data)
                             .Where(r => r.Value >= minSPOTol && r.Value <= maxSPOTol)
                             .Select(r => (colName: "90", matchedRange: r.Value)) // Use tuples here
@@ -733,6 +783,21 @@ namespace SquareCalculator
                 {
                     column.Visible = false;
                 }
+
+            }
+
+            foreach (var dgvId in new[] { "180", "120", "90" })
+            {
+                (this.Controls.Find($"txtInput{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox).Clear();
+                DataGridView dgv = this.Controls.Find($"dgViewPAD{dgvId}", true).FirstOrDefault() as DataGridView;
+
+                dgv.RowHeadersVisible = false;
+                dgv.Rows.Clear();
+                foreach (DataGridViewColumn column in dgv.Columns)
+                {
+                    column.Visible = false;
+                }
+
             }
 
             //TabControl2
@@ -759,11 +824,17 @@ namespace SquareCalculator
             SetPlaceholder(txtInput180, "Input 180");
             SetPlaceholder(txtInput120, "Input 120");
             SetPlaceholder(txtInput90, "Input 90");
+
+            SetPlaceholder(txtInputPAD180, "Input 180");
+            SetPlaceholder(txtInputPAD120, "Input 120");
+            SetPlaceholder(txtInputPAD90, "Input 90");
+
             SetPlaceholder(txtInputSearch, "Search Range");
             SetPlaceholder(txtInputSD, "Starting Date");
 
             SetPlaceholder(txtInputSPO, "Starting Point");
             SetPlaceholder(txtInputSPORange, "Search Range");
+
             SetPlaceholder(txtSPO180, "180");
             SetPlaceholder(txtSPO120, "120");
             SetPlaceholder(txtSPO90, "90");
@@ -805,13 +876,14 @@ namespace SquareCalculator
                 {
                     // Handle invalid input (e.g., show a message or ignore the invalid input)
                     MessageBox.Show($"Invalid input: '{part.Trim()}'", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                   
                 }
             }
 
             return inputRanges;
         }
 
-        private void PopulateGrid(ref List<Range> ranges, System.Windows.Forms.DataGridView dataGrid, string rangeId)
+        private void PopulateGrid(ref List<Range> ranges, System.Windows.Forms.DataGridView dataGrid, string rangeId, string GridType = "")
         {
             //clear all rows
             dataGrid.Rows.Clear();
@@ -836,9 +908,17 @@ namespace SquareCalculator
             {
                 string column = group.Key;
 
+                if (GridType == "PAD")
+                {
+                    column = $"{column}{GridType}";
+                }
+
                 for (int i = 0; i < group.Value.Count; i++)
                 {
+
                     dataGrid.Rows[i].Cells[column + "_" + rangeId].Value = group.Value[i].GetFormattedData();
+
+
                 }
             }
 
@@ -858,10 +938,25 @@ namespace SquareCalculator
                 .ToList();
 
             //Show columns have data
-            groupedByColumn.Keys.ToList().ForEach(column => dataGrid.Columns[column + "_" + rangeId].Visible = true);
-
+            if (GridType == "PAD")
+            {
+                groupedByColumn.Keys.ToList().ForEach(column => dataGrid.Columns[column + GridType + "_" + rangeId].Visible = true);
+            }
+            else
+            {
+                groupedByColumn.Keys.ToList().ForEach(column => dataGrid.Columns[column + "_" + rangeId].Visible = true);
+            }
             //Iterate and hide column
-            columnsWithoutRecords.ForEach(column => dataGrid.Columns[column + "_" + rangeId].Visible = false);
+
+            if (GridType == "PAD")
+            {
+                columnsWithoutRecords.ForEach(column => dataGrid.Columns[column + GridType + "_" + rangeId].Visible = false);
+            }
+            else
+            {
+                columnsWithoutRecords.ForEach(column => dataGrid.Columns[column + "_" + rangeId].Visible = false);
+            }
+
 
             #endregion Hide Unused Columns
 
