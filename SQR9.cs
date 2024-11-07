@@ -15,9 +15,9 @@ namespace SquareCalculator
         private List<Range> range180;
         private List<Range> range120;
         private List<Range> range90;
-        private List<Range> rangePAD180;
-        private List<Range> rangePAD120;
-        private List<Range> rangePAD90;
+        private List<Range> rangeSPO180;
+        private List<Range> rangeSPO120;
+        private List<Range> rangeSPO90;
 
 
         private List<(string colName, List<double> inputRange)> spoCustomSearch;
@@ -37,7 +37,7 @@ namespace SquareCalculator
         {
             //Clear controls
             ClearControls();
-
+            ClearControls("SPO");
             BindMEDropdown();
 
             SQR9_Resize(null, null);
@@ -157,96 +157,51 @@ namespace SquareCalculator
 
         #region Control Events
 
+        private void ProcessInput(System.Windows.Forms.TextBox inputTextBox, ref List<Range> rangeList, DataGridView dataGridView, string rangeType, string prefix = "")
+        {
+            rangeList = new List<Range>();
+            List<double> inputRanges = GetInputRanges(inputTextBox);
+
+            if (inputRanges.Count == 0) return;
+
+            foreach (double range in inputRanges.OrderBy(x => x))
+            {
+                rangeList.Add(new Range(range));
+            }
+
+            // Display the data in the DataGridView
+            PopulateGrid(ref rangeList, dataGridView, rangeType, prefix);
+        }
+
         private void btnProcessInput_Click(object sender, System.EventArgs e)
         {
-            if ((sender as System.Windows.Forms.Button).Name.Equals("btnProcessInput180"))
+            var buttonName = (sender as System.Windows.Forms.Button).Name;
+
+            // Remove 'ref' from the dictionary, just specify the range lists directly
+            if (buttonName == "btnProcessInput180")
             {
-                range180 = new List<Range>();
-                List<double> inputRanges = GetInputRanges(txtInput180);
-
-                foreach (double range in inputRanges.OrderBy(x => x))
-                {
-                    range180.Add(new Range(range));
-                }
-
-                // Display the data in the DataGridView
-                PopulateGrid(ref range180, dgView180, "180");
+                ProcessInput(txtInput180, ref range180, dgView180, "180");
             }
-            else if ((sender as System.Windows.Forms.Button).Name.Equals("btnProcessInput120"))
+            else if (buttonName == "btnProcessInput120")
             {
-                range120 = new List<Range>();
-                List<double> inputRanges = GetInputRanges(txtInput120);
-
-                if (inputRanges.Count == 0) return;
-
-                foreach (double range in inputRanges.OrderBy(x => x))
-                {
-                    range120.Add(new Range(range));
-                }
-
-                // Display the data in the DataGridView
-                PopulateGrid(ref range120, dgView120, "120");
+                ProcessInput(txtInput120, ref range120, dgView120, "120");
             }
-            else if ((sender as System.Windows.Forms.Button).Name.Equals("btnProcessInput90"))
+            else if (buttonName == "btnProcessInput90")
             {
-                range90 = new List<Range>();
-                List<double> inputRanges = GetInputRanges(txtInput90);
-
-                if (inputRanges.Count == 0) return;
-
-                foreach (double range in inputRanges.OrderBy(x => x))
-                {
-                    range90.Add(new Range(range));
-                }
-
-                // Display the data in the DataGridView
-                PopulateGrid(ref range90, dgView90, "90");
+                ProcessInput(txtInput90, ref range90, dgView90, "90");
             }
-            if ((sender as System.Windows.Forms.Button).Name.Equals("btnPriceAngleDataSort180"))
+            else if (buttonName == "btnPriceAngleDataSort180")
             {
-                rangePAD180 = new List<Range>();
-                List<double> inputRanges = GetInputRanges(txtInputPAD180);
-
-                foreach (double range in inputRanges.OrderBy(x => x))
-                {
-                    rangePAD180.Add(new Range(range));
-                }
-
-                // Display the data in the DataGridView
-                PopulateGrid(ref rangePAD180, dgViewPAD180, "180", "PAD");
+                ProcessInput(txtInputPAD180, ref rangeSPO180, dgViewPAD180, "180", "PAD");
             }
-            else if ((sender as System.Windows.Forms.Button).Name.Equals("btnPriceAngleDataSort120"))
+            else if (buttonName == "btnPriceAngleDataSort120")
             {
-                rangePAD120 = new List<Range>();
-                List<double> inputRanges = GetInputRanges(txtInputPAD120);
-
-                if (inputRanges.Count == 0) return;
-
-                foreach (double range in inputRanges.OrderBy(x => x))
-                {
-                    rangePAD120.Add(new Range(range));
-                }
-
-                // Display the data in the DataGridView
-                PopulateGrid(ref rangePAD120, dgViewPAD120, "120", "PAD");
+                ProcessInput(txtInputPAD120, ref rangeSPO120, dgViewPAD120, "120", "PAD");
             }
-            else if ((sender as System.Windows.Forms.Button).Name.Equals("btnPriceAngleDataSort90"))
+            else if (buttonName == "btnPriceAngleDataSort90")
             {
-                rangePAD90 = new List<Range>();
-                List<double> inputRanges = GetInputRanges(txtInputPAD90);
-
-                if (inputRanges.Count == 0) return;
-
-                foreach (double range in inputRanges.OrderBy(x => x))
-                {
-                    rangePAD90.Add(new Range(range));
-                }
-
-                // Display the data in the DataGridView
-                PopulateGrid(ref rangePAD90, dgViewPAD90, "90", "PAD");
+                ProcessInput(txtInputPAD90, ref rangeSPO90, dgViewPAD90, "90", "PAD");
             }
-
-
         }
 
         private void dgView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -567,10 +522,10 @@ namespace SquareCalculator
 
             //var lstSPO = new List<SPORange>();
             var lstPEPs = new List<(string colName, double matchedRange)>();
-            if (rangePAD180 != null && chkInclude180.Checked)
+            if (rangeSPO180 != null && chkInclude180.Checked)
             {
                 // Create a list of tuples with the correct type based on your filtering criteria
-                var filteredValues = rangePAD180
+                var filteredValues = rangeSPO180
                     .SelectMany(r => r.Data)
                     .Where(d => d.Value >= minSPO && d.Value <= maxSPO)
                     .Select(d => (colName: "180", matchedRange: d.Value)) // Use tuples here
@@ -579,10 +534,10 @@ namespace SquareCalculator
                 // Add the filtered tuples to lstPEPs
                 lstPEPs.AddRange(filteredValues);
             }
-            if (rangePAD120 != null && chkInclude120.Checked)
+            if (rangeSPO120 != null && chkInclude120.Checked)
             {
                 // Create a list of tuples with the correct type based on your filtering criteria
-                var filteredValues = rangePAD120
+                var filteredValues = rangeSPO120
                     .SelectMany(r => r.Data)
                     .Where(d => d.Value >= minSPO && d.Value <= maxSPO)
                     .Select(d => (colName: "120", matchedRange: d.Value)) // Use tuples here
@@ -591,10 +546,10 @@ namespace SquareCalculator
                 // Add the filtered tuples to lstPEPs
                 lstPEPs.AddRange(filteredValues);
             }
-            if (rangePAD90 != null && chkInclude90.Checked)
+            if (rangeSPO90 != null && chkInclude90.Checked)
             {
                 // Create a list of tuples with the correct type based on your filtering criteria
-                var filteredValues = rangePAD90
+                var filteredValues = rangeSPO90
                     .SelectMany(r => r.Data)
                     .Where(d => d.Value >= minSPO && d.Value <= maxSPO)
                     .Select(d => (colName: "90", matchedRange: d.Value)) // Use tuples here
@@ -650,7 +605,7 @@ namespace SquareCalculator
                 {
                     case "180":
                         // Create a list of tuples with the correct type based on your filtering criteria
-                        var filteredValues180 = rangePAD180
+                        var filteredValues180 = rangeSPO180
                             .SelectMany(r => r.Data)
                             .Where(r => r.Value >= minSPOTol && r.Value <= maxSPOTol)
                             .Select(r => (colName: "180", matchedRange: r.Value)) // Use tuples here
@@ -666,7 +621,7 @@ namespace SquareCalculator
                         break;
                     case "120":
                         // Create a list of tuples with the correct type based on your filtering criteria
-                        var filteredValues120 = rangePAD120
+                        var filteredValues120 = rangeSPO120
                             .SelectMany(r => r.Data)
                             .Where(r => r.Value >= minSPOTol && r.Value <= maxSPOTol)
                             .Select(r => (colName: "120", matchedRange: r.Value)) // Use tuples here
@@ -682,7 +637,7 @@ namespace SquareCalculator
                         break;
                     case "90":
                         // Create a list of tuples with the correct type based on your filtering criteria
-                        var filteredValues90 = rangePAD90
+                        var filteredValues90 = rangeSPO90
                             .SelectMany(r => r.Data)
                             .Where(r => r.Value >= minSPOTol && r.Value <= maxSPOTol)
                             .Select(r => (colName: "90", matchedRange: r.Value)) // Use tuples here
@@ -770,36 +725,37 @@ namespace SquareCalculator
             };
         }
 
-        private void ClearControls()
+        private void ClearControls(string clearType = "")
         {
-            foreach (var dgvId in new[] { "180", "120", "90" })
-            {
-                (this.Controls.Find($"txtInput{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox).Clear();
-                DataGridView dgv = this.Controls.Find($"dgView{dgvId}", true).FirstOrDefault() as DataGridView;
 
-                dgv.RowHeadersVisible = false;
-                dgv.Rows.Clear();
-                foreach (DataGridViewColumn column in dgv.Columns)
+            if (clearType == "SPO")
+                foreach (var dgvId in new[] { "180", "120", "90" })
                 {
-                    column.Visible = false;
+                    (this.Controls.Find($"txtInput{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox).Clear();
+                    DataGridView dgv = this.Controls.Find($"dgViewPAD{dgvId}", true).FirstOrDefault() as DataGridView;
+
+                    dgv.RowHeadersVisible = false;
+                    dgv.Rows.Clear();
+                    foreach (DataGridViewColumn column in dgv.Columns)
+                    {
+                        column.Visible = false;
+                    }
+
                 }
-
-            }
-
-            foreach (var dgvId in new[] { "180", "120", "90" })
-            {
-                (this.Controls.Find($"txtInput{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox).Clear();
-                DataGridView dgv = this.Controls.Find($"dgViewPAD{dgvId}", true).FirstOrDefault() as DataGridView;
-
-                dgv.RowHeadersVisible = false;
-                dgv.Rows.Clear();
-                foreach (DataGridViewColumn column in dgv.Columns)
+            else
+                foreach (var dgvId in new[] { "180", "120", "90" })
                 {
-                    column.Visible = false;
+                    (this.Controls.Find($"txtInput{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox).Clear();
+                    DataGridView dgv = this.Controls.Find($"dgView{dgvId}", true).FirstOrDefault() as DataGridView;
+
+                    dgv.RowHeadersVisible = false;
+                    dgv.Rows.Clear();
+                    foreach (DataGridViewColumn column in dgv.Columns)
+                    {
+                        column.Visible = false;
+                    }
+
                 }
-
-            }
-
             //TabControl2
             txtInputSD.Text = txtInputSearch.Text = string.Empty;
             txtTolerance.Text = "1";
@@ -821,13 +777,19 @@ namespace SquareCalculator
 
 
             // Set placeholder for a TextBox
-            SetPlaceholder(txtInput180, "Input 180");
-            SetPlaceholder(txtInput120, "Input 120");
-            SetPlaceholder(txtInput90, "Input 90");
-
-            SetPlaceholder(txtInputPAD180, "Input 180");
-            SetPlaceholder(txtInputPAD120, "Input 120");
-            SetPlaceholder(txtInputPAD90, "Input 90");
+            
+            if (clearType == "SPO")
+            {
+                SetPlaceholder(txtInputPAD180, "Input 180");
+                SetPlaceholder(txtInputPAD120, "Input 120");
+                SetPlaceholder(txtInputPAD90, "Input 90");
+            }
+            else
+            {
+                SetPlaceholder(txtInput180, "Input 180");
+                SetPlaceholder(txtInput120, "Input 120");
+                SetPlaceholder(txtInput90, "Input 90");
+            }
 
             SetPlaceholder(txtInputSearch, "Search Range");
             SetPlaceholder(txtInputSD, "Starting Date");
@@ -876,7 +838,7 @@ namespace SquareCalculator
                 {
                     // Handle invalid input (e.g., show a message or ignore the invalid input)
                     MessageBox.Show($"Invalid input: '{part.Trim()}'", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                   
+
                 }
             }
 
@@ -1111,5 +1073,14 @@ namespace SquareCalculator
         }
 
         #endregion Private Methods
+
+        private void btnSPODataClear_Click(object sender, EventArgs e)
+        {
+            ClearControls("SPO");
+            //clear list as well
+            rangeSPO180 = rangeSPO120 = rangeSPO90 = null;
+            if (spoCustomSearch != null)
+                spoCustomSearch.Clear();
+        }
     }
 }
