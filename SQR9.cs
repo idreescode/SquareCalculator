@@ -149,7 +149,50 @@ namespace SquareCalculator
                             selectedTab.ClientSize.Height - currentY - 2 * padding);
                     }
                 }
+                else if (selectedTab.Name == "tbPriceAngleData")  // Assuming "tab1" is the first tab
+                {
+                    // Tab 1 logic
+                    // Calculate the width of each DataGridView
+                    int totalWidth = (selectedTab.ClientSize.Width - (padding * 2)) - cButtonWidth;
+                    int dgvWidth = (totalWidth / 3) - padding;
 
+                    // Calculate the height for the DataGridView
+                    int rowHeight = selectedTab.ClientSize.Height - 2 * padding;
+
+                    // Position for the DataGridView, TextBox, and Button
+                    int currentX = padding;
+                    foreach (var dgvId in new[] { "180", "120", "90" })
+                    {
+                        DataGridView dgv = selectedTab.Controls.Find($"dgViewPAD{dgvId}", true).FirstOrDefault() as DataGridView;
+                        System.Windows.Forms.TextBox tb = selectedTab.Controls.Find($"txtInputPAD{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox;
+                        System.Windows.Forms.Button btn = selectedTab.Controls.Find($"btnProcessInputPAD{dgvId}", true).FirstOrDefault() as System.Windows.Forms.Button;
+
+                        if (dgv != null && tb != null && btn != null)
+                        {
+                            // Set bounds for the DataGridView
+                            dgv.SetBounds(currentX, padding + textBoxHeight + padding, dgvWidth, rowHeight - textBoxHeight - 2 * padding);
+
+                            // Set bounds for the TextBox
+                            tb.SetBounds(currentX, padding, dgvWidth - buttonWidth - padding, textBoxHeight);
+
+                            // Set bounds for the Button
+                            btn.SetBounds(currentX + tb.Width + padding, padding, buttonWidth, textBoxHeight);
+
+                            // Adjust the width of the visible columns in the DataGridView
+                            AdjustDataGridViewColumns(dgv);
+
+                            // Update the X position for the next DataGridView
+                            currentX += dgvWidth + padding;
+                        }
+                    }
+
+                    // Position the "C" button
+                    System.Windows.Forms.Button btnClear = selectedTab.Controls.Find("btnClear", true).FirstOrDefault() as System.Windows.Forms.Button;
+                    if (btnClear != null)
+                    {
+                        btnClear.SetBounds(currentX - 5, padding, cButtonWidth, textBoxHeight);
+                    }
+                }
             }
         }
 
