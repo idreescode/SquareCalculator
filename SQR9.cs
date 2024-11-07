@@ -309,25 +309,35 @@ namespace SquareCalculator
                     if (part.Contains("(O)"))  // Original value
                     {
                         string originalValue = part.Replace("(O)", "").Trim();
-                        if ((grid.Name.Equals("dgView180") || grid.Name.Equals("dgView120") || grid.Name.Equals("dgView90")) && IsInRange(double.Parse(originalValue)))
+                        if ((grid.Name.Equals("dgView180") || grid.Name.Equals("dgView120") || grid.Name.Equals("dgView90") ||
+                             grid.Name.Equals("dgViewPAD180") || grid.Name.Equals("dgViewPAD120") || grid.Name.Equals("dgViewPAD90"))
+                            && IsInRange(double.Parse(originalValue)))
+                        {
                             e.Graphics.DrawString(originalValue, regularFont, redBrush, xPosition, yPosition);
+                        }
                         else
+                        {
                             e.Graphics.DrawString(originalValue, regularFont, regularBrush, xPosition, yPosition);
+                        }
                         xPosition += e.Graphics.MeasureString(originalValue, regularFont).Width + 3;
                     }
                     else if (part.Contains("(V)"))  // Variation value
                     {
                         string variationValue = part.Replace("(V)", "").Trim();
-                        if ((grid.Name.Equals("dgView180") || grid.Name.Equals("dgView120") || grid.Name.Equals("dgView90")) && IsInRange(double.Parse(variationValue)))
+                        if ((grid.Name.Equals("dgView180") || grid.Name.Equals("dgView120") || grid.Name.Equals("dgView90") ||
+                             grid.Name.Equals("dgViewPAD180") || grid.Name.Equals("dgViewPAD120") || grid.Name.Equals("dgViewPAD90"))
+                            && IsInRange(double.Parse(variationValue)))
+                        {
                             e.Graphics.DrawString(variationValue, regularFont, redBrush, xPosition, yPosition);
+                        }
                         else
+                        {
                             e.Graphics.DrawString(variationValue, regularFont, variationBrush, xPosition, yPosition);
+                        }
                         xPosition += e.Graphics.MeasureString(variationValue, regularFont).Width + 3;
-
-                        //e.Graphics.DrawString(variationValue, variationFont, variationBrush, xPosition, yPosition);
-                        //xPosition += e.Graphics.MeasureString(variationValue, variationFont).Width + 3;
                     }
                 }
+
             }
         }
 
