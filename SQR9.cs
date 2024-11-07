@@ -34,6 +34,11 @@ namespace SquareCalculator
         }
         private void SQR9_Load(object sender, System.EventArgs e)
         {
+            tabControl.SizeMode = TabSizeMode.Fixed;
+            tabControl.ItemSize = new Size(100, 40); // Set the desired width and height
+
+            tabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabControl.DrawItem += TabControl_DrawItem;
             //Clear controls
             ClearControls();
             ClearControls("SPO");
@@ -195,6 +200,31 @@ namespace SquareCalculator
                 }
             }
         }
+
+        private void TabControl_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            TabPage tabPage = tabControl.TabPages[e.Index];
+
+            // Set the background color based on the tab index
+            Color backgroundColor;
+            if (e.Index < 2) // First two tabs
+                backgroundColor = Color.LightBlue;
+            else if (e.Index >= 2 && e.Index < 4) // Last two tabs
+                backgroundColor = Color.Yellow;
+            else
+                backgroundColor = Color.White; // Default color for other tabs if needed
+
+            // Fill the background of the tab
+            using (SolidBrush brush = new SolidBrush(backgroundColor))
+            {
+                e.Graphics.FillRectangle(brush, e.Bounds);
+            }
+
+            // Draw the tab text
+            TextRenderer.DrawText(e.Graphics, tabPage.Text, e.Font, e.Bounds, Color.Black, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+        }
+
 
         #region Control Events
 
@@ -850,7 +880,7 @@ namespace SquareCalculator
                     }
 
                 }
-           
+
             //TabControl2
             txtInputSD.Text = txtInputSearch.Text = string.Empty;
             txtTolerance.Text = "1";
@@ -879,7 +909,7 @@ namespace SquareCalculator
                 SetPlaceholder(txtInputPAD120, "Input 120");
                 SetPlaceholder(txtInputPAD90, "Input 90");
             }
-           
+
 
             SetPlaceholder(txtInputSearch, "Search Range");
             SetPlaceholder(txtInputSD, "Starting Date");
@@ -1173,6 +1203,6 @@ namespace SquareCalculator
                 spoCustomSearch.Clear();
         }
 
-       
+
     }
 }
