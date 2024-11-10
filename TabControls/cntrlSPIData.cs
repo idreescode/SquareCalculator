@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SquareCalculator.TabControls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,8 @@ namespace SquareCalculator
         private List<Range> range180;
         private List<Range> range120;
         private List<Range> range90;
-        private List<(string colName, List<double> inputRange)> spoCustomSearch;
+        public Action<List<Range>, List<Range>, List<Range>> OnUpdateRanges;
+
         private static List<int> numberList = new List<int>
         {
             1, 10, 11, 100, 101, 110, 111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111, 10000, 10001, 10010, 10011,
@@ -25,6 +27,7 @@ namespace SquareCalculator
         {
            
             InitializeComponent();
+            // Optionally, call any methods on cntrlSPI to trigger processing after setting these lists
             ClearControls();
         }
         private List<double> GetInputRanges(System.Windows.Forms.TextBox txtInput)
@@ -101,6 +104,8 @@ namespace SquareCalculator
             {
                 ProcessInput(txtInput90, ref range90, dgView90, "90");
             }
+
+            OnUpdateRanges?.Invoke(range180, range120, range90);
 
         }
 
@@ -255,8 +260,8 @@ namespace SquareCalculator
 
             //clear list as well
             range180 = range120 = range90 = null;
-            if (spoCustomSearch != null)
-                spoCustomSearch.Clear();
+            //if (spoCustomSearch != null)
+            //    spoCustomSearch.Clear();
         }
 
         public static bool IsInRange(double input)

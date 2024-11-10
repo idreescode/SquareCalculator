@@ -16,10 +16,12 @@ namespace SquareCalculator
         private List<Range> range180;
         private List<Range> range120;
         private List<Range> range90;
+
         private List<Range> rangeSPO180;
         private List<Range> rangeSPO120;
         private List<Range> rangeSPO90;
-
+        private cntrlSPI myCntrlSPI;
+        private cntrlSPIData myCntrlSPIdata;
 
         private List<(string colName, List<double> inputRange)> spoCustomSearch;
         private static List<int> numberList = new List<int>
@@ -37,7 +39,7 @@ namespace SquareCalculator
         {
 
 
-            AddControls();
+            AddControlsDynamically();
             //Clear controls
             ClearControls();
             ClearControls("SPO");
@@ -233,19 +235,23 @@ namespace SquareCalculator
             tabControl.DrawItem += TabControl_DrawItem;
         }
 
-        private void AddControls()
+     
+        public void AddControlsDynamically()
         {
+            // Initialize and add myCntrlSPI
+            myCntrlSPI = new cntrlSPI();
+            myCntrlSPI.Dock = DockStyle.Fill;
+            tabSPI.Controls.Add(myCntrlSPI);
 
-            cntrlSPIData myControl = new cntrlSPIData();
-            // Set location or dock as per your preference
-            myControl.Dock = DockStyle.Fill; // Fills the entire TabPage
-            // Add the user control to the TabPage
-            tabSPIData.Controls.Add(myControl);
-            tabSPI.Dock = DockStyle.Fill;
-            cntrlSPI cntrlSPI = new cntrlSPI();
-            tabSPI.Controls.Add(cntrlSPI); 
-           
+            // Initialize and add myCntrlSPIdata
+            myCntrlSPIdata = new cntrlSPIData();
+            myCntrlSPIdata.Dock = DockStyle.Fill;
+            tabSPIData.Controls.Add(myCntrlSPIdata);
+
+            // Assign the OnUpdateRanges action to myCntrlSPI's SetRanges method
+            myCntrlSPIdata.OnUpdateRanges = myCntrlSPI.SetRanges;
         }
+
         #region Control Events
 
         private void ProcessInput(System.Windows.Forms.TextBox inputTextBox, ref List<Range> rangeList, DataGridView dataGridView, string rangeType, string prefix = "")

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\SQR9Helper.cs" />
     <Compile Include="TabControls\cntrlSPI.cs">
       <SubType>UserControl</SubType>
     </Compile>
