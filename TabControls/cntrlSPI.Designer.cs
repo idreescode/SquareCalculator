@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label6 = new System.Windows.Forms.Label();
             this.txtRangeSPO = new System.Windows.Forms.TextBox();
             this.chkInclude90 = new System.Windows.Forms.CheckBox();
@@ -57,7 +57,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(167, 65);
+            this.label6.Location = new System.Drawing.Point(162, 65);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 13);
             this.label6.TabIndex = 74;
@@ -65,7 +65,7 @@
             // 
             // txtRangeSPO
             // 
-            this.txtRangeSPO.Location = new System.Drawing.Point(239, 62);
+            this.txtRangeSPO.Location = new System.Drawing.Point(235, 62);
             this.txtRangeSPO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRangeSPO.Name = "txtRangeSPO";
             this.txtRangeSPO.Size = new System.Drawing.Size(43, 20);
@@ -159,7 +159,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 66);
+            this.label5.Location = new System.Drawing.Point(6, 66);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 70;
@@ -167,7 +167,7 @@
             // 
             // txtDetTolerance
             // 
-            this.txtDetTolerance.Location = new System.Drawing.Point(61, 64);
+            this.txtDetTolerance.Location = new System.Drawing.Point(56, 64);
             this.txtDetTolerance.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDetTolerance.Name = "txtDetTolerance";
             this.txtDetTolerance.Size = new System.Drawing.Size(21, 20);
@@ -176,7 +176,7 @@
             // 
             // btnSearchSPO
             // 
-            this.btnSearchSPO.Location = new System.Drawing.Point(86, 60);
+            this.btnSearchSPO.Location = new System.Drawing.Point(81, 60);
             this.btnSearchSPO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearchSPO.Name = "btnSearchSPO";
             this.btnSearchSPO.Size = new System.Drawing.Size(76, 24);
@@ -197,29 +197,31 @@
             // 
             this.dgViewSPO.AllowUserToAddRows = false;
             this.dgViewSPO.AllowUserToDeleteRows = false;
+            this.dgViewSPO.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgViewSPO.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgViewSPO.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewSPO.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewSPO.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgViewSPO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgViewSPO.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewSPO.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewSPO.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgViewSPO.Location = new System.Drawing.Point(11, 89);
             this.dgViewSPO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgViewSPO.MultiSelect = false;
@@ -228,14 +230,14 @@
             this.dgViewSPO.RowHeadersVisible = false;
             this.dgViewSPO.RowHeadersWidth = 51;
             this.dgViewSPO.RowTemplate.Height = 26;
-            this.dgViewSPO.Size = new System.Drawing.Size(271, 442);
+            this.dgViewSPO.Size = new System.Drawing.Size(271, 456);
             this.dgViewSPO.TabIndex = 69;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxColumn5.HeaderText = "PEPs";
             this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -245,8 +247,8 @@
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn6.HeaderText = "DETs";
             this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
@@ -256,8 +258,8 @@
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn7.HeaderText = "Match Source";
             this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
@@ -284,7 +286,7 @@
             this.Controls.Add(this.txtInputSPORange);
             this.Controls.Add(this.dgViewSPO);
             this.Name = "cntrlSPI";
-            this.Size = new System.Drawing.Size(336, 545);
+            this.Size = new System.Drawing.Size(284, 545);
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSPO)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

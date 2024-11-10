@@ -238,6 +238,8 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabSPIData = new System.Windows.Forms.TabPage();
+            this.tabSPI = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -268,8 +270,6 @@
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabSPIData = new System.Windows.Forms.TabPage();
-            this.tabSPI = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabDateData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgView90)).BeginInit();
@@ -1830,6 +1830,25 @@
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
             this.dataGridViewTextBoxColumn8.Width = 150;
             // 
+            // tabSPIData
+            // 
+            this.tabSPIData.Location = new System.Drawing.Point(4, 44);
+            this.tabSPIData.Name = "tabSPIData";
+            this.tabSPIData.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSPIData.Size = new System.Drawing.Size(1440, 792);
+            this.tabSPIData.TabIndex = 5;
+            this.tabSPIData.Text = "SPI DATA";
+            this.tabSPIData.UseVisualStyleBackColor = true;
+            // 
+            // tabSPI
+            // 
+            this.tabSPI.Location = new System.Drawing.Point(4, 44);
+            this.tabSPI.Name = "tabSPI";
+            this.tabSPI.Size = new System.Drawing.Size(1440, 792);
+            this.tabSPI.TabIndex = 6;
+            this.tabSPI.Text = "SPI";
+            this.tabSPI.UseVisualStyleBackColor = true;
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.label9);
@@ -2173,25 +2192,6 @@
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
             this.dataGridViewTextBoxColumn12.Width = 150;
-            // 
-            // tabSPIData
-            // 
-            this.tabSPIData.Location = new System.Drawing.Point(4, 44);
-            this.tabSPIData.Name = "tabSPIData";
-            this.tabSPIData.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSPIData.Size = new System.Drawing.Size(1440, 792);
-            this.tabSPIData.TabIndex = 5;
-            this.tabSPIData.Text = "SPI DATA ";
-            this.tabSPIData.UseVisualStyleBackColor = true;
-            // 
-            // tabSPI
-            // 
-            this.tabSPI.Location = new System.Drawing.Point(4, 44);
-            this.tabSPI.Name = "tabSPI";
-            this.tabSPI.Size = new System.Drawing.Size(1440, 792);
-            this.tabSPI.TabIndex = 6;
-            this.tabSPI.Text = "SPI";
-            this.tabSPI.UseVisualStyleBackColor = true;
             // 
             // SQR9
             // 

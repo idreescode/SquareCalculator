@@ -207,14 +207,28 @@ namespace SquareCalculator
             TabControl tabControl = sender as TabControl;
             TabPage tabPage = tabControl.TabPages[e.Index];
 
-            // Set the background color based on the tab index
+            // Set the background color based on the tab name
             Color backgroundColor;
-            if (e.Index < 2) // First two tabs
+            if (tabPage.Text == "SPI DATA")
+            {
+                backgroundColor = Color.LightSalmon;  // Light orange for SPI DATA
+            }
+            else if (tabPage.Text == "SPI")
+            {
+                backgroundColor = Color.Orange;  // Orange for SPI
+            }
+            else if (e.Index < 2) // First two tabs
+            {
                 backgroundColor = Color.LightBlue;
+            }
             else if (e.Index >= 2 && e.Index < 4) // Last two tabs
+            {
                 backgroundColor = Color.Yellow;
+            }
             else
+            {
                 backgroundColor = Color.White; // Default color for other tabs if needed
+            }
 
             // Fill the background of the tab
             using (SolidBrush brush = new SolidBrush(backgroundColor))
@@ -235,22 +249,67 @@ namespace SquareCalculator
             tabControl.DrawItem += TabControl_DrawItem;
         }
 
-     
+
+
         public void AddControlsDynamically()
         {
-            // Initialize and add myCntrlSPI
-            myCntrlSPI = new cntrlSPI();
-            myCntrlSPI.Dock = DockStyle.Fill;
-            tabSPI.Controls.Add(myCntrlSPI);
+            int numberOfControls = 5;
+            int padding = 5;  // Space between controls
+            int controlWidth = 270;  // Desired width of each control
+            int controlHeight = tabSPI.ClientSize.Height - 2 * padding;  // Full height with padding
+            int separatorWidth = 3;  // Width of the separator line
 
-            // Initialize and add myCntrlSPIdata
+            for (int i = 0; i < numberOfControls; i++)
+            {
+                // Create a new instance of myCntrlSPI
+                var myCntrlSPI = new cntrlSPI();
+
+                // Set the size and position of the control
+                myCntrlSPI.Width = controlWidth;
+                myCntrlSPI.Height = controlHeight;
+                myCntrlSPI.Left = padding + i * (controlWidth + padding + separatorWidth);  // Account for separator width
+                myCntrlSPI.Top = padding;
+
+                // Optionally, give each control a unique name if needed
+                myCntrlSPI.Name = $"myCntrlSPI_{i + 1}";
+
+                // Add the control to the TabPage
+                tabSPI.Controls.Add(myCntrlSPI);
+
+                // Add a separator panel after each control except the last one
+                if (i < numberOfControls - 1)
+                {
+                    var separatorPanel = new Panel();
+                    separatorPanel.Width = separatorWidth;
+                    separatorPanel.Height = controlHeight;
+                    separatorPanel.Left = myCntrlSPI.Right + padding;  // Position the separator to the right of the control
+                    separatorPanel.Top = padding;
+                    separatorPanel.BackColor = Color.FromArgb(204, 204, 204);  // Set color for the separator line
+
+                    // Add the separator panel to the TabPage
+                    tabSPI.Controls.Add(separatorPanel);
+                }
+            }
+
+            // Initialize and add myCntrlSPIdata separately, if required
             myCntrlSPIdata = new cntrlSPIData();
             myCntrlSPIdata.Dock = DockStyle.Fill;
             tabSPIData.Controls.Add(myCntrlSPIdata);
 
-            // Assign the OnUpdateRanges action to myCntrlSPI's SetRanges method
-            myCntrlSPIdata.OnUpdateRanges = myCntrlSPI.SetRanges;
+            // Assign the OnUpdateRanges action to update all instances of myCntrlSPI
+            myCntrlSPIdata.OnUpdateRanges = (ranges180, ranges120, ranges90) =>
+            {
+                // Update each instance of myCntrlSPI in tabSPI
+                foreach (Control control in tabSPI.Controls)
+                {
+                    if (control is cntrlSPI spiControl)
+                    {
+                        spiControl.SetRanges(ranges180, ranges120, ranges90);
+                    }
+                }
+            };
         }
+
 
         #region Control Events
 
