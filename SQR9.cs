@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SquareCalculator.TabControls;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
@@ -34,23 +35,15 @@ namespace SquareCalculator
         }
         private void SQR9_Load(object sender, System.EventArgs e)
         {
-            tabControl.SizeMode = TabSizeMode.Fixed;
-            tabControl.ItemSize = new Size(100, 40); // Set the desired width and height
 
-            tabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
-            tabControl.DrawItem += TabControl_DrawItem;
 
-            cntrlSPIData myControl = new cntrlSPIData();
-            // Set location or dock as per your preference
-            myControl.Dock = DockStyle.Fill; // Fills the entire TabPage
-            // Add the user control to the TabPage
-            tabPage5.Controls.Add(myControl);
+            AddControls();
             //Clear controls
             ClearControls();
             ClearControls("SPO");
             BindMEDropdown();
-
             SQR9_Resize(null, null);
+            FormatTab();
         }
         private void SQR9_Resize(object sender, EventArgs e)
         {
@@ -231,7 +224,28 @@ namespace SquareCalculator
             TextRenderer.DrawText(e.Graphics, tabPage.Text, e.Font, e.Bounds, Color.Black, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
 
+        private void FormatTab()
+        {
+            tabControl.SizeMode = TabSizeMode.Fixed;
+            tabControl.ItemSize = new Size(100, 40); // Set the desired width and height
 
+            tabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabControl.DrawItem += TabControl_DrawItem;
+        }
+
+        private void AddControls()
+        {
+
+            cntrlSPIData myControl = new cntrlSPIData();
+            // Set location or dock as per your preference
+            myControl.Dock = DockStyle.Fill; // Fills the entire TabPage
+            // Add the user control to the TabPage
+            tabSPIData.Controls.Add(myControl);
+            tabSPI.Dock = DockStyle.Fill;
+            cntrlSPI cntrlSPI = new cntrlSPI();
+            tabSPI.Controls.Add(cntrlSPI); 
+           
+        }
         #region Control Events
 
         private void ProcessInput(System.Windows.Forms.TextBox inputTextBox, ref List<Range> rangeList, DataGridView dataGridView, string rangeType, string prefix = "")
