@@ -34,7 +34,7 @@ namespace SquareCalculator
         public SQR9()
         {
             InitializeComponent();
-           
+            
 
         }      
         private void SQR9_Load(object sender, System.EventArgs e)
@@ -52,34 +52,7 @@ namespace SquareCalculator
 
         private void SQR9_Resize(object sender, EventArgs e)
         {
-            // Define padding and spacing constants
-            int padding = 10;
-            int buttonWidth = 100; // Width of the Button
-            int textBoxHeight = 20; // Height of the TextBox
-            int cButtonWidth = 40; // Width of the "C" button
 
-            // Resize the TabControl to fit the entire form, minus padding
-            tabControl.SetBounds(padding, padding, this.ClientSize.Width - 2 * padding, this.ClientSize.Height - 2 * padding);
-
-            // Get the reference to the selected tab page
-            TabPage selectedTab = tabControl.SelectedTab;
-
-            if (selectedTab != null)
-            {
-                // Check if selected tab needs dynamic layout management
-                if (new[] { "tabDateData", "tabSPOData", "tabSPO", "tabSPIData", "tabSPI" }.Contains(selectedTab.Name))
-                {
-                    ArrangeTabControls(selectedTab, padding, buttonWidth, textBoxHeight, cButtonWidth);
-                }
-                if (selectedTab.Name == "tabSPO")
-                {
-                    ArrangeTabDateControls(selectedTab, padding, textBoxHeight, "dgViewSPO");
-                }
-                else if (selectedTab.Name == "tabDate")
-                {
-                    ArrangeTabDateControls(selectedTab, padding, textBoxHeight, "dgViewSearch");
-                }
-            }
         }
 
         private void ArrangeTabControls(TabPage tabPage, int padding, int buttonWidth, int textBoxHeight, int cButtonWidth)
@@ -1232,7 +1205,7 @@ namespace SquareCalculator
             if (spoCustomSearch != null)
                 spoCustomSearch.Clear();
         }
-
+        
 
     }
 }
