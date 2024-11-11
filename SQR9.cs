@@ -181,8 +181,8 @@ namespace SquareCalculator
         {
             int numberOfControls = 5;
             int padding = 5;  // Space between controls
-            int controlWidth = 300;  // Desired width of each control
-            int controlHeight = pnlSPI.ClientSize.Height - 2 * padding;  // Full height with padding
+            int controlWidth = 360;  // Desired width of each control
+            int controlHeight = 1020;  // Full height with padding
             int separatorWidth = 3;  // Width of the separator line
 
             // Clear existing controls in pnlSPI to avoid duplicates

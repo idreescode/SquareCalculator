@@ -236,7 +236,7 @@
             this.dgViewSPO.RowHeadersVisible = false;
             this.dgViewSPO.RowHeadersWidth = 51;
             this.dgViewSPO.RowTemplate.Height = 26;
-            this.dgViewSPO.Size = new System.Drawing.Size(293, 698);
+            this.dgViewSPO.Size = new System.Drawing.Size(296, 866);
             this.dgViewSPO.TabIndex = 69;
             // 
             // dataGridViewTextBoxColumn5
@@ -291,7 +291,7 @@
             this.pnTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnTop.Location = new System.Drawing.Point(3, 3);
             this.pnTop.Name = "pnTop";
-            this.pnTop.Size = new System.Drawing.Size(295, 116);
+            this.pnTop.Size = new System.Drawing.Size(298, 110);
             this.pnTop.TabIndex = 75;
             // 
             // pnlBottom
@@ -300,9 +300,9 @@
             this.pnlBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlBottom.Controls.Add(this.dgViewSPO);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBottom.Location = new System.Drawing.Point(3, 125);
+            this.pnlBottom.Location = new System.Drawing.Point(3, 119);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(295, 700);
+            this.pnlBottom.Size = new System.Drawing.Size(298, 868);
             this.pnlBottom.TabIndex = 76;
             // 
             // tableLayoutPanel1
@@ -312,12 +312,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.pnTop, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.pnlBottom, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 706F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(301, 828);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 874F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(304, 990);
             this.tableLayoutPanel1.TabIndex = 70;
             // 
             // cntrlSPI
@@ -328,7 +329,7 @@
             this.AutoSize = true;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "cntrlSPI";
-            this.Size = new System.Drawing.Size(304, 831);
+            this.Size = new System.Drawing.Size(304, 990);
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSPO)).EndInit();
             this.pnTop.ResumeLayout(false);
             this.pnTop.PerformLayout();

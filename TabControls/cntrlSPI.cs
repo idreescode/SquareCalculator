@@ -23,6 +23,18 @@ namespace SquareCalculator.TabControls
             RangeSPO180 = new List<Range>();
             RangeSPO120 = new List<Range>();
             RangeSPO90 = new List<Range>();
+
+            // Ensure tableLayoutPanel1 fills the entire UserControl
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+
+            // Set the row style to make `pnTop` and `pnlBottom` occupy equal space
+            tableLayoutPanel1.RowStyles.Clear();
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12)); // 50% height for pnTop
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 88)); // 50% height for pnlBottom
+
+            // Ensure `pnTop` and `pnlBottom` fill their cells in the `TableLayoutPanel`
+            pnTop.Dock = DockStyle.Fill;
+            pnlBottom.Dock = DockStyle.Fill;
         }
 
         public void SetRanges(List<Range> ranges180, List<Range> ranges120, List<Range> ranges90)
