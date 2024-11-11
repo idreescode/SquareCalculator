@@ -46,7 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\HoursCalculator.cs" />
     <Compile Include="Helper\SQR9Helper.cs" />
+    <Compile Include="TabControls\cntrlHours.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabControls\cntrlHours.Designer.cs">
+      <DependentUpon>cntrlHours.cs</DependentUpon>
+    </Compile>
     <Compile Include="TabControls\cntrlSPI.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -70,6 +77,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeChecker.cs" />
     <Compile Include="Ranges.cs" />
+    <EmbeddedResource Include="TabControls\cntrlHours.resx">
+      <DependentUpon>cntrlHours.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TabControls\cntrlSPI.resx">
       <DependentUpon>cntrlSPI.cs</DependentUpon>
     </EmbeddedResource>

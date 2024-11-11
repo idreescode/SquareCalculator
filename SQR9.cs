@@ -23,7 +23,7 @@ namespace SquareCalculator
         private List<Range> rangeSPO90;
         private cntrlSPI myCntrlSPI;
         private cntrlSPIData myCntrlSPIdata;
-
+        private cntrlHours cntrlHours;
         private List<(string colName, List<double> inputRange)> spoCustomSearch;
         private static List<int> numberList = new List<int>
         {
@@ -36,7 +36,7 @@ namespace SquareCalculator
             InitializeComponent();
             this.Resize += SQR9_Resize; // Attach the resize event
 
-        }      
+        }
         private void SQR9_Load(object sender, System.EventArgs e)
         {
 
@@ -52,86 +52,6 @@ namespace SquareCalculator
 
         }
 
-      
-
-        //private void ArrangeTabControls(TabPage tabPage, int padding, int buttonWidth, int textBoxHeight, int cButtonWidth)
-        //{
-        //    // Calculate the width of each DataGridView
-        //    int totalWidth = (tabPage.ClientSize.Width - (padding * 2)) - cButtonWidth;
-        //    int dgvWidth = (totalWidth / 3) - padding;
-
-        //    // Calculate the height for the DataGridView
-        //    int rowHeight = tabPage.ClientSize.Height - 2 * padding;
-
-        //    // Position for the DataGridView, TextBox, and Button
-        //    int currentX = padding;
-        //    foreach (var dgvId in new[] { "180", "120", "90" })
-        //    {
-        //        string prefix = tabPage.Name == "tabDateData" ? "" : "PAD"; // Adjust prefix based on the tab
-        //        DataGridView dgv = tabPage.Controls.Find($"dgView{prefix}{dgvId}", true).FirstOrDefault() as DataGridView;
-        //        System.Windows.Forms.TextBox tb = tabPage.Controls.Find($"txtInput{prefix}{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox;
-        //        System.Windows.Forms.Button btn = tabPage.Controls.Find($"btnProcessInput{prefix}{dgvId}", true).FirstOrDefault() as System.Windows.Forms.Button;
-
-        //        if (dgv != null && tb != null && btn != null)
-        //        {
-        //            // Set bounds for the DataGridView
-        //            dgv.SetBounds(currentX, padding + textBoxHeight + padding, dgvWidth, rowHeight - textBoxHeight - 2 * padding);
-
-        //            // Set bounds for the TextBox
-        //            tb.SetBounds(currentX, padding, dgvWidth - buttonWidth - padding, textBoxHeight);
-
-        //            // Set bounds for the Button
-        //            btn.SetBounds(currentX + tb.Width + padding, padding, buttonWidth, textBoxHeight);
-
-        //            // Adjust the width of the visible columns in the DataGridView
-        //            AdjustDataGridViewColumns(dgv);
-
-        //            // Update the X position for the next DataGridView
-        //            currentX += dgvWidth + padding;
-        //        }
-        //    }
-
-        //    // Position the "C" button
-        //    System.Windows.Forms.Button btnClear = tabPage.Controls.Find($"btn{tabPage.Name}Clear", true).FirstOrDefault() as System.Windows.Forms.Button;
-        //    if (btnClear != null)
-        //    {
-        //        btnClear.SetBounds(currentX - 5, padding, cButtonWidth, textBoxHeight);
-        //    }
-        //}
-
-        //private void ArrangeTabDateControls(TabPage tabPage, int padding, int textBoxHeight, string gridViewName)
-        //{
-        //    int currentY = padding;
-
-        //    // Combine control IDs into a single array for the first row
-        //            var controlIds = new[] {
-        //        "label3", "txtInputSD", "txtInputSearch", "label1", "cmbME", "label2", "txtTolerance", "chkNoDecimals", "btnSearch",
-        //        "txtInputSPO", "txtInputSearchSPO" // Add any additional controls like txtInputSPO here
-        //          };
-
-        //    // Arrange controls on the first row
-        //    foreach (var controlId in controlIds)
-        //    {
-        //        Control ctrl = tabPage.Controls.Find(controlId, true).FirstOrDefault();
-
-        //        if (ctrl != null)
-        //        {
-        //            ctrl.SetBounds(padding, currentY, 150, textBoxHeight);
-        //            padding += ctrl.Width + 10;
-        //        }
-        //    }
-
-        //    padding = 10;
-
-        //    // Position the DataGridView on the second row
-        //    DataGridView dgvTab2 = tabPage.Controls.Find(gridViewName, true).FirstOrDefault() as DataGridView;
-        //    if (dgvTab2 != null)
-        //    {
-        //        dgvTab2.SetBounds(padding, currentY + textBoxHeight + padding, tabPage.ClientSize.Width - 2 * padding, tabPage.ClientSize.Height - currentY - textBoxHeight - 2 * padding);
-        //    }
-        //}
-
-
         private void TabControl_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabControl tabControl = sender as TabControl;
@@ -139,9 +59,13 @@ namespace SquareCalculator
 
             // Set the background color based on the tab name
             Color backgroundColor;
-             if (tabPage.Text == "SPI" || tabPage.Text == "SPI DATA")
+            if (tabPage.Text == "SPI" || tabPage.Text == "SPI DATA")
             {
                 backgroundColor = Color.Orange;  // Orange for SPI
+            }
+            else if (tabPage.Text == "Hourly")
+            {
+                backgroundColor = Color.Green;  // Orange for Hourly
             }
             else if (e.Index < 2) // First two tabs
             {
@@ -224,6 +148,11 @@ namespace SquareCalculator
                     }
                 }
             };
+
+            cntrlHours = new cntrlHours();
+            cntrlHours.Dock = DockStyle.Fill;
+            tabHourly.Controls.Add(cntrlHours);
+
         }
 
 
@@ -591,7 +520,7 @@ namespace SquareCalculator
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-          ///  SQR9_Resize(null, null);
+            ///  SQR9_Resize(null, null);
         }
 
         private void btnSearchSPO_Click(object sender, EventArgs e)
