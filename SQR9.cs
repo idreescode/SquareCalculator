@@ -47,7 +47,9 @@ namespace SquareCalculator
             ClearControls("SPO");
             BindMEDropdown();
             FormatTab();
-           
+
+            CenterAlignAllDataGridViewColumns(this); // Apply to the entire form
+
         }
 
         private void SQR9_Resize(object sender, EventArgs e)
@@ -1205,7 +1207,26 @@ namespace SquareCalculator
             if (spoCustomSearch != null)
                 spoCustomSearch.Clear();
         }
-        
+
+        private void CenterAlignAllDataGridViewColumns(Control container)
+        {
+            foreach (Control control in container.Controls)
+            {
+                // If the control is a DataGridView, center-align all columns
+                if (control is DataGridView dataGridView)
+                {
+                    foreach (DataGridViewColumn column in dataGridView.Columns)
+                    {
+                        column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                }
+                else
+                {
+                    // Recursively call the function for nested containers (e.g., Panels, TabPages)
+                    CenterAlignAllDataGridViewColumns(control);
+                }
+            }
+        }
 
     }
 }
