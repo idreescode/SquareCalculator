@@ -34,7 +34,7 @@ namespace SquareCalculator
         public SQR9()
         {
             InitializeComponent();
-            
+            this.Resize += SQR9_Resize; // Attach the resize event
 
         }      
         private void SQR9_Load(object sender, System.EventArgs e)
@@ -52,87 +52,84 @@ namespace SquareCalculator
 
         }
 
-        private void SQR9_Resize(object sender, EventArgs e)
-        {
+      
 
-        }
+        //private void ArrangeTabControls(TabPage tabPage, int padding, int buttonWidth, int textBoxHeight, int cButtonWidth)
+        //{
+        //    // Calculate the width of each DataGridView
+        //    int totalWidth = (tabPage.ClientSize.Width - (padding * 2)) - cButtonWidth;
+        //    int dgvWidth = (totalWidth / 3) - padding;
 
-        private void ArrangeTabControls(TabPage tabPage, int padding, int buttonWidth, int textBoxHeight, int cButtonWidth)
-        {
-            // Calculate the width of each DataGridView
-            int totalWidth = (tabPage.ClientSize.Width - (padding * 2)) - cButtonWidth;
-            int dgvWidth = (totalWidth / 3) - padding;
+        //    // Calculate the height for the DataGridView
+        //    int rowHeight = tabPage.ClientSize.Height - 2 * padding;
 
-            // Calculate the height for the DataGridView
-            int rowHeight = tabPage.ClientSize.Height - 2 * padding;
+        //    // Position for the DataGridView, TextBox, and Button
+        //    int currentX = padding;
+        //    foreach (var dgvId in new[] { "180", "120", "90" })
+        //    {
+        //        string prefix = tabPage.Name == "tabDateData" ? "" : "PAD"; // Adjust prefix based on the tab
+        //        DataGridView dgv = tabPage.Controls.Find($"dgView{prefix}{dgvId}", true).FirstOrDefault() as DataGridView;
+        //        System.Windows.Forms.TextBox tb = tabPage.Controls.Find($"txtInput{prefix}{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox;
+        //        System.Windows.Forms.Button btn = tabPage.Controls.Find($"btnProcessInput{prefix}{dgvId}", true).FirstOrDefault() as System.Windows.Forms.Button;
 
-            // Position for the DataGridView, TextBox, and Button
-            int currentX = padding;
-            foreach (var dgvId in new[] { "180", "120", "90" })
-            {
-                string prefix = tabPage.Name == "tabDateData" ? "" : "PAD"; // Adjust prefix based on the tab
-                DataGridView dgv = tabPage.Controls.Find($"dgView{prefix}{dgvId}", true).FirstOrDefault() as DataGridView;
-                System.Windows.Forms.TextBox tb = tabPage.Controls.Find($"txtInput{prefix}{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox;
-                System.Windows.Forms.Button btn = tabPage.Controls.Find($"btnProcessInput{prefix}{dgvId}", true).FirstOrDefault() as System.Windows.Forms.Button;
+        //        if (dgv != null && tb != null && btn != null)
+        //        {
+        //            // Set bounds for the DataGridView
+        //            dgv.SetBounds(currentX, padding + textBoxHeight + padding, dgvWidth, rowHeight - textBoxHeight - 2 * padding);
 
-                if (dgv != null && tb != null && btn != null)
-                {
-                    // Set bounds for the DataGridView
-                    dgv.SetBounds(currentX, padding + textBoxHeight + padding, dgvWidth, rowHeight - textBoxHeight - 2 * padding);
+        //            // Set bounds for the TextBox
+        //            tb.SetBounds(currentX, padding, dgvWidth - buttonWidth - padding, textBoxHeight);
 
-                    // Set bounds for the TextBox
-                    tb.SetBounds(currentX, padding, dgvWidth - buttonWidth - padding, textBoxHeight);
+        //            // Set bounds for the Button
+        //            btn.SetBounds(currentX + tb.Width + padding, padding, buttonWidth, textBoxHeight);
 
-                    // Set bounds for the Button
-                    btn.SetBounds(currentX + tb.Width + padding, padding, buttonWidth, textBoxHeight);
+        //            // Adjust the width of the visible columns in the DataGridView
+        //            AdjustDataGridViewColumns(dgv);
 
-                    // Adjust the width of the visible columns in the DataGridView
-                    AdjustDataGridViewColumns(dgv);
+        //            // Update the X position for the next DataGridView
+        //            currentX += dgvWidth + padding;
+        //        }
+        //    }
 
-                    // Update the X position for the next DataGridView
-                    currentX += dgvWidth + padding;
-                }
-            }
+        //    // Position the "C" button
+        //    System.Windows.Forms.Button btnClear = tabPage.Controls.Find($"btn{tabPage.Name}Clear", true).FirstOrDefault() as System.Windows.Forms.Button;
+        //    if (btnClear != null)
+        //    {
+        //        btnClear.SetBounds(currentX - 5, padding, cButtonWidth, textBoxHeight);
+        //    }
+        //}
 
-            // Position the "C" button
-            System.Windows.Forms.Button btnClear = tabPage.Controls.Find($"btn{tabPage.Name}Clear", true).FirstOrDefault() as System.Windows.Forms.Button;
-            if (btnClear != null)
-            {
-                btnClear.SetBounds(currentX - 5, padding, cButtonWidth, textBoxHeight);
-            }
-        }
+        //private void ArrangeTabDateControls(TabPage tabPage, int padding, int textBoxHeight, string gridViewName)
+        //{
+        //    int currentY = padding;
 
-        private void ArrangeTabDateControls(TabPage tabPage, int padding, int textBoxHeight, string gridViewName)
-        {
-            int currentY = padding;
+        //    // Combine control IDs into a single array for the first row
+        //            var controlIds = new[] {
+        //        "label3", "txtInputSD", "txtInputSearch", "label1", "cmbME", "label2", "txtTolerance", "chkNoDecimals", "btnSearch",
+        //        "txtInputSPO", "txtInputSearchSPO" // Add any additional controls like txtInputSPO here
+        //          };
 
-            // Combine control IDs into a single array for the first row
-                    var controlIds = new[] {
-                "label3", "txtInputSD", "txtInputSearch", "label1", "cmbME", "label2", "txtTolerance", "chkNoDecimals", "btnSearch",
-                "txtInputSPO", "txtInputSearchSPO" // Add any additional controls like txtInputSPO here
-                  };
+        //    // Arrange controls on the first row
+        //    foreach (var controlId in controlIds)
+        //    {
+        //        Control ctrl = tabPage.Controls.Find(controlId, true).FirstOrDefault();
 
-            // Arrange controls on the first row
-            foreach (var controlId in controlIds)
-            {
-                Control ctrl = tabPage.Controls.Find(controlId, true).FirstOrDefault();
+        //        if (ctrl != null)
+        //        {
+        //            ctrl.SetBounds(padding, currentY, 150, textBoxHeight);
+        //            padding += ctrl.Width + 10;
+        //        }
+        //    }
 
-                if (ctrl != null)
-                {
-                    ctrl.SetBounds(padding, currentY, 150, textBoxHeight);
-                    padding += ctrl.Width + 10;
-                }
-            }
+        //    padding = 10;
 
-            padding = 10;
-
-            // Position the DataGridView on the second row
-            DataGridView dgvTab2 = tabPage.Controls.Find(gridViewName, true).FirstOrDefault() as DataGridView;
-            if (dgvTab2 != null)
-            {
-                dgvTab2.SetBounds(padding, currentY + textBoxHeight + padding, tabPage.ClientSize.Width - 2 * padding, tabPage.ClientSize.Height - currentY - textBoxHeight - 2 * padding);
-            }
-        }
+        //    // Position the DataGridView on the second row
+        //    DataGridView dgvTab2 = tabPage.Controls.Find(gridViewName, true).FirstOrDefault() as DataGridView;
+        //    if (dgvTab2 != null)
+        //    {
+        //        dgvTab2.SetBounds(padding, currentY + textBoxHeight + padding, tabPage.ClientSize.Width - 2 * padding, tabPage.ClientSize.Height - currentY - textBoxHeight - 2 * padding);
+        //    }
+        //}
 
 
         private void TabControl_DrawItem(object sender, DrawItemEventArgs e)
@@ -1227,6 +1224,90 @@ namespace SquareCalculator
                 }
             }
         }
+
+
+
+        private void SQR9_Resize(object sender, EventArgs e)
+        {
+            // Define padding and spacing constants
+            int padding = 10;
+            int buttonWidth = 100; // Width of the Button
+            int textBoxHeight = 20; // Height of the TextBox
+            int cButtonWidth = 40; // Width of the "C" button
+
+            // Resize the TabControl to fit the entire form, minus padding
+            tabControl.SetBounds(padding, padding, this.ClientSize.Width - 2 * padding, this.ClientSize.Height - 2 * padding);
+
+            // Get the reference to the selected tab page
+            TabPage selectedTab = tabControl.SelectedTab;
+
+            if (selectedTab != null)
+            {
+                // Check if selected tab needs dynamic layout management
+                if (new[] { "tabDateData", "tabSPOData", "tabSPO", "tabSPIData", "tabSPI" }.Contains(selectedTab.Name))
+                {
+                    ArrangeTabControls(selectedTab, padding, buttonWidth, textBoxHeight, cButtonWidth);
+                }
+
+                // Arrange specific controls in certain tabs
+                if (selectedTab.Name == "tabSPO")
+                {
+                    ArrangeTabDateControls(selectedTab, padding, textBoxHeight, "dgViewSPO");
+                }
+                else if (selectedTab.Name == "tabDate")
+                {
+                    ArrangeTabDateControls(selectedTab, padding, textBoxHeight, "dgViewSearch");
+                }
+            }
+        }
+
+        private void ArrangeTabControls(TabPage tabPage, int padding, int buttonWidth, int textBoxHeight, int cButtonWidth)
+        {
+            // Adjust layout for dynamic controls within the TabPage
+            int controlWidth = (tabPage.ClientSize.Width - 4 * padding) / 3; // Adjust based on number of columns
+            int controlHeight = tabPage.ClientSize.Height - 2 * padding;
+
+            foreach (Control control in tabPage.Controls)
+            {
+                if (control is Panel || control is DataGridView || control is TableLayoutPanel)
+                {
+                    control.SetBounds(control.Left, control.Top, controlWidth, controlHeight);
+                    control.Dock = DockStyle.Fill; // Make sure the control fills the TabPage
+                }
+                else
+                {
+                    control.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right; // Resize based on anchor
+                }
+            }
+        }
+
+        private void ArrangeTabDateControls(TabPage tabPage, int padding, int textBoxHeight, string gridViewName)
+        {
+            int currentY = padding;
+
+            // Arrange controls on the first row
+            foreach (var controlId in new[] { "label3", "txtInputSD", "txtInputSearch", "label1", "cmbME", "label2", "txtTolerance", "chkNoDecimals", "btnSearch" })
+            {
+                Control ctrl = tabPage.Controls.Find(controlId, true).FirstOrDefault();
+
+                if (ctrl != null)
+                {
+                    ctrl.SetBounds(padding, currentY, 150, textBoxHeight);
+                    padding += ctrl.Width + 10;
+                }
+            }
+
+            padding = 10;
+
+            // Position the DataGridView on the second row
+            DataGridView dgvTab = tabPage.Controls.Find(gridViewName, true).FirstOrDefault() as DataGridView;
+            if (dgvTab != null)
+            {
+                dgvTab.SetBounds(padding, currentY + textBoxHeight + padding, tabPage.ClientSize.Width - 2 * padding, tabPage.ClientSize.Height - currentY - textBoxHeight - 2 * padding);
+                dgvTab.Dock = DockStyle.Fill; // Make sure the grid fills the available space
+            }
+        }
+
 
     }
 }
