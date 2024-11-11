@@ -24,7 +24,6 @@ namespace SquareCalculator
         private cntrlSPI myCntrlSPI;
         private cntrlSPIData myCntrlSPIdata;
 
-
         private List<(string colName, List<double> inputRange)> spoCustomSearch;
         private static List<int> numberList = new List<int>
         {
@@ -35,8 +34,9 @@ namespace SquareCalculator
         public SQR9()
         {
             InitializeComponent();
-            this.Resize += new EventHandler(SQR9_Resize);
-        }
+           
+
+        }      
         private void SQR9_Load(object sender, System.EventArgs e)
         {
 
@@ -46,8 +46,8 @@ namespace SquareCalculator
             ClearControls();
             ClearControls("SPO");
             BindMEDropdown();
-            SQR9_Resize(null, null);
             FormatTab();
+           
         }
 
         private void SQR9_Resize(object sender, EventArgs e)
@@ -167,11 +167,7 @@ namespace SquareCalculator
 
             // Set the background color based on the tab name
             Color backgroundColor;
-            if (tabPage.Text == "SPI DATA")
-            {
-                backgroundColor = Color.LightSalmon;  // Light orange for SPI DATA
-            }
-            else if (tabPage.Text == "SPI")
+             if (tabPage.Text == "SPI" || tabPage.Text == "SPI DATA")
             {
                 backgroundColor = Color.Orange;  // Orange for SPI
             }
@@ -213,7 +209,7 @@ namespace SquareCalculator
         {
             int numberOfControls = 5;
             int padding = 5;  // Space between controls
-            int controlWidth = 270;  // Desired width of each control
+            int controlWidth = 300;  // Desired width of each control
             int controlHeight = pnlSPI.ClientSize.Height - 2 * padding;  // Full height with padding
             int separatorWidth = 3;  // Width of the separator line
 
@@ -237,19 +233,6 @@ namespace SquareCalculator
                 // Add the control to pnlSPI instead of tabSPI
                 pnlSPI.Controls.Add(myCntrlSPI);
 
-                // Add a separator panel after each control except the last one
-                if (i < numberOfControls - 1)
-                {
-                    var separatorPanel = new Panel();
-                    separatorPanel.Width = separatorWidth;
-                    separatorPanel.Height = controlHeight;
-                    separatorPanel.Left = myCntrlSPI.Right + padding;  // Position the separator to the right of the control
-                    separatorPanel.Top = padding;
-                    separatorPanel.BackColor = Color.FromArgb(204, 204, 204);  // Set color for the separator line
-
-                    // Add the separator panel to pnlSPI instead of tabSPI
-                    pnlSPI.Controls.Add(separatorPanel);
-                }
             }
 
             // Initialize and add myCntrlSPIdata separately, if required
@@ -636,7 +619,7 @@ namespace SquareCalculator
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SQR9_Resize(null, null);
+          ///  SQR9_Resize(null, null);
         }
 
         private void btnSearchSPO_Click(object sender, EventArgs e)
