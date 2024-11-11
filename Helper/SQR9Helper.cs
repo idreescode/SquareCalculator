@@ -209,7 +209,10 @@ namespace SquareCalculator.Helper
 
         // ... (Other methods from the previous SQR9Helper class)
 
+
      
+
+
     }
 
 }

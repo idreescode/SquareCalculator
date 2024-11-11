@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label6 = new System.Windows.Forms.Label();
             this.txtRangeSPO = new System.Windows.Forms.TextBox();
             this.chkInclude90 = new System.Windows.Forms.CheckBox();
@@ -51,13 +51,17 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnTop = new System.Windows.Forms.Panel();
+            this.pnlBottom = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSPO)).BeginInit();
+            this.pnTop.SuspendLayout();
+            this.pnlBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(162, 65);
+            this.label6.Location = new System.Drawing.Point(167, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 13);
             this.label6.TabIndex = 74;
@@ -65,7 +69,7 @@
             // 
             // txtRangeSPO
             // 
-            this.txtRangeSPO.Location = new System.Drawing.Point(235, 62);
+            this.txtRangeSPO.Location = new System.Drawing.Point(240, 68);
             this.txtRangeSPO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRangeSPO.Name = "txtRangeSPO";
             this.txtRangeSPO.Size = new System.Drawing.Size(43, 20);
@@ -74,7 +78,7 @@
             // chkInclude90
             // 
             this.chkInclude90.AutoSize = true;
-            this.chkInclude90.Location = new System.Drawing.Point(233, 29);
+            this.chkInclude90.Location = new System.Drawing.Point(238, 35);
             this.chkInclude90.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkInclude90.Name = "chkInclude90";
             this.chkInclude90.Size = new System.Drawing.Size(38, 17);
@@ -85,7 +89,7 @@
             // chkInclude120
             // 
             this.chkInclude120.AutoSize = true;
-            this.chkInclude120.Location = new System.Drawing.Point(189, 29);
+            this.chkInclude120.Location = new System.Drawing.Point(194, 35);
             this.chkInclude120.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkInclude120.Name = "chkInclude120";
             this.chkInclude120.Size = new System.Drawing.Size(44, 17);
@@ -98,7 +102,7 @@
             this.chkInclude180.AutoSize = true;
             this.chkInclude180.Checked = true;
             this.chkInclude180.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkInclude180.Location = new System.Drawing.Point(146, 29);
+            this.chkInclude180.Location = new System.Drawing.Point(151, 35);
             this.chkInclude180.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkInclude180.Name = "chkInclude180";
             this.chkInclude180.Size = new System.Drawing.Size(44, 17);
@@ -109,7 +113,7 @@
             // rdoSubtract
             // 
             this.rdoSubtract.AutoSize = true;
-            this.rdoSubtract.Location = new System.Drawing.Point(203, 4);
+            this.rdoSubtract.Location = new System.Drawing.Point(208, 10);
             this.rdoSubtract.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoSubtract.Name = "rdoSubtract";
             this.rdoSubtract.Size = new System.Drawing.Size(65, 17);
@@ -121,7 +125,7 @@
             // 
             this.rdoAdd.AutoSize = true;
             this.rdoAdd.Checked = true;
-            this.rdoAdd.Location = new System.Drawing.Point(153, 3);
+            this.rdoAdd.Location = new System.Drawing.Point(158, 9);
             this.rdoAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdoAdd.Name = "rdoAdd";
             this.rdoAdd.Size = new System.Drawing.Size(44, 17);
@@ -133,7 +137,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 32);
+            this.label7.Location = new System.Drawing.Point(8, 38);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 13);
             this.label7.TabIndex = 72;
@@ -141,7 +145,7 @@
             // 
             // txtInputSPO
             // 
-            this.txtInputSPO.Location = new System.Drawing.Point(38, 0);
+            this.txtInputSPO.Location = new System.Drawing.Point(43, 6);
             this.txtInputSPO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtInputSPO.Name = "txtInputSPO";
             this.txtInputSPO.Size = new System.Drawing.Size(109, 20);
@@ -150,7 +154,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 5);
+            this.label4.Location = new System.Drawing.Point(8, 11);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 13);
             this.label4.TabIndex = 71;
@@ -159,7 +163,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 66);
+            this.label5.Location = new System.Drawing.Point(11, 72);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 70;
@@ -167,7 +171,7 @@
             // 
             // txtDetTolerance
             // 
-            this.txtDetTolerance.Location = new System.Drawing.Point(56, 64);
+            this.txtDetTolerance.Location = new System.Drawing.Point(61, 70);
             this.txtDetTolerance.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDetTolerance.Name = "txtDetTolerance";
             this.txtDetTolerance.Size = new System.Drawing.Size(21, 20);
@@ -176,7 +180,7 @@
             // 
             // btnSearchSPO
             // 
-            this.btnSearchSPO.Location = new System.Drawing.Point(81, 60);
+            this.btnSearchSPO.Location = new System.Drawing.Point(86, 66);
             this.btnSearchSPO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearchSPO.Name = "btnSearchSPO";
             this.btnSearchSPO.Size = new System.Drawing.Size(76, 24);
@@ -187,7 +191,7 @@
             // 
             // txtInputSPORange
             // 
-            this.txtInputSPORange.Location = new System.Drawing.Point(83, 25);
+            this.txtInputSPORange.Location = new System.Drawing.Point(88, 31);
             this.txtInputSPORange.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtInputSPORange.Name = "txtInputSPORange";
             this.txtInputSPORange.Size = new System.Drawing.Size(55, 20);
@@ -201,28 +205,28 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dgViewSPO.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgViewSPO.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgViewSPO.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgViewSPO.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgViewSPO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgViewSPO.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewSPO.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dgViewSPO.Location = new System.Drawing.Point(11, 89);
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewSPO.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgViewSPO.Location = new System.Drawing.Point(5, 2);
             this.dgViewSPO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgViewSPO.MultiSelect = false;
             this.dgViewSPO.Name = "dgViewSPO";
@@ -230,14 +234,14 @@
             this.dgViewSPO.RowHeadersVisible = false;
             this.dgViewSPO.RowHeadersWidth = 51;
             this.dgViewSPO.RowTemplate.Height = 26;
-            this.dgViewSPO.Size = new System.Drawing.Size(271, 456);
+            this.dgViewSPO.Size = new System.Drawing.Size(278, 719);
             this.dgViewSPO.TabIndex = 69;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn5.HeaderText = "PEPs";
             this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -247,8 +251,8 @@
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn6.HeaderText = "DETs";
             this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
@@ -258,38 +262,58 @@
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn7.HeaderText = "Match Source";
             this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.Width = 106;
             // 
+            // pnTop
+            // 
+            this.pnTop.Controls.Add(this.label4);
+            this.pnTop.Controls.Add(this.label6);
+            this.pnTop.Controls.Add(this.txtInputSPORange);
+            this.pnTop.Controls.Add(this.txtRangeSPO);
+            this.pnTop.Controls.Add(this.btnSearchSPO);
+            this.pnTop.Controls.Add(this.chkInclude90);
+            this.pnTop.Controls.Add(this.txtDetTolerance);
+            this.pnTop.Controls.Add(this.chkInclude120);
+            this.pnTop.Controls.Add(this.label5);
+            this.pnTop.Controls.Add(this.chkInclude180);
+            this.pnTop.Controls.Add(this.txtInputSPO);
+            this.pnTop.Controls.Add(this.rdoSubtract);
+            this.pnTop.Controls.Add(this.label7);
+            this.pnTop.Controls.Add(this.rdoAdd);
+            this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnTop.Location = new System.Drawing.Point(0, 0);
+            this.pnTop.Name = "pnTop";
+            this.pnTop.Size = new System.Drawing.Size(1122, 100);
+            this.pnTop.TabIndex = 75;
+            // 
+            // pnlBottom
+            // 
+            this.pnlBottom.Controls.Add(this.dgViewSPO);
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBottom.Location = new System.Drawing.Point(0, 100);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(1122, 723);
+            this.pnlBottom.TabIndex = 76;
+            // 
             // cntrlSPI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtRangeSPO);
-            this.Controls.Add(this.chkInclude90);
-            this.Controls.Add(this.chkInclude120);
-            this.Controls.Add(this.chkInclude180);
-            this.Controls.Add(this.rdoSubtract);
-            this.Controls.Add(this.rdoAdd);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtInputSPO);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtDetTolerance);
-            this.Controls.Add(this.btnSearchSPO);
-            this.Controls.Add(this.txtInputSPORange);
-            this.Controls.Add(this.dgViewSPO);
+            this.Controls.Add(this.pnlBottom);
+            this.Controls.Add(this.pnTop);
             this.Name = "cntrlSPI";
-            this.Size = new System.Drawing.Size(284, 545);
+            this.Size = new System.Drawing.Size(1122, 823);
             ((System.ComponentModel.ISupportInitialize)(this.dgViewSPO)).EndInit();
+            this.pnTop.ResumeLayout(false);
+            this.pnTop.PerformLayout();
+            this.pnlBottom.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -313,5 +337,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.Panel pnTop;
+        private System.Windows.Forms.Panel pnlBottom;
     }
 }

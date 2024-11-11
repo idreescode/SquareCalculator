@@ -1,4 +1,5 @@
-﻿using SquareCalculator.TabControls;
+﻿using SquareCalculator.Helper;
+using SquareCalculator.TabControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
@@ -22,6 +23,7 @@ namespace SquareCalculator
         private List<Range> rangeSPO90;
         private cntrlSPI myCntrlSPI;
         private cntrlSPIData myCntrlSPIdata;
+
 
         private List<(string colName, List<double> inputRange)> spoCustomSearch;
         private static List<int> numberList = new List<int>
@@ -47,6 +49,7 @@ namespace SquareCalculator
             SQR9_Resize(null, null);
             FormatTab();
         }
+
         private void SQR9_Resize(object sender, EventArgs e)
         {
             // Define padding and spacing constants
@@ -63,144 +66,99 @@ namespace SquareCalculator
 
             if (selectedTab != null)
             {
-                if (selectedTab.Name == "tabPage1")  // Assuming "tab1" is the first tab
+                // Check if selected tab needs dynamic layout management
+                if (new[] { "tabDateData", "tabSPOData", "tabSPO", "tabSPIData", "tabSPI" }.Contains(selectedTab.Name))
                 {
-                    // Tab 1 logic
-                    // Calculate the width of each DataGridView
-                    int totalWidth = (selectedTab.ClientSize.Width - (padding * 2)) - cButtonWidth;
-                    int dgvWidth = (totalWidth / 3) - padding;
-
-                    // Calculate the height for the DataGridView
-                    int rowHeight = selectedTab.ClientSize.Height - 2 * padding;
-
-                    // Position for the DataGridView, TextBox, and Button
-                    int currentX = padding;
-                    foreach (var dgvId in new[] { "180", "120", "90" })
-                    {
-                        DataGridView dgv = selectedTab.Controls.Find($"dgView{dgvId}", true).FirstOrDefault() as DataGridView;
-                        System.Windows.Forms.TextBox tb = selectedTab.Controls.Find($"txtInput{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox;
-                        System.Windows.Forms.Button btn = selectedTab.Controls.Find($"btnProcessInput{dgvId}", true).FirstOrDefault() as System.Windows.Forms.Button;
-
-                        if (dgv != null && tb != null && btn != null)
-                        {
-                            // Set bounds for the DataGridView
-                            dgv.SetBounds(currentX, padding + textBoxHeight + padding, dgvWidth, rowHeight - textBoxHeight - 2 * padding);
-
-                            // Set bounds for the TextBox
-                            tb.SetBounds(currentX, padding, dgvWidth - buttonWidth - padding, textBoxHeight);
-
-                            // Set bounds for the Button
-                            btn.SetBounds(currentX + tb.Width + padding, padding, buttonWidth, textBoxHeight);
-
-                            // Adjust the width of the visible columns in the DataGridView
-                            AdjustDataGridViewColumns(dgv);
-
-                            // Update the X position for the next DataGridView
-                            currentX += dgvWidth + padding;
-                        }
-                    }
-
-                    // Position the "C" button
-                    System.Windows.Forms.Button btnClear = selectedTab.Controls.Find("btnClear", true).FirstOrDefault() as System.Windows.Forms.Button;
-                    if (btnClear != null)
-                    {
-                        btnClear.SetBounds(currentX - 5, padding, cButtonWidth, textBoxHeight);
-                    }
+                    ArrangeTabControls(selectedTab, padding, buttonWidth, textBoxHeight, cButtonWidth);
                 }
-                else if (selectedTab.Name == "tabPage2")  // Assuming "tab2" is the second tab
+                if (selectedTab.Name == "tabSPO")
                 {
-                    // Tab 2 logic
-
-                    // First row: Position the controls (textboxes, labels, combobox, button)
-                    int currentY = padding;
-
-                    foreach (var controlId in new[] { "label3", "txtInputSD", "txtInputSearch", "label1", "cmbME", "label2", "txtTolerance", "chkNoDecimals", "btnSearch" })  // Update control IDs as per your form
-                    {
-                        Control ctrl = selectedTab.Controls.Find(controlId, true).FirstOrDefault();
-
-                        if (ctrl != null)
-                        {
-                            // Example positioning, adjust as needed
-                            ctrl.SetBounds(padding, currentY, 150, textBoxHeight);
-                            padding += ctrl.Width + 10;
-                        }
-                    }
-
-                    padding = 10;
-
-                    // Second row: Position the DataGridView
-                    DataGridView dgvTab2 = selectedTab.Controls.Find("dgViewSearch", true).FirstOrDefault() as DataGridView;
-                    if (dgvTab2 != null)
-                    {
-                        dgvTab2.SetBounds(padding, currentY + textBoxHeight + padding, selectedTab.ClientSize.Width - 2 * padding, selectedTab.ClientSize.Height - currentY - textBoxHeight - 2 * padding);
-                    }
+                    ArrangeTabDateControls(selectedTab, padding, textBoxHeight, "dgViewSPO");
                 }
-                else if (selectedTab.Name == "tabPage3")  // Assuming "tabPage3" is the third tab
+                else if (selectedTab.Name == "tabDate")
                 {
-                    // Define padding and spacing constants
-                    padding = 10;
-                    int controlHeight = 20; // Adjust based on the height of the top row controls
-
-                    // Calculate the starting Y position for the DataGridView, below the top two rows of controls
-                    int currentY = padding + (controlHeight * 2);  // Assuming 2 rows of controls
-
-                    // Get reference to the DataGridView
-                    DataGridView dgvTab3 = selectedTab.Controls.Find("dgViewSPO", true).FirstOrDefault() as DataGridView;
-
-                    if (dgvTab3 != null)
-                    {
-                        // Resize the DataGridView to fit the remaining space
-                        dgvTab3.SetBounds(padding, currentY + padding,
-                            selectedTab.ClientSize.Width - 2 * padding,
-                            selectedTab.ClientSize.Height - currentY - 2 * padding);
-                    }
-                }
-                else if (selectedTab.Name == "tbPriceAngleData")  // Assuming "tab1" is the first tab
-                {
-                    // Tab 1 logic
-                    // Calculate the width of each DataGridView
-                    int totalWidth = (selectedTab.ClientSize.Width - (padding * 2)) - cButtonWidth;
-                    int dgvWidth = (totalWidth / 3) - padding;
-
-                    // Calculate the height for the DataGridView
-                    int rowHeight = selectedTab.ClientSize.Height - 2 * padding;
-
-                    // Position for the DataGridView, TextBox, and Button
-                    int currentX = padding;
-                    foreach (var dgvId in new[] { "180", "120", "90" })
-                    {
-                        DataGridView dgv = selectedTab.Controls.Find($"dgViewPAD{dgvId}", true).FirstOrDefault() as DataGridView;
-                        System.Windows.Forms.TextBox tb = selectedTab.Controls.Find($"txtInputPAD{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox;
-                        System.Windows.Forms.Button btn = selectedTab.Controls.Find($"btnProcessInputPAD{dgvId}", true).FirstOrDefault() as System.Windows.Forms.Button;
-
-                        if (dgv != null && tb != null && btn != null)
-                        {
-                            // Set bounds for the DataGridView
-                            dgv.SetBounds(currentX, padding + textBoxHeight + padding, dgvWidth, rowHeight - textBoxHeight - 2 * padding);
-
-                            // Set bounds for the TextBox
-                            tb.SetBounds(currentX, padding, dgvWidth - buttonWidth - padding, textBoxHeight);
-
-                            // Set bounds for the Button
-                            btn.SetBounds(currentX + tb.Width + padding, padding, buttonWidth, textBoxHeight);
-
-                            // Adjust the width of the visible columns in the DataGridView
-                            AdjustDataGridViewColumns(dgv);
-
-                            // Update the X position for the next DataGridView
-                            currentX += dgvWidth + padding;
-                        }
-                    }
-
-                    // Position the "C" button
-                    System.Windows.Forms.Button btnClear = selectedTab.Controls.Find("btnSPODataClear", true).FirstOrDefault() as System.Windows.Forms.Button;
-                    if (btnClear != null)
-                    {
-                        btnClear.SetBounds(currentX - 5, padding, cButtonWidth, textBoxHeight);
-                    }
+                    ArrangeTabDateControls(selectedTab, padding, textBoxHeight, "dgViewSearch");
                 }
             }
         }
+
+        private void ArrangeTabControls(TabPage tabPage, int padding, int buttonWidth, int textBoxHeight, int cButtonWidth)
+        {
+            // Calculate the width of each DataGridView
+            int totalWidth = (tabPage.ClientSize.Width - (padding * 2)) - cButtonWidth;
+            int dgvWidth = (totalWidth / 3) - padding;
+
+            // Calculate the height for the DataGridView
+            int rowHeight = tabPage.ClientSize.Height - 2 * padding;
+
+            // Position for the DataGridView, TextBox, and Button
+            int currentX = padding;
+            foreach (var dgvId in new[] { "180", "120", "90" })
+            {
+                string prefix = tabPage.Name == "tabDateData" ? "" : "PAD"; // Adjust prefix based on the tab
+                DataGridView dgv = tabPage.Controls.Find($"dgView{prefix}{dgvId}", true).FirstOrDefault() as DataGridView;
+                System.Windows.Forms.TextBox tb = tabPage.Controls.Find($"txtInput{prefix}{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox;
+                System.Windows.Forms.Button btn = tabPage.Controls.Find($"btnProcessInput{prefix}{dgvId}", true).FirstOrDefault() as System.Windows.Forms.Button;
+
+                if (dgv != null && tb != null && btn != null)
+                {
+                    // Set bounds for the DataGridView
+                    dgv.SetBounds(currentX, padding + textBoxHeight + padding, dgvWidth, rowHeight - textBoxHeight - 2 * padding);
+
+                    // Set bounds for the TextBox
+                    tb.SetBounds(currentX, padding, dgvWidth - buttonWidth - padding, textBoxHeight);
+
+                    // Set bounds for the Button
+                    btn.SetBounds(currentX + tb.Width + padding, padding, buttonWidth, textBoxHeight);
+
+                    // Adjust the width of the visible columns in the DataGridView
+                    AdjustDataGridViewColumns(dgv);
+
+                    // Update the X position for the next DataGridView
+                    currentX += dgvWidth + padding;
+                }
+            }
+
+            // Position the "C" button
+            System.Windows.Forms.Button btnClear = tabPage.Controls.Find($"btn{tabPage.Name}Clear", true).FirstOrDefault() as System.Windows.Forms.Button;
+            if (btnClear != null)
+            {
+                btnClear.SetBounds(currentX - 5, padding, cButtonWidth, textBoxHeight);
+            }
+        }
+
+        private void ArrangeTabDateControls(TabPage tabPage, int padding, int textBoxHeight, string gridViewName)
+        {
+            int currentY = padding;
+
+            // Combine control IDs into a single array for the first row
+                    var controlIds = new[] {
+                "label3", "txtInputSD", "txtInputSearch", "label1", "cmbME", "label2", "txtTolerance", "chkNoDecimals", "btnSearch",
+                "txtInputSPO", "txtInputSearchSPO" // Add any additional controls like txtInputSPO here
+                  };
+
+            // Arrange controls on the first row
+            foreach (var controlId in controlIds)
+            {
+                Control ctrl = tabPage.Controls.Find(controlId, true).FirstOrDefault();
+
+                if (ctrl != null)
+                {
+                    ctrl.SetBounds(padding, currentY, 150, textBoxHeight);
+                    padding += ctrl.Width + 10;
+                }
+            }
+
+            padding = 10;
+
+            // Position the DataGridView on the second row
+            DataGridView dgvTab2 = tabPage.Controls.Find(gridViewName, true).FirstOrDefault() as DataGridView;
+            if (dgvTab2 != null)
+            {
+                dgvTab2.SetBounds(padding, currentY + textBoxHeight + padding, tabPage.ClientSize.Width - 2 * padding, tabPage.ClientSize.Height - currentY - textBoxHeight - 2 * padding);
+            }
+        }
+
 
         private void TabControl_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -256,8 +214,11 @@ namespace SquareCalculator
             int numberOfControls = 5;
             int padding = 5;  // Space between controls
             int controlWidth = 270;  // Desired width of each control
-            int controlHeight = tabSPI.ClientSize.Height - 2 * padding;  // Full height with padding
+            int controlHeight = pnlSPI.ClientSize.Height - 2 * padding;  // Full height with padding
             int separatorWidth = 3;  // Width of the separator line
+
+            // Clear existing controls in pnlSPI to avoid duplicates
+            pnlSPI.Controls.Clear();
 
             for (int i = 0; i < numberOfControls; i++)
             {
@@ -273,8 +234,8 @@ namespace SquareCalculator
                 // Optionally, give each control a unique name if needed
                 myCntrlSPI.Name = $"myCntrlSPI_{i + 1}";
 
-                // Add the control to the TabPage
-                tabSPI.Controls.Add(myCntrlSPI);
+                // Add the control to pnlSPI instead of tabSPI
+                pnlSPI.Controls.Add(myCntrlSPI);
 
                 // Add a separator panel after each control except the last one
                 if (i < numberOfControls - 1)
@@ -286,8 +247,8 @@ namespace SquareCalculator
                     separatorPanel.Top = padding;
                     separatorPanel.BackColor = Color.FromArgb(204, 204, 204);  // Set color for the separator line
 
-                    // Add the separator panel to the TabPage
-                    tabSPI.Controls.Add(separatorPanel);
+                    // Add the separator panel to pnlSPI instead of tabSPI
+                    pnlSPI.Controls.Add(separatorPanel);
                 }
             }
 
@@ -299,8 +260,8 @@ namespace SquareCalculator
             // Assign the OnUpdateRanges action to update all instances of myCntrlSPI
             myCntrlSPIdata.OnUpdateRanges = (ranges180, ranges120, ranges90) =>
             {
-                // Update each instance of myCntrlSPI in tabSPI
-                foreach (Control control in tabSPI.Controls)
+                // Update each instance of myCntrlSPI in pnlSPI
+                foreach (Control control in pnlSPI.Controls)
                 {
                     if (control is cntrlSPI spiControl)
                     {
@@ -309,6 +270,7 @@ namespace SquareCalculator
                 }
             };
         }
+
 
 
         #region Control Events
@@ -679,9 +641,9 @@ namespace SquareCalculator
 
         private void btnSearchSPO_Click(object sender, EventArgs e)
         {
-            var inputSPO = double.Parse(txtInputSPO.Text);
-            var minSPO = rdoAdd.Checked ? inputSPO : (inputSPO - double.Parse(txtInputSPORange.Text));
-            var maxSPO = rdoAdd.Checked ? (inputSPO + double.Parse(txtInputSPORange.Text)) : inputSPO;
+            var inputSPO = double.Parse(txtInput.Text);
+            var minSPO = rdoAdd.Checked ? inputSPO : (inputSPO - double.Parse(txtInputRange.Text));
+            var maxSPO = rdoAdd.Checked ? (inputSPO + double.Parse(txtInputRange.Text)) : inputSPO;
 
             //clear rows
             dgViewSPO.Rows.Clear();
@@ -729,9 +691,9 @@ namespace SquareCalculator
                 return;
 
             //limit as per range
-            if (txtRangeSPO.Text != string.Empty)
+            if (txtRange.Text != string.Empty)
             {
-                string[] range = txtRangeSPO.Text.Split(',');
+                string[] range = txtRange.Text.Split(',');
                 lstPEPs = lstPEPs
                     .Where(item => item.matchedRange >= double.Parse(range[0]) && item.matchedRange <= double.Parse(range[1]))
                     .ToList();
@@ -919,7 +881,7 @@ namespace SquareCalculator
             dgViewSearch.Rows.Clear();
 
             //TabControl3
-            txtInputSPO.Text = txtInputSPORange.Text = txtRangeSPO.Text = txtSPO180.Text = txtSPO120.Text = txtSPO90.Text = txtSPO45.Text = string.Empty;
+            txtInput.Text = txtInputRange.Text = txtRange.Text = txt180.Text = txt120.Text = txt90.Text = txt45.Text = string.Empty;
             txtDetTolerance.Text = txtOdDet.Text = "3";
             rdoAdd.Checked = true;  // Select Add
             chkSPO_120.Checked = chkSPO_90.Checked = chkSPO_45.Checked = false;
@@ -939,13 +901,13 @@ namespace SquareCalculator
             SetPlaceholder(txtInputSearch, "Search Range");
             SetPlaceholder(txtInputSD, "Starting Date");
 
-            SetPlaceholder(txtInputSPO, "Starting Point");
-            SetPlaceholder(txtInputSPORange, "Search Range");
+            SetPlaceholder(txtInput, "Starting Point");
+            SetPlaceholder(txtInputRange, "Search Range");
 
-            SetPlaceholder(txtSPO180, "180");
-            SetPlaceholder(txtSPO120, "120");
-            SetPlaceholder(txtSPO90, "90");
-            SetPlaceholder(txtSPO45, "45");
+            SetPlaceholder(txt180, "180");
+            SetPlaceholder(txt120, "120");
+            SetPlaceholder(txt90, "90");
+            SetPlaceholder(txt45, "45");
         }
 
         private void ClearControls(string clearType = "")
@@ -977,7 +939,7 @@ namespace SquareCalculator
             dgViewSearch.Rows.Clear();
 
             //TabControl3
-            txtInputSPO.Text = txtInputSPORange.Text = txtRangeSPO.Text = txtSPO180.Text = txtSPO120.Text = txtSPO90.Text = txtSPO45.Text = string.Empty;
+            txtInput.Text = txtInputRange.Text = txtRange.Text = txt180.Text = txt120.Text = txt90.Text = txt45.Text = string.Empty;
             txtDetTolerance.Text = txtOdDet.Text = "3";
             rdoAdd.Checked = true;  // Select Add
             chkSPO_120.Checked = chkSPO_90.Checked = chkSPO_45.Checked = false;
@@ -999,13 +961,13 @@ namespace SquareCalculator
             SetPlaceholder(txtInputSearch, "Search Range");
             SetPlaceholder(txtInputSD, "Starting Date");
 
-            SetPlaceholder(txtInputSPO, "Starting Point");
-            SetPlaceholder(txtInputSPORange, "Search Range");
+            SetPlaceholder(txtInput, "Starting Point");
+            SetPlaceholder(txtInputRange, "Search Range");
 
-            SetPlaceholder(txtSPO180, "180");
-            SetPlaceholder(txtSPO120, "120");
-            SetPlaceholder(txtSPO90, "90");
-            SetPlaceholder(txtSPO45, "45");
+            SetPlaceholder(txt180, "180");
+            SetPlaceholder(txt120, "120");
+            SetPlaceholder(txt90, "90");
+            SetPlaceholder(txt45, "45");
         }
 
         private List<double> GetInputRanges(System.Windows.Forms.TextBox txtInput)
@@ -1203,25 +1165,25 @@ namespace SquareCalculator
                     if (chkSPO_180.Checked || chkSPO_120.Checked || chkSPO_90.Checked || chkSPO_45.Checked)
                         spoCustomSearch = new List<(string colName, List<double> inputRange)>();
 
-                    if (chkSPO_180.Checked && !string.IsNullOrEmpty(txtSPO180.Text))
+                    if (chkSPO_180.Checked && !string.IsNullOrEmpty(txt180.Text))
                     {
                         // Split the input by commas and trim any surrounding whitespace
-                        spoCustomSearch.Add(("180", txtSPO180.Text.Split(',').Select(i => double.Parse(i)).ToList()));
+                        spoCustomSearch.Add(("180", txt180.Text.Split(',').Select(i => double.Parse(i)).ToList()));
                     }
-                    if (chkSPO_120.Checked && !string.IsNullOrEmpty(txtSPO120.Text))
+                    if (chkSPO_120.Checked && !string.IsNullOrEmpty(txt120.Text))
                     {
                         // Split the input by commas and trim any surrounding whitespace
-                        spoCustomSearch.Add(("120", txtSPO120.Text.Split(',').Select(i => double.Parse(i)).ToList()));
+                        spoCustomSearch.Add(("120", txt120.Text.Split(',').Select(i => double.Parse(i)).ToList()));
                     }
-                    if (chkSPO_90.Checked && !string.IsNullOrEmpty(txtSPO90.Text))
+                    if (chkSPO_90.Checked && !string.IsNullOrEmpty(txt90.Text))
                     {
                         // Split the input by commas and trim any surrounding whitespace
-                        spoCustomSearch.Add(("90", txtSPO90.Text.Split(',').Select(i => double.Parse(i)).ToList()));
+                        spoCustomSearch.Add(("90", txt90.Text.Split(',').Select(i => double.Parse(i)).ToList()));
                     }
-                    if (chkSPO_45.Checked && !string.IsNullOrEmpty(txtSPO45.Text))
+                    if (chkSPO_45.Checked && !string.IsNullOrEmpty(txt45.Text))
                     {
                         // Split the input by commas and trim any surrounding whitespace
-                        spoCustomSearch.Add(("45", txtSPO45.Text.Split(',').Select(i => double.Parse(i)).ToList()));
+                        spoCustomSearch.Add(("45", txt45.Text.Split(',').Select(i => double.Parse(i)).ToList()));
                     }
                 }
             }
