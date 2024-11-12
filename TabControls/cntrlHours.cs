@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -71,7 +72,7 @@ namespace SquareCalculator.TabControls
 
         }
 
-      
+
 
         private void CenterAlignAllDataGridViewColumns(Control container)
         {
@@ -116,7 +117,9 @@ namespace SquareCalculator.TabControls
             gvHours.Rows.Clear();
 
             // Define the start date and time
-            DateTime startDateTime = new DateTime(2024, 10, 20, 20, 31, 0); // Example start date and time
+            DateTime startDateTime =  new DateTime(
+            dtStartDate.Value.Year, dtStartDate.Value.Month, dtStartDate.Value.Day,
+                dtStartTime.Value.Hour, dtStartTime.Value.Minute, dtStartDate.Value.Second);
 
             // Process each dataset with visual distinction
             ProcessDataset(range180, minRange, maxRange, variation, startDateTime, Color.LightGray);
@@ -172,9 +175,10 @@ namespace SquareCalculator.TabControls
             row.Cells.Add(new DataGridViewTextBoxCell { Value = timeOfDay });
 
             // Distinguish core values from variation values visually
-            if (!isCoreValue)
+            if (isCoreValue)
             {
-                row.DefaultCellStyle.Font = new Font(gvHours.DefaultCellStyle.Font, FontStyle.Bold);
+                row.Cells[0].Style.ForeColor = Color.Green;
+                row.Cells[0].Style.Font = new Font(gvHours.DefaultCellStyle.Font, FontStyle.Bold);
             }
 
             gvHours.Rows.Add(row);
