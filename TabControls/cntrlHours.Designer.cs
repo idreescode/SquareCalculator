@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.grpHoursCalculations = new System.Windows.Forms.GroupBox();
             this.btnCalculateTotalMinutes = new System.Windows.Forms.Button();
@@ -52,13 +57,13 @@
             this.txtInput180 = new System.Windows.Forms.TextBox();
             this.txtInput120 = new System.Windows.Forms.TextBox();
             this.txtInput90 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gvHours = new System.Windows.Forms.DataGridView();
             this.btnCalculationHours = new System.Windows.Forms.Button();
-            this.colTotalMint = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotalHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colExactHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDayHoursMin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTimeOfDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDayHoursMin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colExactHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalMint = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -66,7 +71,7 @@
             this.grpHoursCalculations.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvHours)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -102,7 +107,7 @@
             this.grpHoursCalculations.Size = new System.Drawing.Size(380, 201);
             this.grpHoursCalculations.TabIndex = 0;
             this.grpHoursCalculations.TabStop = false;
-            this.grpHoursCalculations.Text = "Hours Calculation";
+            this.grpHoursCalculations.Text = "Hours";
             // 
             // btnCalculateTotalMinutes
             // 
@@ -269,7 +274,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txtInput90, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtInput180, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtInput120, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.gvHours, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.btnCalculationHours, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -312,22 +317,24 @@
             this.txtInput90.Size = new System.Drawing.Size(1387, 20);
             this.txtInput90.TabIndex = 36;
             // 
-            // dataGridView1
+            // gvHours
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.gvHours.AllowUserToAddRows = false;
+            this.gvHours.BackgroundColor = System.Drawing.Color.White;
+            this.gvHours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvHours.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colTotalMint,
             this.colTotalHours,
             this.colExactHours,
             this.colDayHoursMin,
             this.colTimeOfDay});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 147);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1387, 830);
-            this.dataGridView1.TabIndex = 38;
+            this.gvHours.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvHours.GridColor = System.Drawing.SystemColors.Control;
+            this.gvHours.Location = new System.Drawing.Point(3, 147);
+            this.gvHours.Name = "gvHours";
+            this.gvHours.Size = new System.Drawing.Size(1387, 830);
+            this.gvHours.TabIndex = 38;
+            this.gvHours.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             // 
             // btnCalculationHours
             // 
@@ -338,36 +345,47 @@
             this.btnCalculationHours.TabIndex = 39;
             this.btnCalculationHours.Text = "Find Matches In Range";
             this.btnCalculationHours.UseVisualStyleBackColor = true;
+            this.btnCalculationHours.Click += new System.EventHandler(this.btnCalculationHours_Click);
             // 
-            // colTotalMint
+            // colTimeOfDay
             // 
-            this.colTotalMint.HeaderText = "Total Mints";
-            this.colTotalMint.Name = "colTotalMint";
-            this.colTotalMint.Width = 200;
-            // 
-            // colTotalHours
-            // 
-            this.colTotalHours.HeaderText = "Total Hrs";
-            this.colTotalHours.Name = "colTotalHours";
-            this.colTotalHours.Width = 250;
-            // 
-            // colExactHours
-            // 
-            this.colExactHours.HeaderText = "Exact Hours";
-            this.colExactHours.Name = "colExactHours";
-            this.colExactHours.Width = 300;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTimeOfDay.DefaultCellStyle = dataGridViewCellStyle5;
+            this.colTimeOfDay.HeaderText = "Time of Day";
+            this.colTimeOfDay.Name = "colTimeOfDay";
+            this.colTimeOfDay.Width = 350;
             // 
             // colDayHoursMin
             // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colDayHoursMin.DefaultCellStyle = dataGridViewCellStyle4;
             this.colDayHoursMin.HeaderText = "Day, Hrs, Min";
             this.colDayHoursMin.Name = "colDayHoursMin";
             this.colDayHoursMin.Width = 350;
             // 
-            // colTimeOfDay
+            // colExactHours
             // 
-            this.colTimeOfDay.HeaderText = "Time of Day";
-            this.colTimeOfDay.Name = "colTimeOfDay";
-            this.colTimeOfDay.Width = 350;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colExactHours.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colExactHours.HeaderText = "Exact Hours";
+            this.colExactHours.Name = "colExactHours";
+            this.colExactHours.Width = 300;
+            // 
+            // colTotalHours
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalHours.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colTotalHours.HeaderText = "Total Hrs";
+            this.colTotalHours.Name = "colTotalHours";
+            this.colTotalHours.Width = 250;
+            // 
+            // colTotalMint
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colTotalMint.HeaderText = "Total Mints";
+            this.colTotalMint.Name = "colTotalMint";
+            this.colTotalMint.Width = 200;
             // 
             // cntrlHours
             // 
@@ -387,7 +405,7 @@
             this.groupBox1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvHours)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -417,7 +435,7 @@
         private System.Windows.Forms.TextBox txtInput90;
         private System.Windows.Forms.TextBox txtInput120;
         private System.Windows.Forms.TextBox txtInput180;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gvHours;
         private System.Windows.Forms.Button btnCalculationHours;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalMint;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalHours;
