@@ -38,6 +38,7 @@ namespace SquareCalculator.TabControls
             SQR9Helper.SetPlaceholder(txtInput90, "Input 90");
 
             CenterAlignAllDataGridViewColumns(this);
+
         }
 
         private void btnCalculateTotalMinutes_Click(object sender, EventArgs e)
@@ -104,8 +105,7 @@ namespace SquareCalculator.TabControls
             // Define the min and max range (example: 3089-4529.99) and variation (e.g., 10)
             double minRange = RangeInHours;
             double maxRange = TotalMinutes;
-            int variation = 10;
-
+            int variation = Convert.ToInt32(numberVariation.Value);
             // Call PopulateGridWithRange to process and display the values
             PopulateGridWithRange(minRange, maxRange, variation);
             gvHours.Sort(gvHours.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
@@ -117,7 +117,7 @@ namespace SquareCalculator.TabControls
             gvHours.Rows.Clear();
 
             // Define the start date and time
-            DateTime startDateTime =  new DateTime(
+            DateTime startDateTime = new DateTime(
             dtStartDate.Value.Year, dtStartDate.Value.Month, dtStartDate.Value.Day,
                 dtStartTime.Value.Hour, dtStartTime.Value.Minute, dtStartDate.Value.Second);
 
