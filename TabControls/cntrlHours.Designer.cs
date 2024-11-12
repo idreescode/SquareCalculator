@@ -402,7 +402,7 @@
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colTotalMint.HeaderText = "Total Mints";
+            this.colTotalMint.HeaderText = "Total Mins";
             this.colTotalMint.Name = "colTotalMint";
             this.colTotalMint.Width = 200;
             // 
