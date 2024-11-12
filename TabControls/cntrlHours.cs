@@ -22,7 +22,7 @@ namespace SquareCalculator.TabControls
         private List<double> range180 = new List<double>();
         private List<double> range120 = new List<double>();
         private List<double> range90 = new List<double>();
-
+        private List<double> combinedRange = new List<double>();
         public cntrlHours()
         {
             InitializeComponent();
@@ -98,19 +98,23 @@ namespace SquareCalculator.TabControls
         private void btnCalculationHours_Click(object sender, EventArgs e)
         {
             // Parse values from textboxes
-
+            combinedRange.Clear();
             if (txtInput180.Text != null && txtInput180.Text != "Input 180")
             {
                 range180 = GetInputRanges(txtInput180);
+                combinedRange.AddRange(range180);
             }
             if (txtInput120.Text != null && txtInput120.Text != "Input 120")
             {
                 range120 = GetInputRanges(txtInput120);
+                combinedRange.AddRange(range120);
             }
             if (txtInput90.Text != null && txtInput90.Text != "Input 90")
             {
                 range90 = GetInputRanges(txtInput90);
+                combinedRange.AddRange(range90);
             }
+            combinedRange = combinedRange.Distinct().ToList();
 
             // Define the min and max range (example: 3089-4529.99) and variation (e.g., 10)
             double minRange = RangeInHours;
@@ -162,13 +166,13 @@ namespace SquareCalculator.TabControls
                     for (int i = -variation; i <= variation; i++)
                     {
                         double value = coreValue + i; // Apply variation
-                        AddRowToGrid(value, startDateTime, i == 0, rowColor); // i == 0 indicates core value
+                        AddRowToGrid(value, startDateTime, i == 0, rowColor, combinedRange); // i == 0 indicates core value
                     }
                 }
             }
         }
 
-        private void AddRowToGrid(double totalMinutes, DateTime startDateTime, bool isCoreValue, Color rowColor)
+        private void AddRowToGrid(double totalMinutes, DateTime startDateTime, bool isCoreValue, Color rowColor, List<double> combinedRange)
         {
             // Calculate Total Hrs
             double totalHrs = Math.Round(totalMinutes / 60, 2);
@@ -189,6 +193,11 @@ namespace SquareCalculator.TabControls
             DateTime endDateTime = startDateTime.AddMinutes(totalMinutes);
             string timeOfDay = endDateTime.ToString("MM/dd/yyyy hh:mm tt");
 
+            // Format values for matching in combinedRange
+            double totalHrsValueToMatch =double.Parse( RemoveNonNumeric(totalHrs.ToString()));
+            double exactHrsValueToMatch = double.Parse(RemoveNonNumeric(exactHrs.ToString()));
+            double daysHrsMinValueToMatch = double.Parse(RemoveNonNumeric(daysHrsMin.ToString()));
+
             // Add row with values to the grid
             DataGridViewRow row = new DataGridViewRow();
             row.DefaultCellStyle.BackColor = rowColor;
@@ -205,6 +214,19 @@ namespace SquareCalculator.TabControls
                 row.Cells[0].Style.Font = new Font(gvHours.DefaultCellStyle.Font, FontStyle.Bold);
             }
 
+            // Highlight matches in yellow if found in combinedRange
+            if (combinedRange.Contains(totalHrsValueToMatch))
+            {
+                row.Cells[1].Style.BackColor = Color.Yellow; // Highlight Total Hrs column
+            }
+            if (combinedRange.Contains(exactHrsValueToMatch))
+            {
+                row.Cells[2].Style.BackColor = Color.Yellow; // Highlight Exact Hrs column
+            }
+            if (combinedRange.Contains(daysHrsMinValueToMatch))
+            {
+                row.Cells[3].Style.BackColor = Color.Yellow; // Highlight Days, Hrs, Min column
+            }
             gvHours.Rows.Add(row);
         }
 
@@ -252,6 +274,12 @@ namespace SquareCalculator.TabControls
             }
 
             return inputRanges;
+        }
+
+        public string RemoveNonNumeric(string input)
+        {
+            // Use LINQ to filter out non-numeric characters
+            return new string(input.Where(char.IsDigit).ToArray());
         }
 
 
