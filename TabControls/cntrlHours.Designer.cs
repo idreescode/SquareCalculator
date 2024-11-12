@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle76 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle77 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle78 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle79 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle80 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblRanginHrsValue = new System.Windows.Forms.Label();
@@ -109,9 +109,9 @@
             this.groupBox1.Controls.Add(this.lblTotalMinutesValue);
             this.groupBox1.Controls.Add(this.lblTotalMinutes);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 201);
+            this.groupBox1.Location = new System.Drawing.Point(0, 220);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(384, 779);
+            this.groupBox1.Size = new System.Drawing.Size(384, 760);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Calculations";
@@ -206,7 +206,7 @@
             this.grpHoursCalculations.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpHoursCalculations.Location = new System.Drawing.Point(0, 0);
             this.grpHoursCalculations.Name = "grpHoursCalculations";
-            this.grpHoursCalculations.Size = new System.Drawing.Size(384, 201);
+            this.grpHoursCalculations.Size = new System.Drawing.Size(384, 220);
             this.grpHoursCalculations.TabIndex = 0;
             this.grpHoursCalculations.TabStop = false;
             this.grpHoursCalculations.Text = "Hours";
@@ -234,15 +234,17 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(6, 119);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.Size = new System.Drawing.Size(64, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "End Date";
+            this.label3.Text = "End Date:";
             // 
             // dtStartTime
             // 
+            this.dtStartTime.CustomFormat = "hh:mm tt";
             this.dtStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtStartTime.Location = new System.Drawing.Point(84, 66);
             this.dtStartTime.Name = "dtStartTime";
+            this.dtStartTime.ShowUpDown = true;
             this.dtStartTime.Size = new System.Drawing.Size(230, 20);
             this.dtStartTime.TabIndex = 3;
             // 
@@ -344,40 +346,40 @@
             // 
             // colTotalMint
             // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle76.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle76;
             this.colTotalMint.HeaderText = "Total Mints";
             this.colTotalMint.Name = "colTotalMint";
             this.colTotalMint.Width = 200;
             // 
             // colTotalHours
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTotalHours.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle77.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalHours.DefaultCellStyle = dataGridViewCellStyle77;
             this.colTotalHours.HeaderText = "Total Hrs";
             this.colTotalHours.Name = "colTotalHours";
             this.colTotalHours.Width = 250;
             // 
             // colExactHours
             // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colExactHours.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle78.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colExactHours.DefaultCellStyle = dataGridViewCellStyle78;
             this.colExactHours.HeaderText = "Exact Hours";
             this.colExactHours.Name = "colExactHours";
             this.colExactHours.Width = 300;
             // 
             // colDayHoursMin
             // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colDayHoursMin.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle79.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colDayHoursMin.DefaultCellStyle = dataGridViewCellStyle79;
             this.colDayHoursMin.HeaderText = "Day, Hrs, Min";
             this.colDayHoursMin.Name = "colDayHoursMin";
             this.colDayHoursMin.Width = 350;
             // 
             // colTimeOfDay
             // 
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTimeOfDay.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle80.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTimeOfDay.DefaultCellStyle = dataGridViewCellStyle80;
             this.colTimeOfDay.HeaderText = "Time of Day";
             this.colTimeOfDay.Name = "colTimeOfDay";
             this.colTimeOfDay.Width = 350;
@@ -398,9 +400,9 @@
             this.gpVariation.Controls.Add(this.numberVariation);
             this.gpVariation.Controls.Add(this.label6);
             this.gpVariation.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gpVariation.Location = new System.Drawing.Point(0, 459);
+            this.gpVariation.Location = new System.Drawing.Point(0, 703);
             this.gpVariation.Name = "gpVariation";
-            this.gpVariation.Size = new System.Drawing.Size(384, 521);
+            this.gpVariation.Size = new System.Drawing.Size(384, 277);
             this.gpVariation.TabIndex = 2;
             this.gpVariation.TabStop = false;
             this.gpVariation.Text = "Variation";
