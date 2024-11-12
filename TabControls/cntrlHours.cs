@@ -19,9 +19,9 @@ namespace SquareCalculator.TabControls
         double TotalMinutes = 0.0;
         double RangeInHours = 0.0;
 
-        private List<double> range180;
-        private List<double> range120;
-        private List<double> range90;
+        private List<double> range180 = new List<double>();
+        private List<double> range120 = new List<double>();
+        private List<double> range90 = new List<double>();
 
         public cntrlHours()
         {
@@ -98,9 +98,19 @@ namespace SquareCalculator.TabControls
         private void btnCalculationHours_Click(object sender, EventArgs e)
         {
             // Parse values from textboxes
-            range180 = GetInputRanges(txtInput180);
-            range120 = GetInputRanges(txtInput120);
-            range90 = GetInputRanges(txtInput90);
+
+            if (txtInput180.Text != null && txtInput180.Text != "Input 180")
+            {
+                range180 = GetInputRanges(txtInput180);
+            }
+            if (txtInput120.Text != null && txtInput120.Text != "Input 120")
+            {
+                range120 = GetInputRanges(txtInput120);
+            }
+            if (txtInput90.Text != null && txtInput90.Text != "Input 90")
+            {
+                range90 = GetInputRanges(txtInput90);
+            }
 
             // Define the min and max range (example: 3089-4529.99) and variation (e.g., 10)
             double minRange = RangeInHours;
@@ -122,9 +132,23 @@ namespace SquareCalculator.TabControls
                 dtStartTime.Value.Hour, dtStartTime.Value.Minute, dtStartDate.Value.Second);
 
             // Process each dataset with visual distinction
-            ProcessDataset(range180, minRange, maxRange, variation, startDateTime, Color.LightGray);
-            ProcessDataset(range120, minRange, maxRange, variation, startDateTime, Color.White);
-            ProcessDataset(range90, minRange, maxRange, variation, startDateTime, Color.LightBlue);
+
+            if (range180 != null && range180.Count > 0)
+            {
+                ProcessDataset(range180, minRange, maxRange, variation, startDateTime, Color.LightGray);
+
+            }
+            if (range120 != null && range120.Count > 0)
+            {
+                ProcessDataset(range120, minRange, maxRange, variation, startDateTime, Color.White);
+
+            }
+            if (range90 != null && range90.Count > 0)
+            {
+                ProcessDataset(range90, minRange, maxRange, variation, startDateTime, Color.LightBlue);
+
+            }
+
         }
 
         private void ProcessDataset(List<double> dataset, double minRange, double maxRange, int variation, DateTime startDateTime, Color rowColor)
@@ -184,7 +208,8 @@ namespace SquareCalculator.TabControls
             gvHours.Rows.Add(row);
         }
 
-        private List<double> GetInputRanges(TextBox txtInput)
+
+        private List<double> GetInputRanges(System.Windows.Forms.TextBox txtInput)
         {
             // Initialize an empty list to hold the parsed double values
             List<double> inputRanges = new List<double>();
@@ -195,18 +220,39 @@ namespace SquareCalculator.TabControls
             // Split the input by commas and trim any surrounding whitespace
             string[] inputParts = inputText.Split(',');
 
-            // Parse each part into a double and add to the list if valid
             foreach (string part in inputParts)
             {
-                if (double.TryParse(part.Trim(), out double value))
+                // Try to parse each part to a double
+                if (double.TryParse(part.Trim(), out double result))
                 {
-                    inputRanges.Add(value);
+                    if (!txtInput.Name.Contains("180"))
+                    {
+                        // Verify input in range180
+                        if (range180 != null)
+                        {
+                            // Add to the list if parsing is successful and not found in range180
+                            if (!range180.Contains(result))
+                                inputRanges.Add(result);
+                        }
+                        else
+                        {
+                            inputRanges.Add(result);
+                        }
+                    }
+                    else
+                    {
+                        inputRanges.Add(result);
+                    }
+                }
+                else
+                {
+                    // Handle invalid input (e.g., show a message or ignore the invalid input)
+                    MessageBox.Show($"Invalid input: '{part.Trim()}'", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
 
             return inputRanges;
         }
-
 
 
     }

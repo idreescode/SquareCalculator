@@ -65,7 +65,7 @@ namespace SquareCalculator
             }
             else if (tabPage.Text == "Hourly")
             {
-                backgroundColor = Color.Green;  // Orange for Hourly
+                backgroundColor = Color.LightGreen;  // Orange for Hourly
             }
             else if (e.Index < 2) // First two tabs
             {
