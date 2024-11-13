@@ -58,7 +58,7 @@ namespace SquareCalculator.TabControls
 
             lblMinutesToMidNightValue.Text = result.MinutesToMidnight.ToString();
 
-            lblRange1DayValue.Text = result.RangeMinusOneDayMinutes.ToString() + "-" + result.TotalMinutes + " min";
+            lblRange1DayValue.Text = result.RangeMinusOneDayMinutes.ToString() + " - " + result.TotalMinutes + " min";
 
             double rangeInHours = Math.Round((result.TotalMinutes / 60.0), 2);
 
@@ -66,7 +66,7 @@ namespace SquareCalculator.TabControls
 
             RangeInHours = result.RangeMinusOneDayMinutes;
 
-            lblRanginHrsValue.Text = (Math.Round(result.RangeInHours, 2).ToString() + "-" + (rangeInHours)).ToString();
+            lblRanginHrsValue.Text = (Math.Round(result.RangeInHours, 2).ToString() + " - " + (rangeInHours)).ToString();
 
         }
 
@@ -148,17 +148,17 @@ namespace SquareCalculator.TabControls
 
             if (range180 != null && range180.Count > 0)
             {
-                ProcessDataset(range180, minRange, maxRange, variation, startDateTime, Color.LightGray);
+                ProcessDataset(range180, minRange, maxRange, variation, startDateTime, Color.White);
 
             }
             if (range120 != null && range120.Count > 0)
             {
-                ProcessDataset(range120, minRange, maxRange, variation, startDateTime, Color.White);
+                ProcessDataset(range120, minRange, maxRange, variation, startDateTime, Color.LightGray);
 
             }
             if (range90 != null && range90.Count > 0)
             {
-                ProcessDataset(range90, minRange, maxRange, variation, startDateTime, Color.LightBlue);
+                ProcessDataset(range90, minRange, maxRange, variation, startDateTime, Color.FromArgb(169, 169, 169));
 
             }
 
@@ -224,7 +224,7 @@ namespace SquareCalculator.TabControls
             // Distinguish core values from variation values visually
             if (isCoreValue)
             {
-                row.Cells[0].Style.ForeColor = Color.Green;
+                row.Cells[0].Style.ForeColor = Color.Black;
                 row.Cells[0].Style.Font = new Font(gvHours.DefaultCellStyle.Font, FontStyle.Bold);
             }
 
