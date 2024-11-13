@@ -195,6 +195,8 @@ namespace SquareCalculator.TabControls
 
             // Format values for matching in combinedRange
             double totalHrsValueToMatch =double.Parse( RemoveNonNumeric(totalHrs.ToString()));
+
+
             double exactHrsValueToMatch = double.Parse(RemoveNonNumeric(exactHrs.ToString()));
             double daysHrsMinValueToMatch = double.Parse(RemoveNonNumeric(daysHrsMin.ToString()));
 
@@ -207,6 +209,8 @@ namespace SquareCalculator.TabControls
             row.Cells.Add(new DataGridViewTextBoxCell { Value = daysHrsMin });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = timeOfDay });
 
+            double[] resultArrayTotalHours = CalculateArray(totalHrs);
+
             // Distinguish core values from variation values visually
             if (isCoreValue)
             {
@@ -215,7 +219,7 @@ namespace SquareCalculator.TabControls
             }
 
             // Highlight matches in yellow if found in combinedRange
-            if (combinedRange.Contains(totalHrsValueToMatch))
+            if (resultArray.Any(value => combinedRange.Contains(value)))
             {
                 row.Cells[1].Style.BackColor = Color.Yellow; // Highlight Total Hrs column
             }
@@ -281,6 +285,25 @@ namespace SquareCalculator.TabControls
             // Use LINQ to filter out non-numeric characters
             return new string(input.Where(char.IsDigit).ToArray());
         }
+
+        public  double[] CalculateArray(double originalValue)
+    {
+        // Parse original value to remove non-numeric characters
+        double totalHrsValueToMatch = double.Parse(RemoveNonNumeric(originalValue.ToString()));
+        
+        // Return the array with additional calculated values
+        return new double[]
+        {
+            originalValue,                           // Original Value
+            originalValue + 100,                     // Original Value + 100
+            originalValue + 1000,                    // Original Value + 1000
+            originalValue + 1100,                    // Original Value + 1100
+            originalValue * 10,                      // Original Value x 10
+            (originalValue * 10) + 1000,             // (Original Value x 10) + 1000
+            originalValue * 100,                     // Original Value x 100
+            totalHrsValueToMatch                     // Parsed value without non-numeric characters
+        };
+    }
 
 
     }
