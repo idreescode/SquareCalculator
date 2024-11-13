@@ -798,9 +798,10 @@ namespace SquareCalculator
         {
 
             if (clearType == "SPO")
+            {
                 foreach (var dgvId in new[] { "180", "120", "90" })
                 {
-                    (this.Controls.Find($"txtInput{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox).Clear();
+                    (this.Controls.Find($"txtInputPAD{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox).Clear();
                     DataGridView dgv = this.Controls.Find($"dgViewPAD{dgvId}", true).FirstOrDefault() as DataGridView;
 
                     dgv.RowHeadersVisible = false;
@@ -812,46 +813,47 @@ namespace SquareCalculator
 
                 }
 
-            //TabControl2
-            txtInputSD.Text = txtInputSearch.Text = string.Empty;
-            txtTolerance.Text = "1";
-            cmbME.SelectedIndex = cmbME.Items.Count - 1;  // Select the last item
+                //TabControl2
+                txtInputSD.Text = txtInputSearch.Text = string.Empty;
+                txtTolerance.Text = "1";
+                cmbME.SelectedIndex = cmbME.Items.Count - 1;  // Select the last item
 
-            //dgViewSearch.RowHeadersVisible = false;
-            // Subscribe to the event (this can be done in the designer or programmatically)
-            dgViewSearch.RowHeaderMouseClick += dgViewSearch_RowHeaderMouseClick;
-            dgViewSearch.Rows.Clear();
+                //dgViewSearch.RowHeadersVisible = false;
+                // Subscribe to the event (this can be done in the designer or programmatically)
+                dgViewSearch.RowHeaderMouseClick += dgViewSearch_RowHeaderMouseClick;
+                dgViewSearch.Rows.Clear();
 
-            //TabControl3
-            txtInput.Text = txtInputRange.Text = txtRange.Text = txt180.Text = txt120.Text = txt90.Text = txt45.Text = string.Empty;
-            txtDetTolerance.Text = txtOdDet.Text = "3";
-            rdoAdd.Checked = true;  // Select Add
-            chkSPO_120.Checked = chkSPO_90.Checked = chkSPO_45.Checked = false;
+                //TabControl3
+                txtInput.Text = txtInputRange.Text = txtRange.Text = txt180.Text = txt120.Text = txt90.Text = txt45.Text = string.Empty;
+                txtDetTolerance.Text = txtOdDet.Text = "3";
+                rdoAdd.Checked = true;  // Select Add
+                chkSPO_120.Checked = chkSPO_90.Checked = chkSPO_45.Checked = false;
 
-            dgViewSPO.RowHeadersVisible = false;
-            dgViewSPO.Rows.Clear();
+                dgViewSPO.RowHeadersVisible = false;
+                dgViewSPO.Rows.Clear();
 
 
-            // Set placeholder for a TextBox
+                // Set placeholder for a TextBox
 
-            if (clearType == "SPO")
-            {
-                SetPlaceholder(txtInputPAD180, "Input 180");
-                SetPlaceholder(txtInputPAD120, "Input 120");
-                SetPlaceholder(txtInputPAD90, "Input 90");
+                if (clearType == "SPO")
+                {
+                    SetPlaceholder(txtInputPAD180, "Input 180");
+                    SetPlaceholder(txtInputPAD120, "Input 120");
+                    SetPlaceholder(txtInputPAD90, "Input 90");
+                }
+
+
+                SetPlaceholder(txtInputSearch, "Search Range");
+                SetPlaceholder(txtInputSD, "Starting Date");
+
+                SetPlaceholder(txtInput, "Starting Point");
+                SetPlaceholder(txtInputRange, "Search Range");
+
+                SetPlaceholder(txt180, "180");
+                SetPlaceholder(txt120, "120");
+                SetPlaceholder(txt90, "90");
+                SetPlaceholder(txt45, "45");
             }
-
-
-            SetPlaceholder(txtInputSearch, "Search Range");
-            SetPlaceholder(txtInputSD, "Starting Date");
-
-            SetPlaceholder(txtInput, "Starting Point");
-            SetPlaceholder(txtInputRange, "Search Range");
-
-            SetPlaceholder(txt180, "180");
-            SetPlaceholder(txt120, "120");
-            SetPlaceholder(txt90, "90");
-            SetPlaceholder(txt45, "45");
         }
 
         private List<double> GetInputRanges(System.Windows.Forms.TextBox txtInput)
