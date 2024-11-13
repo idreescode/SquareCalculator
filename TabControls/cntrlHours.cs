@@ -39,7 +39,7 @@ namespace SquareCalculator.TabControls
 
             CenterAlignAllDataGridViewColumns(this);
 
-            // Set the start date (e.g., October 20, 2024)
+             //Set the start date (e.g., October 20, 2024)
             dtStartDate.Value = new DateTime(2024, 10, 20);
 
             // Set the select time (e.g., 8:32:00 PM)
@@ -48,6 +48,10 @@ namespace SquareCalculator.TabControls
             // Set the end date (e.g., October 23, 2024)
             dtEndDate.Value = new DateTime(2024, 10, 23);
 
+            txtInput180.Text = "4.3, 8.3, 15.7, 23.7, 35.1, 47.1, 62.5, 78.5, 97.8, 117.8, 141.2, 165.2, 192.6, 220.6, 252.0, 284.0, 319.3, 355.3, 394.7, 434.7, 478.1, 522.1, 569.5, 617.5, 668.8, 720.8, 776.2, 832.2, 891.6, 951.6, 1015.0, 1079.0, 1146.3, 1214.3, 1285.7, 1357.7, 1433.1, 1509.1, 1588.5, 1668.5, 1751.8, 1835.8, 1923.2, 2011.2, 2102.6, 2194.6, 2290.0, 2386.0, 2485.3, 2585.3, 2688.7, 2792.7, 2900.1, 3008.1, 3119.5, 3231.5, 3346.8, 3462.8, 3582.2, 3702.2, 3825.6, 3949.6, 4077.0, 4205.0, 4336.3, 4468.3, 4603.7, 4739.7, 4879.1, 5019.1, 5162.5, 5306.5, 5453.8, 5601.8, 5753.2, 5905.2, 6060.6, 6216.6, 6376.0, 6536.0, 6699.3, 6863.3, 7030.7, 7198.7, 7370.1, 7542.1, 7717.5, 7893.5, 8072.8, 8252.8, 8436.2, 8620.2, 8807.6, 8995.6, 9187.0, 9379.0, 9574.3, 9770.3, 9969.7, 10169.7, 10373.1, 10577.1, 10784.5, 10992.5, 11203.8, 11415.8, 11631.2, 11847.2, 12066.6, 12286.6, 12510.0, 12734.0, 12961.3, 13189.3, 13420.7, 13652.7, 13888.1, 14124.1, 14363.5, 14603.5, 14846.8, 15090.8, 15338.2, 15586.2, 15837.6, 16089.6, 16345.0, 16601.0, 16860.3, 17120.3, 17383.7, 17647.7, 17915.1, 18183.1, 18454.5, 18726.5, 19001.8, 19277.8, 19557.2, 19837.2, 20120.6, 20404.6, 20692.0, 20980.0, 21271.3, 21563.3, 21858.7, 22154.7, 22454.1, 22754.1, 23057.5, 23361.5, 23668.8, 23976.8, 24288.2, 24600.2, 24915.6, 25231.6, 25551.0, 25871.0, 26194.3, 26518.3, 26845.7, 27173.7, 27505.1, 27837.1, 28172.5, 28508.5, 28847.8, 29187.8, 29531.2, 29875.2, 30222.6, 30570.6, 30922.0, 31274.0, 31629.3, 31985.3, 32344.7, 32704.7, 33068.1, 33432.1, 33799.5, 34167.5, 34538.8, 34910.8, 35286.2, 35662.2, 36041.6, 36421.6, 36805.0, 37189.0, 37576.3, 37964.3, 38355.7, 38747.7, 39143.1, 39539.1, 39938.5, 40338.5, 40741.8, 41145.8, 41553.2, 41961.2, 42372.6, 42784.6, 43200.0, 43616.0, 44035.3, 44455.3, 44878.7, 45302.7, 45730.1, 46158.1, 46589.5, 47021.5, 47456.8, 47892.8, 48332.2, 48772.2, 49215.6, 49659.6";
+
+       
+        
         }
 
         private void btnCalculateTotalMinutes_Click(object sender, EventArgs e)
@@ -217,13 +221,15 @@ namespace SquareCalculator.TabControls
             row.Cells.Add(new DataGridViewTextBoxCell { Value = daysHrsMin });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = timeOfDay });
 
-            double[] resultArrayTotalHours = hoursCalculator.CalculateArray(totalHrs);
-            double[] resultArrayExtraHours = hoursCalculator.CalculateArray(orginalExtraHours);
+            double[] resultArrayTotalMints = hoursCalculator.CalculateTotalMintsArray(totalMinutes);
+            double[] resultArrayTotalHours = hoursCalculator.CalculateTotalHoursArray(totalHrs);
+            double[] resultArrayExtraHours = hoursCalculator.CalculateExactHourArray(orginalExtraHours);
             double[] resultArraysHrsMin = hoursCalculator.CalculateHourMinsArray(daysHrsMinValueToMatch);
             double[] resultArraysTimeofDay = hoursCalculator.CalculateTimeofDayArray(DateTime.Parse(timeOfDay));
+
             // Distinguish core values from variation values visually
             bool matchRow = false;
-            if (isCoreValue)
+            if (isCoreValue || resultArrayTotalMints.Any(value => combinedRange.Contains(value)))
             {
                 matchRow = true;
                 row.Cells[0].Style.ForeColor = Color.Black;

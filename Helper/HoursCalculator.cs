@@ -47,8 +47,43 @@ namespace SquareCalculator.Helper
             return (totalMinutes, minutesToMidnight, rangeMinusOneDayMinutes, rangeInHours);
         }
 
+        public double[] CalculateTotalMintsArray(double originalValue)
+        {
+            // Parse original value to remove non-numeric characters
+            double parsedValue = double.Parse(RemoveNonNumeric(originalValue.ToString()));
+            // Generate variations based on the specified logic
+            double valueWith1Prefix = double.Parse("1" + parsedValue.ToString());
 
-        public double[] CalculateArray(double originalValue)
+            // Return an array with the calculated variations
+            return new double[]
+            {
+                parsedValue,             // Original Value
+                valueWith1Prefix
+            };
+        }
+
+        public double[] CalculateTotalHoursArray(double originalValue)
+        {
+            // Parse original value to remove non-numeric characters
+            double totalHrsValueToMatch = double.Parse(RemoveNonNumeric(originalValue.ToString()));
+
+            // Generate additional calculated values based on the new logic
+            double valueWith100Prefix = originalValue < 100 ? originalValue + 100 : originalValue;
+
+            // Return the array with additional calculated values
+            return new double[]
+            {
+        originalValue,                        // Original Value
+        valueWith100Prefix,                   // Original Value + 100 (if hours < 99.99)
+        originalValue + 1000,                 // Original Value + 1000
+        originalValue + 1100,                 // Original Value + 1100
+        originalValue * 10,                   // Original Value x 10
+        (originalValue * 10) + 1000,          // (Original Value x 10) + 1000
+        originalValue * 100,                  // Original Value x 100
+        totalHrsValueToMatch                  // Parsed value without non-numeric characters
+            };
+        }
+        public double[] CalculateExactHourArray(double originalValue)
         {
             // Parse original value to remove non-numeric characters
             double totalHrsValueToMatch = double.Parse(RemoveNonNumeric(originalValue.ToString()));
@@ -67,12 +102,6 @@ namespace SquareCalculator.Helper
             };
         }
 
-        public string RemoveNonNumeric(string input)
-        {
-            // Use LINQ to filter out non-numeric characters
-            return new string(input.Where(char.IsDigit).ToArray());
-        }
-
         public double[] CalculateHourMinsArray(double originalValue)
         {
             // Parse original value to remove non-numeric characters
@@ -88,7 +117,7 @@ namespace SquareCalculator.Helper
             };
         }
 
-        public  double[] CalculateTimeofDayArray(DateTime originalTime)
+        public double[] CalculateTimeofDayArray(DateTime originalTime)
         {
             List<double> timeVariants = new List<double>();
 
@@ -119,6 +148,14 @@ namespace SquareCalculator.Helper
             // Return the list as an array
             return timeVariants.ToArray();
         }
+
+        public string RemoveNonNumeric(string input)
+        {
+            // Use LINQ to filter out non-numeric characters
+            return new string(input.Where(char.IsDigit).ToArray());
+        }
+
+
 
 
     }
