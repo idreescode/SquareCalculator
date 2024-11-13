@@ -730,10 +730,10 @@
             // 
             this.txtInputPAD120.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInputPAD120.Location = new System.Drawing.Point(13, 3);
+            this.txtInputPAD120.Location = new System.Drawing.Point(3, 3);
             this.txtInputPAD120.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtInputPAD120.Name = "txtInputPAD120";
-            this.txtInputPAD120.Size = new System.Drawing.Size(373, 20);
+            this.txtInputPAD120.Size = new System.Drawing.Size(384, 20);
             this.txtInputPAD120.TabIndex = 24;
             // 
             // pnlSPODataTop
@@ -762,10 +762,10 @@
             // btnProcessInputPAD90
             // 
             this.btnProcessInputPAD90.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProcessInputPAD90.Location = new System.Drawing.Point(352, 0);
+            this.btnProcessInputPAD90.Location = new System.Drawing.Point(352, 1);
             this.btnProcessInputPAD90.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnProcessInputPAD90.Name = "btnProcessInputPAD90";
-            this.btnProcessInputPAD90.Size = new System.Drawing.Size(75, 24);
+            this.btnProcessInputPAD90.Size = new System.Drawing.Size(76, 24);
             this.btnProcessInputPAD90.TabIndex = 28;
             this.btnProcessInputPAD90.Text = "Sort Data";
             this.btnProcessInputPAD90.UseVisualStyleBackColor = true;
@@ -775,10 +775,10 @@
             // 
             this.txtInputPAD90.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInputPAD90.Location = new System.Drawing.Point(13, 4);
+            this.txtInputPAD90.Location = new System.Drawing.Point(3, 4);
             this.txtInputPAD90.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtInputPAD90.Name = "txtInputPAD90";
-            this.txtInputPAD90.Size = new System.Drawing.Size(333, 20);
+            this.txtInputPAD90.Size = new System.Drawing.Size(343, 20);
             this.txtInputPAD90.TabIndex = 27;
             // 
             // panel2
@@ -1467,8 +1467,8 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 10);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.699482F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 94.30052F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.663212F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.33678F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1420, 772);
             this.tableLayoutPanel1.TabIndex = 23;
             // 
@@ -1505,14 +1505,14 @@
             dataGridViewCellStyle58.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgView90.DefaultCellStyle = dataGridViewCellStyle58;
             this.dgView90.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgView90.Location = new System.Drawing.Point(949, 46);
+            this.dgView90.Location = new System.Drawing.Point(949, 38);
             this.dgView90.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgView90.MultiSelect = false;
             this.dgView90.Name = "dgView90";
             this.dgView90.ReadOnly = true;
             this.dgView90.RowHeadersWidth = 51;
             this.dgView90.RowTemplate.Height = 26;
-            this.dgView90.Size = new System.Drawing.Size(468, 724);
+            this.dgView90.Size = new System.Drawing.Size(468, 732);
             this.dgView90.TabIndex = 29;
             // 
             // C1_90
@@ -1630,14 +1630,14 @@
             this.C8_120,
             this.C9_120});
             this.dgView120.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgView120.Location = new System.Drawing.Point(476, 46);
+            this.dgView120.Location = new System.Drawing.Point(476, 38);
             this.dgView120.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgView120.MultiSelect = false;
             this.dgView120.Name = "dgView120";
             this.dgView120.ReadOnly = true;
             this.dgView120.RowHeadersWidth = 51;
             this.dgView120.RowTemplate.Height = 26;
-            this.dgView120.Size = new System.Drawing.Size(467, 724);
+            this.dgView120.Size = new System.Drawing.Size(467, 732);
             this.dgView120.TabIndex = 28;
             // 
             // C1_120
@@ -1763,14 +1763,14 @@
             dataGridViewCellStyle79.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgView180.DefaultCellStyle = dataGridViewCellStyle79;
             this.dgView180.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgView180.Location = new System.Drawing.Point(3, 46);
+            this.dgView180.Location = new System.Drawing.Point(3, 38);
             this.dgView180.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgView180.MultiSelect = false;
             this.dgView180.Name = "dgView180";
             this.dgView180.ReadOnly = true;
             this.dgView180.RowHeadersWidth = 51;
             this.dgView180.RowTemplate.Height = 26;
-            this.dgView180.Size = new System.Drawing.Size(467, 724);
+            this.dgView180.Size = new System.Drawing.Size(467, 732);
             this.dgView180.TabIndex = 27;
             // 
             // C1_180
@@ -1871,13 +1871,13 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(949, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(468, 38);
+            this.panel5.Size = new System.Drawing.Size(468, 30);
             this.panel5.TabIndex = 26;
             // 
             // btntabDateDataClear
             // 
             this.btntabDateDataClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btntabDateDataClear.Location = new System.Drawing.Point(429, 6);
+            this.btntabDateDataClear.Location = new System.Drawing.Point(439, 3);
             this.btntabDateDataClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btntabDateDataClear.Name = "btntabDateDataClear";
             this.btntabDateDataClear.Size = new System.Drawing.Size(23, 23);
@@ -1889,10 +1889,10 @@
             // btnProcessInput90
             // 
             this.btnProcessInput90.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProcessInput90.Location = new System.Drawing.Point(348, 5);
+            this.btnProcessInput90.Location = new System.Drawing.Point(347, 3);
             this.btnProcessInput90.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnProcessInput90.Name = "btnProcessInput90";
-            this.btnProcessInput90.Size = new System.Drawing.Size(75, 24);
+            this.btnProcessInput90.Size = new System.Drawing.Size(90, 24);
             this.btnProcessInput90.TabIndex = 22;
             this.btnProcessInput90.Text = "Sort Data";
             this.btnProcessInput90.UseVisualStyleBackColor = true;
@@ -1902,10 +1902,10 @@
             // 
             this.txtInput90.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInput90.Location = new System.Drawing.Point(21, 10);
+            this.txtInput90.Location = new System.Drawing.Point(3, 6);
             this.txtInput90.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtInput90.Name = "txtInput90";
-            this.txtInput90.Size = new System.Drawing.Size(321, 20);
+            this.txtInput90.Size = new System.Drawing.Size(339, 20);
             this.txtInput90.TabIndex = 21;
             // 
             // panel1
@@ -1915,16 +1915,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(467, 38);
+            this.panel1.Size = new System.Drawing.Size(467, 30);
             this.panel1.TabIndex = 24;
             // 
             // btnProcessInput180
             // 
             this.btnProcessInput180.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProcessInput180.Location = new System.Drawing.Point(374, 9);
+            this.btnProcessInput180.Location = new System.Drawing.Point(374, 4);
             this.btnProcessInput180.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnProcessInput180.Name = "btnProcessInput180";
-            this.btnProcessInput180.Size = new System.Drawing.Size(76, 24);
+            this.btnProcessInput180.Size = new System.Drawing.Size(90, 24);
             this.btnProcessInput180.TabIndex = 15;
             this.btnProcessInput180.Text = "Sort Data";
             this.btnProcessInput180.UseVisualStyleBackColor = true;
@@ -1934,10 +1934,10 @@
             // 
             this.txtInput180.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInput180.Location = new System.Drawing.Point(12, 11);
+            this.txtInput180.Location = new System.Drawing.Point(3, 6);
             this.txtInput180.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtInput180.Name = "txtInput180";
-            this.txtInput180.Size = new System.Drawing.Size(356, 20);
+            this.txtInput180.Size = new System.Drawing.Size(365, 20);
             this.txtInput180.TabIndex = 14;
             // 
             // panel4
@@ -1947,16 +1947,16 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(476, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(467, 38);
+            this.panel4.Size = new System.Drawing.Size(467, 30);
             this.panel4.TabIndex = 25;
             // 
             // btnProcessInput120
             // 
             this.btnProcessInput120.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProcessInput120.Location = new System.Drawing.Point(388, 7);
+            this.btnProcessInput120.Location = new System.Drawing.Point(375, 3);
             this.btnProcessInput120.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnProcessInput120.Name = "btnProcessInput120";
-            this.btnProcessInput120.Size = new System.Drawing.Size(76, 24);
+            this.btnProcessInput120.Size = new System.Drawing.Size(90, 24);
             this.btnProcessInput120.TabIndex = 18;
             this.btnProcessInput120.Text = "Sort Data";
             this.btnProcessInput120.UseVisualStyleBackColor = true;
@@ -1966,10 +1966,10 @@
             // 
             this.txtInput120.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInput120.Location = new System.Drawing.Point(26, 10);
+            this.txtInput120.Location = new System.Drawing.Point(5, 6);
             this.txtInput120.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtInput120.Name = "txtInput120";
-            this.txtInput120.Size = new System.Drawing.Size(356, 20);
+            this.txtInput120.Size = new System.Drawing.Size(365, 20);
             this.txtInput120.TabIndex = 17;
             // 
             // tabControl

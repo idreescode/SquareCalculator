@@ -39,6 +39,15 @@ namespace SquareCalculator.TabControls
 
             CenterAlignAllDataGridViewColumns(this);
 
+            // Set the start date (e.g., October 20, 2024)
+            dtStartDate.Value = new DateTime(2024, 10, 20);
+
+            // Set the select time (e.g., 8:32:00 PM)
+            dtStartTime.Value = DateTime.Today.AddHours(20).AddMinutes(32); // Set time for 8:32 PM
+
+            // Set the end date (e.g., October 23, 2024)
+            dtEndDate.Value = new DateTime(2024, 10, 23);
+
         }
 
         private void btnCalculateTotalMinutes_Click(object sender, EventArgs e)
@@ -49,7 +58,7 @@ namespace SquareCalculator.TabControls
 
             lblMinutesToMidNightValue.Text = result.MinutesToMidnight.ToString();
 
-            lblRange1DayValue.Text = result.RangeMinusOneDayMinutes.ToString() + "-" + result.TotalMinutes + " min";
+            lblRange1DayValue.Text = result.RangeMinusOneDayMinutes.ToString() + " - " + result.TotalMinutes + " min";
 
             double rangeInHours = Math.Round((result.TotalMinutes / 60.0), 2);
 
@@ -57,7 +66,7 @@ namespace SquareCalculator.TabControls
 
             RangeInHours = result.RangeMinusOneDayMinutes;
 
-            lblRanginHrsValue.Text = (Math.Round(result.RangeInHours, 2).ToString() + "-" + (rangeInHours)).ToString();
+            lblRanginHrsValue.Text = (Math.Round(result.RangeInHours, 2).ToString() + " - " + (rangeInHours)).ToString();
 
         }
 
@@ -139,17 +148,17 @@ namespace SquareCalculator.TabControls
 
             if (range180 != null && range180.Count > 0)
             {
-                ProcessDataset(range180, minRange, maxRange, variation, startDateTime, Color.LightGray);
+                ProcessDataset(range180, minRange, maxRange, variation, startDateTime, Color.White);
 
             }
             if (range120 != null && range120.Count > 0)
             {
-                ProcessDataset(range120, minRange, maxRange, variation, startDateTime, Color.White);
+                ProcessDataset(range120, minRange, maxRange, variation, startDateTime, Color.LightGray);
 
             }
             if (range90 != null && range90.Count > 0)
             {
-                ProcessDataset(range90, minRange, maxRange, variation, startDateTime, Color.LightBlue);
+                ProcessDataset(range90, minRange, maxRange, variation, startDateTime, Color.FromArgb(169, 169, 169));
 
             }
 
@@ -181,6 +190,7 @@ namespace SquareCalculator.TabControls
             int exactHours = (int)(totalMinutes / 60);
             int exactMinutes = (int)(totalMinutes % 60);
             string exactHrs = $"{exactHours} hrs {exactMinutes} min";
+            double orginalExtraHours = double.Parse(exactHours + "." + exactMinutes);
 
             // Calculate Days, Hrs, Min
             int days = (int)(totalMinutes / 1440);
@@ -194,11 +204,9 @@ namespace SquareCalculator.TabControls
             string timeOfDay = endDateTime.ToString("MM/dd/yyyy hh:mm tt");
 
             // Format values for matching in combinedRange
-            double totalHrsValueToMatch =double.Parse( RemoveNonNumeric(totalHrs.ToString()));
-
-
-            double exactHrsValueToMatch = double.Parse(RemoveNonNumeric(exactHrs.ToString()));
-            double daysHrsMinValueToMatch = double.Parse(RemoveNonNumeric(daysHrsMin.ToString()));
+            double totalHrsValueToMatch = double.Parse(hoursCalculator.RemoveNonNumeric(totalHrs.ToString()));
+            double exactHrsValueToMatch = double.Parse(hoursCalculator.RemoveNonNumeric(exactHrs.ToString()));
+            double daysHrsMinValueToMatch = double.Parse(hoursCalculator.RemoveNonNumeric(daysHrsMin.ToString()));
 
             // Add row with values to the grid
             DataGridViewRow row = new DataGridViewRow();
@@ -209,30 +217,47 @@ namespace SquareCalculator.TabControls
             row.Cells.Add(new DataGridViewTextBoxCell { Value = daysHrsMin });
             row.Cells.Add(new DataGridViewTextBoxCell { Value = timeOfDay });
 
-            double[] resultArrayTotalHours = CalculateArray(totalHrs);
-
+            double[] resultArrayTotalHours = hoursCalculator.CalculateArray(totalHrs);
+            double[] resultArrayExtraHours = hoursCalculator.CalculateArray(orginalExtraHours);
+            double[] resultArraysHrsMin = hoursCalculator.CalculateHourMinsArray(daysHrsMinValueToMatch);
+            double[] resultArraysTimeofDay = hoursCalculator.CalculateTimeofDayArray(DateTime.Parse(timeOfDay));
             // Distinguish core values from variation values visually
+            bool matchRow = false;
             if (isCoreValue)
             {
-                row.Cells[0].Style.ForeColor = Color.Green;
+                matchRow = true;
+                row.Cells[0].Style.ForeColor = Color.Black;
                 row.Cells[0].Style.Font = new Font(gvHours.DefaultCellStyle.Font, FontStyle.Bold);
                 row.Cells[0].Style.BackColor = Color.Yellow; // Highlight Total Hrs column
             }
 
             // Highlight matches in yellow if found in combinedRange
-            if (resultArray.Any(value => combinedRange.Contains(value)))
+            if (resultArrayTotalHours.Any(value => combinedRange.Contains(value)))
             {
+                matchRow = true;
                 row.Cells[1].Style.BackColor = Color.Yellow; // Highlight Total Hrs column
             }
-            if (combinedRange.Contains(exactHrsValueToMatch))
+            if (resultArrayExtraHours.Any(value => combinedRange.Contains(value)))
             {
+                matchRow = true;
                 row.Cells[2].Style.BackColor = Color.Yellow; // Highlight Exact Hrs column
             }
-            if (combinedRange.Contains(daysHrsMinValueToMatch))
+            if (resultArraysHrsMin.Any(value => combinedRange.Contains(value)))
             {
+                matchRow = true;
                 row.Cells[3].Style.BackColor = Color.Yellow; // Highlight Days, Hrs, Min column
             }
-            gvHours.Rows.Add(row);
+            if (resultArraysTimeofDay.Any(value => combinedRange.Contains(value)))
+            {
+                matchRow = true;
+                row.Cells[4].Style.BackColor = Color.Yellow; // Highlight Time of Day 
+            }
+
+            if (!chkShowMatchOnly.Checked || matchRow)
+            {
+                gvHours.Rows.Add(row);
+
+            }
         }
 
 
@@ -280,32 +305,5 @@ namespace SquareCalculator.TabControls
 
             return inputRanges;
         }
-
-        public string RemoveNonNumeric(string input)
-        {
-            // Use LINQ to filter out non-numeric characters
-            return new string(input.Where(char.IsDigit).ToArray());
-        }
-
-        public  double[] CalculateArray(double originalValue)
-    {
-        // Parse original value to remove non-numeric characters
-        double totalHrsValueToMatch = double.Parse(RemoveNonNumeric(originalValue.ToString()));
-        
-        // Return the array with additional calculated values
-        return new double[]
-        {
-            originalValue,                           // Original Value
-            originalValue + 100,                     // Original Value + 100
-            originalValue + 1000,                    // Original Value + 1000
-            originalValue + 1100,                    // Original Value + 1100
-            originalValue * 10,                      // Original Value x 10
-            (originalValue * 10) + 1000,             // (Original Value x 10) + 1000
-            originalValue * 100,                     // Original Value x 100
-            totalHrsValueToMatch                     // Parsed value without non-numeric characters
-        };
-    }
-
-
     }
 }

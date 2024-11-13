@@ -305,7 +305,6 @@ namespace SquareCalculator
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearControls();
-
             //clear list as well
             range180 = range120 = range90 = null;
             if (spoCustomSearch != null)
@@ -737,122 +736,68 @@ namespace SquareCalculator
             };
         }
 
-        private void ClearControls()
-        {
-
-
-            foreach (var dgvId in new[] { "180", "120", "90" })
-            {
-                (this.Controls.Find($"txtInput{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox).Clear();
-                DataGridView dgv = this.Controls.Find($"dgView{dgvId}", true).FirstOrDefault() as DataGridView;
-
-                dgv.RowHeadersVisible = false;
-                dgv.Rows.Clear();
-                foreach (DataGridViewColumn column in dgv.Columns)
-                {
-                    column.Visible = false;
-                }
-
-            }
-            //TabControl2
-            txtInputSD.Text = txtInputSearch.Text = string.Empty;
-            txtTolerance.Text = "1";
-            cmbME.SelectedIndex = cmbME.Items.Count - 1;  // Select the last item
-
-            //dgViewSearch.RowHeadersVisible = false;
-            // Subscribe to the event (this can be done in the designer or programmatically)
-            dgViewSearch.RowHeaderMouseClick += dgViewSearch_RowHeaderMouseClick;
-            dgViewSearch.Rows.Clear();
-
-            //TabControl3
-            txtInput.Text = txtInputRange.Text = txtRange.Text = txt180.Text = txt120.Text = txt90.Text = txt45.Text = string.Empty;
-            txtDetTolerance.Text = txtOdDet.Text = "3";
-            rdoAdd.Checked = true;  // Select Add
-            chkSPO_120.Checked = chkSPO_90.Checked = chkSPO_45.Checked = false;
-
-            dgViewSPO.RowHeadersVisible = false;
-            dgViewSPO.Rows.Clear();
-
-
-            // Set placeholder for a TextBox
-
-
-            SetPlaceholder(txtInput180, "Input 180");
-            SetPlaceholder(txtInput120, "Input 120");
-            SetPlaceholder(txtInput90, "Input 90");
-
-
-            SetPlaceholder(txtInputSearch, "Search Range");
-            SetPlaceholder(txtInputSD, "Starting Date");
-
-            SetPlaceholder(txtInput, "Starting Point");
-            SetPlaceholder(txtInputRange, "Search Range");
-
-            SetPlaceholder(txt180, "180");
-            SetPlaceholder(txt120, "120");
-            SetPlaceholder(txt90, "90");
-            SetPlaceholder(txt45, "45");
-        }
-
         private void ClearControls(string clearType = "")
         {
+            // Define prefix and placeholder text based on clearType
+            string txtInputPrefix = clearType == "SPO" ? "txtInputPAD" : "txtInput";
+            string dgvPrefix = clearType == "SPO" ? "dgViewPAD" : "dgView";
+            var placeholders = new Dictionary<string, string>
+    {
+        { "180", "Input 180" },
+        { "120", "Input 120" },
+        { "90", "Input 90" }
+    };
 
-            if (clearType == "SPO")
-                foreach (var dgvId in new[] { "180", "120", "90" })
+            // Clear TextBoxes and DataGridViews
+            foreach (var dgvId in placeholders.Keys)
+            {
+                (this.Controls.Find($"{txtInputPrefix}{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox)?.Clear();
+                DataGridView dgv = this.Controls.Find($"{dgvPrefix}{dgvId}", true).FirstOrDefault() as DataGridView;
+
+                if (dgv != null)
                 {
-                    (this.Controls.Find($"txtInput{dgvId}", true).FirstOrDefault() as System.Windows.Forms.TextBox).Clear();
-                    DataGridView dgv = this.Controls.Find($"dgViewPAD{dgvId}", true).FirstOrDefault() as DataGridView;
-
                     dgv.RowHeadersVisible = false;
                     dgv.Rows.Clear();
                     foreach (DataGridViewColumn column in dgv.Columns)
                     {
                         column.Visible = false;
                     }
-
                 }
+            }
 
-            //TabControl2
+            // Reset controls common to both cases
             txtInputSD.Text = txtInputSearch.Text = string.Empty;
             txtTolerance.Text = "1";
-            cmbME.SelectedIndex = cmbME.Items.Count - 1;  // Select the last item
-
-            //dgViewSearch.RowHeadersVisible = false;
-            // Subscribe to the event (this can be done in the designer or programmatically)
+            cmbME.SelectedIndex = cmbME.Items.Count - 1;
             dgViewSearch.RowHeaderMouseClick += dgViewSearch_RowHeaderMouseClick;
             dgViewSearch.Rows.Clear();
 
-            //TabControl3
             txtInput.Text = txtInputRange.Text = txtRange.Text = txt180.Text = txt120.Text = txt90.Text = txt45.Text = string.Empty;
             txtDetTolerance.Text = txtOdDet.Text = "3";
-            rdoAdd.Checked = true;  // Select Add
+            rdoAdd.Checked = true;
             chkSPO_120.Checked = chkSPO_90.Checked = chkSPO_45.Checked = false;
 
             dgViewSPO.RowHeadersVisible = false;
             dgViewSPO.Rows.Clear();
 
-
-            // Set placeholder for a TextBox
-
-            if (clearType == "SPO")
+            // Set placeholders for controls based on clearType
+            foreach (var placeholder in placeholders)
             {
-                SetPlaceholder(txtInputPAD180, "Input 180");
-                SetPlaceholder(txtInputPAD120, "Input 120");
-                SetPlaceholder(txtInputPAD90, "Input 90");
+                var textBox = this.Controls.Find($"{txtInputPrefix}{placeholder.Key}", true).FirstOrDefault() as System.Windows.Forms.TextBox;
+                SetPlaceholder(textBox, placeholder.Value);
             }
 
-
+            // Additional common placeholders
             SetPlaceholder(txtInputSearch, "Search Range");
             SetPlaceholder(txtInputSD, "Starting Date");
-
             SetPlaceholder(txtInput, "Starting Point");
             SetPlaceholder(txtInputRange, "Search Range");
-
             SetPlaceholder(txt180, "180");
             SetPlaceholder(txt120, "120");
             SetPlaceholder(txt90, "90");
             SetPlaceholder(txt45, "45");
         }
+
 
         private List<double> GetInputRanges(System.Windows.Forms.TextBox txtInput)
         {
