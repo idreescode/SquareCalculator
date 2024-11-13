@@ -216,6 +216,7 @@ namespace SquareCalculator.TabControls
             {
                 row.Cells[0].Style.ForeColor = Color.Green;
                 row.Cells[0].Style.Font = new Font(gvHours.DefaultCellStyle.Font, FontStyle.Bold);
+                row.Cells[0].Style.BackColor = Color.Yellow; // Highlight Total Hrs column
             }
 
             // Highlight matches in yellow if found in combinedRange
