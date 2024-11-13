@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gpVariation = new System.Windows.Forms.GroupBox();
             this.numberVariation = new System.Windows.Forms.NumericUpDown();
@@ -370,14 +370,14 @@
             // 
             this.gvHours.AllowUserToAddRows = false;
             this.gvHours.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvHours.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvHours.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             this.gvHours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvHours.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colTotalMint,
@@ -395,40 +395,40 @@
             // 
             // colTotalMint
             // 
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle38;
             this.colTotalMint.HeaderText = "Total Mins";
             this.colTotalMint.Name = "colTotalMint";
             this.colTotalMint.Width = 200;
             // 
             // colTotalHours
             // 
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTotalHours.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalHours.DefaultCellStyle = dataGridViewCellStyle39;
             this.colTotalHours.HeaderText = "Total Hrs";
             this.colTotalHours.Name = "colTotalHours";
             this.colTotalHours.Width = 250;
             // 
             // colExactHours
             // 
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colExactHours.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colExactHours.DefaultCellStyle = dataGridViewCellStyle40;
             this.colExactHours.HeaderText = "Exact Hours";
             this.colExactHours.Name = "colExactHours";
             this.colExactHours.Width = 300;
             // 
             // colDayHoursMin
             // 
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colDayHoursMin.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colDayHoursMin.DefaultCellStyle = dataGridViewCellStyle41;
             this.colDayHoursMin.HeaderText = "Day, Hrs, Min";
             this.colDayHoursMin.Name = "colDayHoursMin";
             this.colDayHoursMin.Width = 350;
             // 
             // colTimeOfDay
             // 
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTimeOfDay.DefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTimeOfDay.DefaultCellStyle = dataGridViewCellStyle42;
             this.colTimeOfDay.HeaderText = "Time of Day";
             this.colTimeOfDay.Name = "colTimeOfDay";
             this.colTimeOfDay.Width = 350;
@@ -454,6 +454,7 @@
             this.chkShowMatchOnly.Size = new System.Drawing.Size(15, 14);
             this.chkShowMatchOnly.TabIndex = 74;
             this.chkShowMatchOnly.UseVisualStyleBackColor = true;
+            this.chkShowMatchOnly.CheckedChanged += new System.EventHandler(this.btnCalculationHours_Click);
             // 
             // label7
             // 

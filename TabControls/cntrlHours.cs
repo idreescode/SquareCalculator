@@ -204,7 +204,7 @@ namespace SquareCalculator.TabControls
             string timeOfDay = endDateTime.ToString("MM/dd/yyyy hh:mm tt");
 
             // Format values for matching in combinedRange
-            double totalHrsValueToMatch =double.Parse( hoursCalculator.RemoveNonNumeric(totalHrs.ToString()));
+            double totalHrsValueToMatch = double.Parse(hoursCalculator.RemoveNonNumeric(totalHrs.ToString()));
             double exactHrsValueToMatch = double.Parse(hoursCalculator.RemoveNonNumeric(exactHrs.ToString()));
             double daysHrsMinValueToMatch = double.Parse(hoursCalculator.RemoveNonNumeric(daysHrsMin.ToString()));
 
@@ -222,8 +222,10 @@ namespace SquareCalculator.TabControls
             double[] resultArraysHrsMin = hoursCalculator.CalculateHourMinsArray(daysHrsMinValueToMatch);
             double[] resultArraysTimeofDay = hoursCalculator.CalculateTimeofDayArray(DateTime.Parse(timeOfDay));
             // Distinguish core values from variation values visually
+            bool matchRow = false;
             if (isCoreValue)
             {
+                matchRow = true;
                 row.Cells[0].Style.ForeColor = Color.Black;
                 row.Cells[0].Style.Font = new Font(gvHours.DefaultCellStyle.Font, FontStyle.Bold);
             }
@@ -231,21 +233,30 @@ namespace SquareCalculator.TabControls
             // Highlight matches in yellow if found in combinedRange
             if (resultArrayTotalHours.Any(value => combinedRange.Contains(value)))
             {
+                matchRow = true;
                 row.Cells[1].Style.BackColor = Color.Yellow; // Highlight Total Hrs column
             }
             if (resultArrayExtraHours.Any(value => combinedRange.Contains(value)))
             {
+                matchRow = true;
                 row.Cells[2].Style.BackColor = Color.Yellow; // Highlight Exact Hrs column
             }
             if (resultArraysHrsMin.Any(value => combinedRange.Contains(value)))
             {
+                matchRow = true;
                 row.Cells[3].Style.BackColor = Color.Yellow; // Highlight Days, Hrs, Min column
             }
             if (resultArraysTimeofDay.Any(value => combinedRange.Contains(value)))
             {
+                matchRow = true;
                 row.Cells[4].Style.BackColor = Color.Yellow; // Highlight Time of Day 
             }
-            gvHours.Rows.Add(row);
+
+            if (!chkShowMatchOnly.Checked || matchRow)
+            {
+                gvHours.Rows.Add(row);
+
+            }
         }
 
 
