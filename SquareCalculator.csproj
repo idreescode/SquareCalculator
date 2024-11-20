@@ -34,7 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +51,7 @@
     <Compile Include="Helper\GridData.cs" />
     <Compile Include="Helper\HoursCalculator.cs" />
     <Compile Include="Helper\SQR9Helper.cs" />
+    <Compile Include="Helper\TimeData.cs" />
     <Compile Include="TabControls\cntrlHours.cs">
       <SubType>UserControl</SubType>
     </Compile>

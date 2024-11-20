@@ -9,6 +9,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace SquareCalculator.TabControls
 {
@@ -18,13 +19,14 @@ namespace SquareCalculator.TabControls
         private SQR9Helper SQR9Helper;
         double TotalMinutes = 0.0;
         double RangeInHours = 0.0;
-
         private List<double> range180 = new List<double>();
         private List<double> range120 = new List<double>();
         private List<double> range90 = new List<double>();
         private List<double> combinedRange = new List<double>();
         private List<double> allDataSets = new List<double>();
         private List<GridData> gridList = new List<GridData>();
+        private List<TimeData> timeData = new List<TimeData>();
+        List<List<TimeData>> nestedTimeDataList = new List<List<TimeData>>();
         public cntrlHours()
         {
             InitializeComponent();
@@ -79,16 +81,14 @@ namespace SquareCalculator.TabControls
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             string rowNumber = (e.RowIndex + 1).ToString();
-
             // Get the row header cell bounds
             var rowHeaderBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, gvHours.RowHeadersWidth, e.RowBounds.Height);
 
             // Center the row number in the row header
             TextRenderer.DrawText(e.Graphics, rowNumber, gvHours.Font, rowHeaderBounds, SystemColors.ControlText, TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter);
 
+
         }
-
-
 
         private void CenterAlignAllDataGridViewColumns(Control container)
         {
@@ -113,27 +113,26 @@ namespace SquareCalculator.TabControls
         private void btnCalculationHours_Click(object sender, EventArgs e)
         {
             // Parse values from textboxes
-            combinedRange.Clear();
-            gridList.Clear();
-            allDataSets.Clear();
-            if (txtInput180.Text != null && txtInput180.Text != "Input 180")
+            ClearList();
+            if (txtInput180.Text != null && txtInput180.Text != "Input 180" && chkShowMatch180Only.Checked)
             {
                 range180 = GetInputRanges(txtInput180);
                 combinedRange.AddRange(range180);
                 allDataSets.AddRange(range180);
             }
-            if (txtInput120.Text != null && txtInput120.Text != "Input 120")
+            if (txtInput120.Text != null && txtInput120.Text != "Input 120" && chkShowMatch120Only.Checked)
             {
                 range120 = GetInputRanges(txtInput120);
                 combinedRange.AddRange(range120);
                 allDataSets.AddRange(range120);
             }
-            if (txtInput90.Text != null && txtInput90.Text != "Input 90")
+            if (txtInput90.Text != null && txtInput90.Text != "Input 90" && chkShowMatch90Only.Checked)
             {
                 range90 = GetInputRanges(txtInput90);
                 combinedRange.AddRange(range90);
                 allDataSets.AddRange(range90);
             }
+
             // Define the min and max range (example: 3089-4529.99) and variation (e.g., 10)
             double minRange = RangeInHours;
             double maxRange = TotalMinutes;
@@ -149,6 +148,7 @@ namespace SquareCalculator.TabControls
             PopulateGridWithRange(minRange, maxRange, variation);
             gvHours.Sort(gvHours.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
             HighlightMatchingCells(gvHours, allDataSets, double.Parse(nbrMatchTolerance.Value.ToString()));
+
         }
 
         public void PopulateGridWithRange(double minRange, double maxRange, int variation)
@@ -163,17 +163,17 @@ namespace SquareCalculator.TabControls
 
             // Process each dataset with visual distinction
 
-            if (range180 != null && range180.Count > 0)
+            if (range180 != null && range180.Count > 0 && chkShowMatch180Only.Checked)
             {
                 ProcessDataset(range180, minRange, maxRange, variation, startDateTime, Color.White);
 
             }
-            if (range120 != null && range120.Count > 0)
+            if (range120 != null && range120.Count > 0 && chkShowMatch120Only.Checked)
             {
                 ProcessDataset(range120, minRange, maxRange, variation, startDateTime, Color.LightGray);
 
             }
-            if (range90 != null && range90.Count > 0)
+            if (range90 != null && range90.Count > 0 && chkShowMatch90Only.Checked)
             {
                 ProcessDataset(range90, minRange, maxRange, variation, startDateTime, Color.FromArgb(169, 169, 169));
 
@@ -237,7 +237,7 @@ namespace SquareCalculator.TabControls
             double[] resultArrayTotalMints = hoursCalculator.CalculateTotalMintsArray(totalMinutes);
             double[] resultArrayTotalHours = hoursCalculator.CalculateTotalHoursArray(totalHrs);
             double[] resultArrayExtraHours = hoursCalculator.CalculateExactHourArray(orginalExtraHours);
-            double[] resultArraysHrsMin = hoursCalculator.CalculateHourMinsArray(daysHrsMinValueToMatch);
+            double[] resultArraysHrsMin = hoursCalculator.CalculateHourMinsArray(daysHrsMin);
             double[] resultArraysTimeofDay = hoursCalculator.CalculateTimeofDayArray(DateTime.Parse(timeOfDay));
 
 
@@ -249,40 +249,49 @@ namespace SquareCalculator.TabControls
                 matchRow = true;
                 row.Cells[0].Style.ForeColor = Color.Black;
                 row.Cells[0].Style.Font = new Font(gvHours.DefaultCellStyle.Font, FontStyle.Bold);
-                row.Cells[0].Style.BackColor = Color.Yellow; // Highlight Total Hrs column
+                row.Cells[0].Style.BackColor = Color.LightGreen; // Highlight Total Hrs column
             }
 
             // Highlight matches in yellow if found in combinedRange
             if (resultArrayTotalHours.Any(combinedRange.Contains))
             {
                 matchRow = true;
-                row.Cells[1].Style.BackColor = Color.Yellow; // Highlight Total Hrs column
+                row.Cells[1].Style.BackColor = Color.LightGreen; // Highlight Total Hrs column
             }
             if (resultArrayExtraHours.Any(combinedRange.Contains))
             {
                 matchRow = true;
-                row.Cells[2].Style.BackColor = Color.Yellow; // Highlight Exact Hrs column
+                row.Cells[2].Style.BackColor = Color.LightGreen; // Highlight Exact Hrs column
             }
             if (resultArraysHrsMin.Any(combinedRange.Contains))
             {
                 matchRow = true;
-                row.Cells[3].Style.BackColor = Color.Yellow; // Highlight Days, Hrs, Min column
+                row.Cells[3].Style.BackColor = Color.LightGreen; // Highlight Days, Hrs, Min column
             }
             if (resultArraysTimeofDay.Any(combinedRange.Contains))
             {
                 matchRow = true;
-                row.Cells[4].Style.BackColor = Color.Yellow; // Highlight Time of Day 
+                row.Cells[4].Style.BackColor = Color.LightGreen; // Highlight Time of Day 
             }
 
             if (!chkShowMatchOnly.Checked || matchRow)
             {
+                row.Tag = "ParentRow";
                 gvHours.Rows.Add(row);
+
+                List<TimeData> variations = hoursCalculator.PopulateTimeData(
+                    resultArrayTotalMints.ToList(),
+                    resultArrayTotalHours.ToList(),
+                    resultArrayExtraHours.ToList(),
+                    resultArraysHrsMin.ToList(),
+                    resultArraysTimeofDay.ToList()
+                );
+                nestedTimeDataList.Add(variations);
 
                 hoursCalculator.AddGridData(gridList, totalMinutes, totalHrs, exactHours, daysHrsMinValueToMatch, DateTime.Parse(timeOfDay));
 
             }
         }
-
 
         private List<double> GetInputRanges(System.Windows.Forms.TextBox txtInput)
         {
@@ -303,7 +312,7 @@ namespace SquareCalculator.TabControls
                     if (!txtInput.Name.Contains("180"))
                     {
                         // Verify input in range180
-                        if (range180 != null)
+                        if (range180 != null && chkShowMatch180Only.Checked)
                         {
                             // Add to the list if parsing is successful and not found in range180
                             if (!range180.Contains(result))
@@ -358,7 +367,7 @@ namespace SquareCalculator.TabControls
                         if (allDataSets.Any(datasetValue => datasetValue >= minValue && datasetValue <= maxValue))
                         {
                             // Highlight the cell if there's a match
-                            cell.Style.BackColor = Color.Yellow;
+                            cell.Style.BackColor = Color.LightGreen;
                         }
                         else
                         {
@@ -370,5 +379,146 @@ namespace SquareCalculator.TabControls
             }
         }
 
+        private void gvHours_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            // Ensure the clicked row index is valid
+            if (e.RowIndex < 0 || e.RowIndex >= gvHours.Rows.Count)
+                return;
+
+            DataGridViewRow clickedRow = gvHours.Rows[e.RowIndex];
+
+            // Skip interaction if the clicked row is a child row
+            if (clickedRow.Tag != null && clickedRow.Tag.ToString() == "ChildRow")
+            {
+                return; // Do nothing for child rows
+            }
+
+            // Check if the row is already expanded
+            if (clickedRow.Tag == "ParentRow")
+            {
+                // Expand the row by adding child rows
+                AddChildRows(clickedRow, e.RowIndex);
+
+                // Mark the row as expanded
+                clickedRow.Tag = "Expanded";
+            }
+            else
+            {
+                // Collapse the row by removing child rows
+                RemoveChildRows(clickedRow, e.RowIndex);
+
+                // Mark the row as collapsed
+                clickedRow.Tag = "ParentRow";
+            }
+        }
+
+        private void AddChildRows(DataGridViewRow parentRow, int rowIndex)
+        {
+            // Example data for variations (replace this with your actual variations)
+            List<TimeData> variations = nestedTimeDataList[rowIndex];
+            // Insert child rows
+            foreach (var variation in variations)
+            {
+                DataGridViewRow childRow = new DataGridViewRow();
+                childRow.DefaultCellStyle.BackColor = Color.FromArgb(144, 133, 133); // Different background color for child rows
+                childRow.Cells.Add(new DataGridViewTextBoxCell { Value = variation.TotalMins });
+                childRow.Cells.Add(new DataGridViewTextBoxCell { Value = variation.TotalHrs });
+                childRow.Cells.Add(new DataGridViewTextBoxCell { Value = variation.ExactHours });
+                childRow.Cells.Add(new DataGridViewTextBoxCell { Value = variation.DayHrsMin });
+                childRow.Cells.Add(new DataGridViewTextBoxCell { Value = variation.TimeOfDay });
+
+                // Mark the row as a child row using the Tag property
+                childRow.Tag = "ChildRow";
+
+                gvHours.Rows.Insert(rowIndex + 1, childRow);
+                rowIndex++;
+            }
+        }
+        private void RemoveChildRows(DataGridViewRow parentRow, int rowIndex)
+        {
+            // Remove all rows below the parent row until another parent row is encountered
+            while (rowIndex + 1 < gvHours.Rows.Count && gvHours.Rows[rowIndex + 1].DefaultCellStyle.BackColor == Color.FromArgb(144, 133, 133))
+            {
+                gvHours.Rows.RemoveAt(rowIndex + 1);
+            }
+        }
+
+        private void ClearList()
+        {
+            combinedRange.Clear();
+            gridList.Clear();
+            allDataSets.Clear();
+            nestedTimeDataList.Clear();
+            timeData.Clear();
+
+        }
+
+        private void chkShowMatch180Only_CheckedChanged(object sender, EventArgs e)
+        {
+            EnsureSingleCheck((System.Windows.Forms.CheckBox)sender);
+
+        }
+        private void EnsureSingleCheck(System.Windows.Forms.CheckBox senderCheckBox)
+        {
+            // List of all checkboxes
+            System.Windows.Forms.CheckBox[] checkboxes = { chkShowMatch180Only, chkShowMatch120Only, chkShowMatch90Only };
+
+            // Loop through each checkbox
+            foreach (var checkbox in checkboxes)
+            {
+                // Uncheck all other checkboxes except the one clicked
+                if (checkbox != senderCheckBox)
+                {
+                    checkbox.Checked = false;
+                }
+            }
+        }
+        private void FilterRowsByCellColor(DataGridView gridView)
+        {
+            // List to store rows that meet the condition
+            List<DataGridViewRow> rowsToKeep = new List<DataGridViewRow>();
+
+            // Iterate through each row in the grid
+            foreach (DataGridViewRow row in gridView.Rows)
+            {
+                int lightGreenCount = 0;
+
+                // Count how many cells in this row have LightGreen background color
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Style.BackColor == Color.LightGreen)
+                    {
+                        lightGreenCount++;
+                    }
+                }
+
+                // Keep the row if more than two cells have LightGreen background
+                if (lightGreenCount >= 2)
+                {
+                    rowsToKeep.Add(row);
+                }
+            }
+
+            // Remove all rows not in the keep list
+            for (int i = gridView.Rows.Count - 1; i >= 0; i--)
+            {
+                if (!rowsToKeep.Contains(gridView.Rows[i]))
+                {
+                    gridView.Rows.RemoveAt(i);
+                }
+            }
+        }
+
+        private void chkShowMatch2plusOnly_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkShowMatch2plusOnly.Checked)
+            {
+                FilterRowsByCellColor(gvHours);
+            }
+            else
+            {
+                btnCalculationHours_Click(null, null);
+            }
+        }
     }
 }

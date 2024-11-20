@@ -67,53 +67,141 @@ namespace SquareCalculator.Helper
             // Parse original value to remove non-numeric characters
             double totalHrsValueToMatch = double.Parse(RemoveNonNumeric(originalValue.ToString()));
 
-            // Generate additional calculated values based on the new logic
-            double valueWith100Prefix = originalValue < 100 ? originalValue + 100 : originalValue;
+            // Initialize variables
+            double dropFirstDigit = originalValue;
 
-            // Return the array with additional calculated values
-            return new double[]
+            // Check the first condition: if there are 3 digits before the decimal
+            bool isThreeDigitsBeforeDecimal = originalValue >= 100;
+
+            // If the condition is true, drop the first digit
+            if (isThreeDigitsBeforeDecimal)
             {
-        originalValue,                        // Original Value
-        valueWith100Prefix,                   // Original Value + 100 (if hours < 99.99)
-        originalValue + 1000,                 // Original Value + 1000
-        originalValue + 1100,                 // Original Value + 1100
-        originalValue * 10,                   // Original Value x 10
-        (originalValue * 10) + 1000,          // (Original Value x 10) + 1000
-        originalValue * 100,                  // Original Value x 100
-        totalHrsValueToMatch                  // Parsed value without non-numeric characters
-            };
+                dropFirstDigit = double.Parse(originalValue.ToString().Substring(1)); // Drop the first digit
+            }
+
+            // Create the result array based on the condition
+            if (isThreeDigitsBeforeDecimal)
+            {
+                return new double[]
+                {
+                    dropFirstDigit,                   // Drop the first digit
+                    originalValue * 10,              // First variation * 10
+                    originalValue * 100,             // First variation * 100
+                    originalValue,                   // Original value
+                    originalValue * 10,              // Original value * 10
+                    originalValue + 1000             // Original value + 1000
+                };
+            }
+            else
+            {
+                // Apply only the last three calculations if the first condition is false
+                return new double[]
+                {
+                    originalValue,                   // Original value
+                    originalValue * 10,              // Original value * 10
+                    originalValue + 1000             // Original value + 1000
+                };
+            }
         }
+
         public double[] CalculateExactHourArray(double originalValue)
         {
-            // Parse original value to remove non-numeric characters
-            double totalHrsValueToMatch = double.Parse(RemoveNonNumeric(originalValue.ToString()));
+            // Convert the value to a string to check its digit count
+            string originalValueStr = RemoveNonNumeric(originalValue.ToString());
+            int digitCount = originalValueStr.Length;
 
-            // Return the array with additional calculated values
-            return new double[]
+            // Initialize the result array
+            List<double> results = new List<double>();
+
+            // If the value is 5 digits
+            if (digitCount == 5)
             {
-            originalValue,                           // Original Value
-            originalValue + 100,                     // Original Value + 100
-            originalValue + 1000,                    // Original Value + 1000
-            originalValue + 1100,                    // Original Value + 1100
-            originalValue * 10,                      // Original Value x 10
-            (originalValue * 10) + 1000,             // (Original Value x 10) + 1000
-            originalValue * 100,                     // Original Value x 100
-            totalHrsValueToMatch                     // Parsed value without non-numeric characters
-            };
+                // Original value
+                results.Add(originalValue);
+
+                // Divide by 10
+                results.Add(originalValue / 10);
+
+                // Drop the first digit (e.g., 14641 -> 4641)
+                double dropFirstDigit = double.Parse(originalValueStr.Substring(1));
+                results.Add(dropFirstDigit);
+
+                // Divide the dropped digit value by 10
+                results.Add(dropFirstDigit / 10);
+            }
+            // If the value is 4 digits
+            else if (digitCount == 4)
+            {
+                // Original value
+                results.Add(originalValue);
+
+                // Add 1 to the original value
+                results.Add(originalValue + 1);
+
+                // Divide by 10
+                results.Add(originalValue / 10);
+
+                // Add 1000 to the result of the division
+                results.Add((originalValue / 10) + 1000);
+            }
+
+            // Return the result as an array
+            return results.ToArray();
         }
 
-        public double[] CalculateHourMinsArray(double originalValue)
+        public double[] CalculateHourMinsArray(string originalValue)
         {
-            // Parse original value to remove non-numeric characters
+            // Parse the input string to remove all non-numeric characters
+    
             double totalHrsValueToMatch = double.Parse(RemoveNonNumeric(originalValue.ToString()));
 
-            // Return the array with additional calculated values
+            // Standard Calculation
+            double originalDividedBy10 = totalHrsValueToMatch / 10;
+            double originalPlus1000 = originalDividedBy10 + 1000;
+
+            // Alternate Calculation
+            // Extract days, hours, and minutes for alternate logic
+            int days = 0, hours = 0, minutes = 0;
+
+            // Extract days (e.g., "6D")
+            if (originalValue.Contains("D"))
+            {
+                int dIndex = originalValue.IndexOf("D");
+                days = int.Parse(originalValue.Substring(0, dIndex));
+                originalValue = originalValue.Substring(dIndex + 1); // Remove "6D"
+            }
+
+            // Extract hours (e.g., "2H")
+            if (originalValue.Contains("H"))
+            {
+                int hIndex = originalValue.IndexOf("H");
+                hours = int.Parse(originalValue.Substring(0, hIndex));
+                originalValue = originalValue.Substring(hIndex + 1); // Remove "2H"
+            }
+
+            // Extract minutes (e.g., "41M")
+            if (originalValue.Contains("M"))
+            {
+                int mIndex = originalValue.IndexOf("M");
+                minutes = int.Parse(originalValue.Substring(0, mIndex));
+            }
+
+            // Convert to total minutes
+            int totalMinutes = (days * 24 * 60) + (hours * 60) + minutes;
+
+            // Alternate calculations
+            double alternatePlus1 = totalMinutes + 1;
+            double alternateDividedBy10 = totalMinutes / 10.0;
+
+            // Return results as an array
             return new double[]
             {
-            originalValue,                           // Original Value
-            originalValue/10,                     // Original Value + 100
-            (originalValue * 10) + 1000,             // (Original Value x 10) + 1000
-            totalHrsValueToMatch                     // Parsed value without non-numeric characters
+                    totalHrsValueToMatch,         // Standard: Original value (numeric only)
+                    originalDividedBy10,          // Standard: Original value / 10
+                    originalPlus1000,             // Standard: (Original value / 10) + 1000
+                    totalMinutes,                 // Alternate: Total minutes (6D161M as 6161)
+                    alternatePlus1,               // Alternate: 1 + Total minutes
+                    alternateDividedBy10          // Alternate: Total minutes / 10
             };
         }
 
@@ -121,13 +209,13 @@ namespace SquareCalculator.Helper
         {
             List<double> timeVariants = new List<double>();
 
-            // Format original time in HHmm (24-hour format)
-            string originalTimeFormatted = originalTime.ToString("hhmm");
+            // Format original time in hhmm (24-hour format without leading zeros)
+            string originalTimeFormatted = originalTime.ToString("hmm");
 
             // Parse the original time as an integer
             if (int.TryParse(originalTimeFormatted, out int originalValue))
             {
-                // Add the original value (AM)
+                // Add the original value (AM version)
                 timeVariants.Add(originalValue);
 
                 // Calculate PM version by adding 1200 if the time is in the AM range (i.e., < 1200)
@@ -148,6 +236,7 @@ namespace SquareCalculator.Helper
             // Return the list as an array
             return timeVariants.ToArray();
         }
+
 
         public string RemoveNonNumeric(string input)
         {
@@ -171,6 +260,58 @@ namespace SquareCalculator.Helper
             gridList.Add(gridData);
         }
 
+        public List<TimeData> PopulateTimeData(List<double> totalMinsArray, List<double> totalHrsArray, List<double> exactHoursArray, List<double> dayHrsMinArray, List<double> timeOfDayArray)
+        {
+            // Determine the largest size
+            int maxRows = new[] { totalMinsArray.Count, totalHrsArray.Count, exactHoursArray.Count, dayHrsMinArray.Count, timeOfDayArray.Count }.Max();
+
+            // Normalize arrays by repeating or padding values
+            totalMinsArray = NormalizeArray(totalMinsArray, maxRows, 0.0);
+            totalHrsArray = NormalizeArray(totalHrsArray, maxRows, 0.0);
+            exactHoursArray = NormalizeArray(exactHoursArray, maxRows, 0.0);
+            dayHrsMinArray = NormalizeArray(dayHrsMinArray, maxRows, 0.0);
+            timeOfDayArray = NormalizeArray(timeOfDayArray, maxRows, 0.0);
+
+            // Create the list to hold the rows
+            List<TimeData> timeDataList = new List<TimeData>();
+
+            // Populate the list
+            for (int i = 1; i < maxRows; i++)
+            {
+                timeDataList.Add(new TimeData
+                {
+                    TotalMins = totalMinsArray[i] == 0.0 ? "" : totalMinsArray[i].ToString(),
+                    TotalHrs = totalHrsArray[i] == 0.0 ? "" : totalHrsArray[i].ToString(),
+                    ExactHours = exactHoursArray[i] == 0.0 ? "" : exactHoursArray[i].ToString(),
+                    DayHrsMin = dayHrsMinArray[i] == 0.0 ? "" : dayHrsMinArray[i].ToString(),
+                    TimeOfDay = timeOfDayArray[i] == 0.0 ? "" : timeOfDayArray[i].ToString()
+                });
+            }
+
+            return timeDataList;
+        }
+
+        // Method to normalize arrays (repeat or pad values)
+        private List<T> NormalizeArray<T>(List<T> array, int targetSize, T defaultValue)
+        {
+            List<T> result = new List<T>(targetSize);
+
+            for (int i = 0; i < targetSize; i++)
+            {
+                // Repeat values if the array is smaller than targetSize
+                if (i < array.Count)
+                {
+                    result.Add(array[i]);
+                }
+                else
+                {
+                    // Add default value if the array is smaller
+                    result.Add(defaultValue);
+                }
+            }
+
+            return result;
+        }
 
     }
 }

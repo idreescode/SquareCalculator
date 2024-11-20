@@ -29,14 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gpVariation = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.chkShowMatch2plusOnly = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.chkShowMatch90Only = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.chkShowMatch120Only = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.chkShowMatch180Only = new System.Windows.Forms.CheckBox();
             this.nbrMatchTolerance = new System.Windows.Forms.NumericUpDown();
             this.lblMatchTolerance = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -72,14 +80,6 @@
             this.colTimeOfDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCalculationHours = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label8 = new System.Windows.Forms.Label();
-            this.chkShowMatch180Only = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.chkShowMatch120Only = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.chkShowMatch90Only = new System.Windows.Forms.CheckBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.chkShowMatch2plusOnly = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -140,6 +140,94 @@
             this.gpVariation.TabIndex = 2;
             this.gpVariation.TabStop = false;
             this.gpVariation.Text = "Variation";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(26, 172);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(211, 22);
+            this.label11.TabIndex = 85;
+            this.label11.Text = "Show 2+ Matches only";
+            // 
+            // chkShowMatch2plusOnly
+            // 
+            this.chkShowMatch2plusOnly.AutoSize = true;
+            this.chkShowMatch2plusOnly.Location = new System.Drawing.Point(266, 176);
+            this.chkShowMatch2plusOnly.Margin = new System.Windows.Forms.Padding(4);
+            this.chkShowMatch2plusOnly.Name = "chkShowMatch2plusOnly";
+            this.chkShowMatch2plusOnly.Size = new System.Drawing.Size(18, 17);
+            this.chkShowMatch2plusOnly.TabIndex = 84;
+            this.chkShowMatch2plusOnly.UseVisualStyleBackColor = true;
+            this.chkShowMatch2plusOnly.CheckedChanged += new System.EventHandler(this.chkShowMatch2plusOnly_CheckedChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(23, 139);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(216, 22);
+            this.label10.TabIndex = 83;
+            this.label10.Text = "Show 90 Matches only:";
+            // 
+            // chkShowMatch90Only
+            // 
+            this.chkShowMatch90Only.AutoSize = true;
+            this.chkShowMatch90Only.Location = new System.Drawing.Point(266, 143);
+            this.chkShowMatch90Only.Margin = new System.Windows.Forms.Padding(4);
+            this.chkShowMatch90Only.Name = "chkShowMatch90Only";
+            this.chkShowMatch90Only.Size = new System.Drawing.Size(18, 17);
+            this.chkShowMatch90Only.TabIndex = 82;
+            this.chkShowMatch90Only.UseVisualStyleBackColor = true;
+            this.chkShowMatch90Only.CheckedChanged += new System.EventHandler(this.chkShowMatch180Only_CheckedChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(23, 103);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(227, 22);
+            this.label9.TabIndex = 81;
+            this.label9.Text = "Show 120 Matches only:";
+            // 
+            // chkShowMatch120Only
+            // 
+            this.chkShowMatch120Only.AutoSize = true;
+            this.chkShowMatch120Only.Location = new System.Drawing.Point(266, 107);
+            this.chkShowMatch120Only.Margin = new System.Windows.Forms.Padding(4);
+            this.chkShowMatch120Only.Name = "chkShowMatch120Only";
+            this.chkShowMatch120Only.Size = new System.Drawing.Size(18, 17);
+            this.chkShowMatch120Only.TabIndex = 80;
+            this.chkShowMatch120Only.UseVisualStyleBackColor = true;
+            this.chkShowMatch120Only.CheckedChanged += new System.EventHandler(this.chkShowMatch180Only_CheckedChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(23, 71);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(227, 22);
+            this.label8.TabIndex = 79;
+            this.label8.Text = "Show 180 Matches only:";
+            // 
+            // chkShowMatch180Only
+            // 
+            this.chkShowMatch180Only.AutoSize = true;
+            this.chkShowMatch180Only.Location = new System.Drawing.Point(266, 75);
+            this.chkShowMatch180Only.Margin = new System.Windows.Forms.Padding(4);
+            this.chkShowMatch180Only.Name = "chkShowMatch180Only";
+            this.chkShowMatch180Only.Size = new System.Drawing.Size(18, 17);
+            this.chkShowMatch180Only.TabIndex = 78;
+            this.chkShowMatch180Only.UseVisualStyleBackColor = true;
+            this.chkShowMatch180Only.CheckedChanged += new System.EventHandler(this.chkShowMatch180Only_CheckedChanged);
             // 
             // nbrMatchTolerance
             // 
@@ -209,9 +297,9 @@
             this.label6.Location = new System.Drawing.Point(26, 210);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 22);
+            this.label6.Size = new System.Drawing.Size(171, 22);
             this.label6.TabIndex = 71;
-            this.label6.Text = "Variation:";
+            this.label6.Text = "Minutes Variation:";
             // 
             // groupBox1
             // 
@@ -469,14 +557,14 @@
             this.gvHours.AllowUserToAddRows = false;
             this.gvHours.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvHours.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvHours.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle43.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvHours.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
             this.gvHours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvHours.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colTotalMint,
@@ -492,44 +580,45 @@
             this.gvHours.RowHeadersWidth = 51;
             this.gvHours.Size = new System.Drawing.Size(1845, 1023);
             this.gvHours.TabIndex = 38;
+            this.gvHours.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gvHours_RowHeaderMouseClick);
             this.gvHours.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             // 
             // colTotalMint
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle44;
             this.colTotalMint.HeaderText = "Total Mins";
             this.colTotalMint.MinimumWidth = 6;
             this.colTotalMint.Name = "colTotalMint";
             // 
             // colTotalHours
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTotalHours.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalHours.DefaultCellStyle = dataGridViewCellStyle45;
             this.colTotalHours.HeaderText = "Total Hrs";
             this.colTotalHours.MinimumWidth = 6;
             this.colTotalHours.Name = "colTotalHours";
             // 
             // colExactHours
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colExactHours.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colExactHours.DefaultCellStyle = dataGridViewCellStyle46;
             this.colExactHours.HeaderText = "Exact Hours";
             this.colExactHours.MinimumWidth = 6;
             this.colExactHours.Name = "colExactHours";
             // 
             // colDayHoursMin
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colDayHoursMin.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colDayHoursMin.DefaultCellStyle = dataGridViewCellStyle47;
             this.colDayHoursMin.HeaderText = "Day, Hrs, Min";
             this.colDayHoursMin.MinimumWidth = 6;
             this.colDayHoursMin.Name = "colDayHoursMin";
             // 
             // colTimeOfDay
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTimeOfDay.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTimeOfDay.DefaultCellStyle = dataGridViewCellStyle48;
             this.colTimeOfDay.HeaderText = "Time of Day";
             this.colTimeOfDay.MinimumWidth = 6;
             this.colTimeOfDay.Name = "colTimeOfDay";
@@ -545,98 +634,6 @@
             this.btnCalculationHours.Text = "Find Matches In Range";
             this.btnCalculationHours.UseVisualStyleBackColor = true;
             this.btnCalculationHours.Click += new System.EventHandler(this.btnCalculationHours_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(23, 71);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(227, 22);
-            this.label8.TabIndex = 79;
-            this.label8.Text = "Show 180 Matches only:";
-            // 
-            // chkShowMatch180Only
-            // 
-            this.chkShowMatch180Only.AutoSize = true;
-            this.chkShowMatch180Only.Checked = true;
-            this.chkShowMatch180Only.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowMatch180Only.Location = new System.Drawing.Point(266, 75);
-            this.chkShowMatch180Only.Margin = new System.Windows.Forms.Padding(4);
-            this.chkShowMatch180Only.Name = "chkShowMatch180Only";
-            this.chkShowMatch180Only.Size = new System.Drawing.Size(18, 17);
-            this.chkShowMatch180Only.TabIndex = 78;
-            this.chkShowMatch180Only.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(23, 103);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(227, 22);
-            this.label9.TabIndex = 81;
-            this.label9.Text = "Show 120 Matches only:";
-            // 
-            // chkShowMatch120Only
-            // 
-            this.chkShowMatch120Only.AutoSize = true;
-            this.chkShowMatch120Only.Checked = true;
-            this.chkShowMatch120Only.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowMatch120Only.Location = new System.Drawing.Point(266, 107);
-            this.chkShowMatch120Only.Margin = new System.Windows.Forms.Padding(4);
-            this.chkShowMatch120Only.Name = "chkShowMatch120Only";
-            this.chkShowMatch120Only.Size = new System.Drawing.Size(18, 17);
-            this.chkShowMatch120Only.TabIndex = 80;
-            this.chkShowMatch120Only.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(23, 139);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(216, 22);
-            this.label10.TabIndex = 83;
-            this.label10.Text = "Show 90 Matches only:";
-            // 
-            // chkShowMatch90Only
-            // 
-            this.chkShowMatch90Only.AutoSize = true;
-            this.chkShowMatch90Only.Checked = true;
-            this.chkShowMatch90Only.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowMatch90Only.Location = new System.Drawing.Point(266, 143);
-            this.chkShowMatch90Only.Margin = new System.Windows.Forms.Padding(4);
-            this.chkShowMatch90Only.Name = "chkShowMatch90Only";
-            this.chkShowMatch90Only.Size = new System.Drawing.Size(18, 17);
-            this.chkShowMatch90Only.TabIndex = 82;
-            this.chkShowMatch90Only.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(26, 172);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(211, 22);
-            this.label11.TabIndex = 85;
-            this.label11.Text = "Show 2+ Matches only";
-            // 
-            // chkShowMatch2plusOnly
-            // 
-            this.chkShowMatch2plusOnly.AutoSize = true;
-            this.chkShowMatch2plusOnly.Checked = true;
-            this.chkShowMatch2plusOnly.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowMatch2plusOnly.Location = new System.Drawing.Point(266, 176);
-            this.chkShowMatch2plusOnly.Margin = new System.Windows.Forms.Padding(4);
-            this.chkShowMatch2plusOnly.Name = "chkShowMatch2plusOnly";
-            this.chkShowMatch2plusOnly.Size = new System.Drawing.Size(18, 17);
-            this.chkShowMatch2plusOnly.TabIndex = 84;
-            this.chkShowMatch2plusOnly.UseVisualStyleBackColor = true;
             // 
             // cntrlHours
             // 
