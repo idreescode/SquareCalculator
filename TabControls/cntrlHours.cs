@@ -44,15 +44,15 @@ namespace SquareCalculator.TabControls
             CenterAlignAllDataGridViewColumns(this);
 
             //Set the start date (e.g., October 20, 2024)
-            dtStartDate.Value = new DateTime(2024, 10, 20);
+            //dtStartDate.Value = new DateTime(2024, 10, 20);
 
-            // Set the select time (e.g., 8:32:00 PM)
-            dtStartTime.Value = DateTime.Today.AddHours(20).AddMinutes(32); // Set time for 8:32 PM
+            //// Set the select time (e.g., 8:32:00 PM)
+            //dtStartTime.Value = DateTime.Today.AddHours(20).AddMinutes(32); // Set time for 8:32 PM
 
-            // Set the end date (e.g., October 23, 2024)
-            dtEndDate.Value = new DateTime(2024, 10, 23);
+            //// Set the end date (e.g., October 23, 2024)
+            //dtEndDate.Value = new DateTime(2024, 10, 23);
 
-            txtInput180.Text = "10,100,1000,3000,3500,4000";
+            //txtInput180.Text = "10,100,1000,3000,3500,4000";
 
 
 
@@ -442,7 +442,7 @@ namespace SquareCalculator.TabControls
             }
             catch
             {
-
+                MessageBox.Show("Please collapse the expanded row before proceeding.", "Row Expanded", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
