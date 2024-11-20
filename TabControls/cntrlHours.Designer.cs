@@ -72,6 +72,14 @@
             this.colTimeOfDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCalculationHours = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label8 = new System.Windows.Forms.Label();
+            this.chkShowMatch180Only = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.chkShowMatch120Only = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.chkShowMatch90Only = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.chkShowMatch2plusOnly = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -108,6 +116,14 @@
             // 
             // gpVariation
             // 
+            this.gpVariation.Controls.Add(this.label11);
+            this.gpVariation.Controls.Add(this.chkShowMatch2plusOnly);
+            this.gpVariation.Controls.Add(this.label10);
+            this.gpVariation.Controls.Add(this.chkShowMatch90Only);
+            this.gpVariation.Controls.Add(this.label9);
+            this.gpVariation.Controls.Add(this.chkShowMatch120Only);
+            this.gpVariation.Controls.Add(this.label8);
+            this.gpVariation.Controls.Add(this.chkShowMatch180Only);
             this.gpVariation.Controls.Add(this.nbrMatchTolerance);
             this.gpVariation.Controls.Add(this.lblMatchTolerance);
             this.gpVariation.Controls.Add(this.label7);
@@ -115,6 +131,7 @@
             this.gpVariation.Controls.Add(this.numberVariation);
             this.gpVariation.Controls.Add(this.label6);
             this.gpVariation.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gpVariation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpVariation.Location = new System.Drawing.Point(0, 607);
             this.gpVariation.Margin = new System.Windows.Forms.Padding(4);
             this.gpVariation.Name = "gpVariation";
@@ -126,10 +143,10 @@
             // 
             // nbrMatchTolerance
             // 
-            this.nbrMatchTolerance.Location = new System.Drawing.Point(190, 132);
+            this.nbrMatchTolerance.Location = new System.Drawing.Point(266, 244);
             this.nbrMatchTolerance.Margin = new System.Windows.Forms.Padding(4);
             this.nbrMatchTolerance.Name = "nbrMatchTolerance";
-            this.nbrMatchTolerance.Size = new System.Drawing.Size(111, 22);
+            this.nbrMatchTolerance.Size = new System.Drawing.Size(62, 22);
             this.nbrMatchTolerance.TabIndex = 77;
             this.nbrMatchTolerance.Value = new decimal(new int[] {
             1,
@@ -141,7 +158,7 @@
             // 
             this.lblMatchTolerance.AutoSize = true;
             this.lblMatchTolerance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMatchTolerance.Location = new System.Drawing.Point(23, 132);
+            this.lblMatchTolerance.Location = new System.Drawing.Point(25, 242);
             this.lblMatchTolerance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMatchTolerance.Name = "lblMatchTolerance";
             this.lblMatchTolerance.Size = new System.Drawing.Size(165, 22);
@@ -164,7 +181,7 @@
             this.chkShowMatchOnly.AutoSize = true;
             this.chkShowMatchOnly.Checked = true;
             this.chkShowMatchOnly.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowMatchOnly.Location = new System.Drawing.Point(245, 42);
+            this.chkShowMatchOnly.Location = new System.Drawing.Point(266, 42);
             this.chkShowMatchOnly.Margin = new System.Windows.Forms.Padding(4);
             this.chkShowMatchOnly.Name = "chkShowMatchOnly";
             this.chkShowMatchOnly.Size = new System.Drawing.Size(18, 17);
@@ -174,10 +191,10 @@
             // 
             // numberVariation
             // 
-            this.numberVariation.Location = new System.Drawing.Point(190, 81);
+            this.numberVariation.Location = new System.Drawing.Point(266, 211);
             this.numberVariation.Margin = new System.Windows.Forms.Padding(4);
             this.numberVariation.Name = "numberVariation";
-            this.numberVariation.Size = new System.Drawing.Size(111, 22);
+            this.numberVariation.Size = new System.Drawing.Size(62, 22);
             this.numberVariation.TabIndex = 73;
             this.numberVariation.Value = new decimal(new int[] {
             10,
@@ -189,7 +206,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(23, 81);
+            this.label6.Location = new System.Drawing.Point(26, 210);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(96, 22);
@@ -207,6 +224,7 @@
             this.groupBox1.Controls.Add(this.lblTotalMinutesValue);
             this.groupBox1.Controls.Add(this.lblTotalMinutes);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 271);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -314,6 +332,7 @@
             this.grpHoursCalculations.Controls.Add(this.dtStartDate);
             this.grpHoursCalculations.Controls.Add(this.label1);
             this.grpHoursCalculations.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grpHoursCalculations.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpHoursCalculations.Location = new System.Drawing.Point(0, 0);
             this.grpHoursCalculations.Margin = new System.Windows.Forms.Padding(4);
             this.grpHoursCalculations.Name = "grpHoursCalculations";
@@ -527,6 +546,98 @@
             this.btnCalculationHours.UseVisualStyleBackColor = true;
             this.btnCalculationHours.Click += new System.EventHandler(this.btnCalculationHours_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(23, 71);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(227, 22);
+            this.label8.TabIndex = 79;
+            this.label8.Text = "Show 180 Matches only:";
+            // 
+            // chkShowMatch180Only
+            // 
+            this.chkShowMatch180Only.AutoSize = true;
+            this.chkShowMatch180Only.Checked = true;
+            this.chkShowMatch180Only.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowMatch180Only.Location = new System.Drawing.Point(266, 75);
+            this.chkShowMatch180Only.Margin = new System.Windows.Forms.Padding(4);
+            this.chkShowMatch180Only.Name = "chkShowMatch180Only";
+            this.chkShowMatch180Only.Size = new System.Drawing.Size(18, 17);
+            this.chkShowMatch180Only.TabIndex = 78;
+            this.chkShowMatch180Only.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(23, 103);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(227, 22);
+            this.label9.TabIndex = 81;
+            this.label9.Text = "Show 120 Matches only:";
+            // 
+            // chkShowMatch120Only
+            // 
+            this.chkShowMatch120Only.AutoSize = true;
+            this.chkShowMatch120Only.Checked = true;
+            this.chkShowMatch120Only.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowMatch120Only.Location = new System.Drawing.Point(266, 107);
+            this.chkShowMatch120Only.Margin = new System.Windows.Forms.Padding(4);
+            this.chkShowMatch120Only.Name = "chkShowMatch120Only";
+            this.chkShowMatch120Only.Size = new System.Drawing.Size(18, 17);
+            this.chkShowMatch120Only.TabIndex = 80;
+            this.chkShowMatch120Only.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(23, 139);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(216, 22);
+            this.label10.TabIndex = 83;
+            this.label10.Text = "Show 90 Matches only:";
+            // 
+            // chkShowMatch90Only
+            // 
+            this.chkShowMatch90Only.AutoSize = true;
+            this.chkShowMatch90Only.Checked = true;
+            this.chkShowMatch90Only.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowMatch90Only.Location = new System.Drawing.Point(266, 143);
+            this.chkShowMatch90Only.Margin = new System.Windows.Forms.Padding(4);
+            this.chkShowMatch90Only.Name = "chkShowMatch90Only";
+            this.chkShowMatch90Only.Size = new System.Drawing.Size(18, 17);
+            this.chkShowMatch90Only.TabIndex = 82;
+            this.chkShowMatch90Only.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(26, 172);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(211, 22);
+            this.label11.TabIndex = 85;
+            this.label11.Text = "Show 2+ Matches only";
+            // 
+            // chkShowMatch2plusOnly
+            // 
+            this.chkShowMatch2plusOnly.AutoSize = true;
+            this.chkShowMatch2plusOnly.Checked = true;
+            this.chkShowMatch2plusOnly.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowMatch2plusOnly.Location = new System.Drawing.Point(266, 176);
+            this.chkShowMatch2plusOnly.Margin = new System.Windows.Forms.Padding(4);
+            this.chkShowMatch2plusOnly.Name = "chkShowMatch2plusOnly";
+            this.chkShowMatch2plusOnly.Size = new System.Drawing.Size(18, 17);
+            this.chkShowMatch2plusOnly.TabIndex = 84;
+            this.chkShowMatch2plusOnly.UseVisualStyleBackColor = true;
+            // 
             // cntrlHours
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -594,5 +705,13 @@
         private System.Windows.Forms.CheckBox chkShowMatchOnly;
         private System.Windows.Forms.NumericUpDown nbrMatchTolerance;
         private System.Windows.Forms.Label lblMatchTolerance;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.CheckBox chkShowMatch90Only;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox chkShowMatch120Only;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox chkShowMatch180Only;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.CheckBox chkShowMatch2plusOnly;
     }
 }
