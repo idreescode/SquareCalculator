@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gpVariation = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.chkShowMatchOnly = new System.Windows.Forms.CheckBox();
             this.numberVariation = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -68,8 +70,6 @@
             this.colTimeOfDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCalculationHours = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.chkShowMatchOnly = new System.Windows.Forms.CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,6 +86,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -97,8 +98,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1777, 980);
-            this.splitContainer1.SplitterDistance = 384;
+            this.splitContainer1.Size = new System.Drawing.Size(2369, 1206);
+            this.splitContainer1.SplitterDistance = 511;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             // 
             // gpVariation
@@ -108,18 +110,45 @@
             this.gpVariation.Controls.Add(this.numberVariation);
             this.gpVariation.Controls.Add(this.label6);
             this.gpVariation.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gpVariation.Location = new System.Drawing.Point(0, 703);
+            this.gpVariation.Location = new System.Drawing.Point(0, 865);
+            this.gpVariation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gpVariation.Name = "gpVariation";
-            this.gpVariation.Size = new System.Drawing.Size(384, 277);
+            this.gpVariation.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpVariation.Size = new System.Drawing.Size(511, 341);
             this.gpVariation.TabIndex = 2;
             this.gpVariation.TabStop = false;
             this.gpVariation.Text = "Variation";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(23, 38);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(188, 22);
+            this.label7.TabIndex = 75;
+            this.label7.Text = "Show Matches only:";
+            // 
+            // chkShowMatchOnly
+            // 
+            this.chkShowMatchOnly.AutoSize = true;
+            this.chkShowMatchOnly.Checked = true;
+            this.chkShowMatchOnly.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowMatchOnly.Location = new System.Drawing.Point(245, 42);
+            this.chkShowMatchOnly.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkShowMatchOnly.Name = "chkShowMatchOnly";
+            this.chkShowMatchOnly.Size = new System.Drawing.Size(18, 17);
+            this.chkShowMatchOnly.TabIndex = 74;
+            this.chkShowMatchOnly.UseVisualStyleBackColor = true;
+            this.chkShowMatchOnly.CheckedChanged += new System.EventHandler(this.btnCalculationHours_Click);
+            // 
             // numberVariation
             // 
-            this.numberVariation.Location = new System.Drawing.Point(116, 67);
+            this.numberVariation.Location = new System.Drawing.Point(155, 82);
+            this.numberVariation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numberVariation.Name = "numberVariation";
-            this.numberVariation.Size = new System.Drawing.Size(83, 20);
+            this.numberVariation.Size = new System.Drawing.Size(111, 22);
             this.numberVariation.TabIndex = 73;
             this.numberVariation.Value = new decimal(new int[] {
             10,
@@ -131,9 +160,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(17, 66);
+            this.label6.Location = new System.Drawing.Point(23, 81);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 17);
+            this.label6.Size = new System.Drawing.Size(96, 22);
             this.label6.TabIndex = 71;
             this.label6.Text = "Variation:";
             // 
@@ -148,9 +178,11 @@
             this.groupBox1.Controls.Add(this.lblTotalMinutesValue);
             this.groupBox1.Controls.Add(this.lblTotalMinutes);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 220);
+            this.groupBox1.Location = new System.Drawing.Point(0, 271);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(384, 760);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(511, 935);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Calculations";
@@ -159,9 +191,10 @@
             // 
             this.lblRanginHrsValue.AutoSize = true;
             this.lblRanginHrsValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRanginHrsValue.Location = new System.Drawing.Point(205, 178);
+            this.lblRanginHrsValue.Location = new System.Drawing.Point(273, 219);
+            this.lblRanginHrsValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRanginHrsValue.Name = "lblRanginHrsValue";
-            this.lblRanginHrsValue.Size = new System.Drawing.Size(42, 17);
+            this.lblRanginHrsValue.Size = new System.Drawing.Size(53, 22);
             this.lblRanginHrsValue.TabIndex = 7;
             this.lblRanginHrsValue.Text = "value";
             // 
@@ -169,9 +202,10 @@
             // 
             this.lblRange1DayValue.AutoSize = true;
             this.lblRange1DayValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRange1DayValue.Location = new System.Drawing.Point(205, 122);
+            this.lblRange1DayValue.Location = new System.Drawing.Point(273, 150);
+            this.lblRange1DayValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRange1DayValue.Name = "lblRange1DayValue";
-            this.lblRange1DayValue.Size = new System.Drawing.Size(42, 17);
+            this.lblRange1DayValue.Size = new System.Drawing.Size(53, 22);
             this.lblRange1DayValue.TabIndex = 6;
             this.lblRange1DayValue.Text = "value";
             // 
@@ -179,9 +213,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(7, 178);
+            this.label5.Location = new System.Drawing.Point(9, 219);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(108, 17);
+            this.label5.Size = new System.Drawing.Size(133, 22);
             this.label5.TabIndex = 5;
             this.label5.Text = "Range in Hrs:";
             // 
@@ -189,9 +224,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(7, 122);
+            this.label4.Location = new System.Drawing.Point(9, 150);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(125, 17);
+            this.label4.Size = new System.Drawing.Size(153, 22);
             this.label4.TabIndex = 4;
             this.label4.Text = "Range (-1 Day):";
             // 
@@ -199,9 +235,10 @@
             // 
             this.lblMinutesToMidNightValue.AutoSize = true;
             this.lblMinutesToMidNightValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMinutesToMidNightValue.Location = new System.Drawing.Point(205, 81);
+            this.lblMinutesToMidNightValue.Location = new System.Drawing.Point(273, 100);
+            this.lblMinutesToMidNightValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMinutesToMidNightValue.Name = "lblMinutesToMidNightValue";
-            this.lblMinutesToMidNightValue.Size = new System.Drawing.Size(42, 17);
+            this.lblMinutesToMidNightValue.Size = new System.Drawing.Size(53, 22);
             this.lblMinutesToMidNightValue.TabIndex = 3;
             this.lblMinutesToMidNightValue.Text = "value";
             // 
@@ -209,9 +246,10 @@
             // 
             this.lblMinutestoMidNight.AutoSize = true;
             this.lblMinutestoMidNight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMinutestoMidNight.Location = new System.Drawing.Point(7, 81);
+            this.lblMinutestoMidNight.Location = new System.Drawing.Point(9, 100);
+            this.lblMinutestoMidNight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMinutestoMidNight.Name = "lblMinutestoMidNight";
-            this.lblMinutestoMidNight.Size = new System.Drawing.Size(165, 17);
+            this.lblMinutestoMidNight.Size = new System.Drawing.Size(203, 22);
             this.lblMinutestoMidNight.TabIndex = 2;
             this.lblMinutestoMidNight.Text = "Minutes to MindNight:";
             // 
@@ -219,9 +257,10 @@
             // 
             this.lblTotalMinutesValue.AutoSize = true;
             this.lblTotalMinutesValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalMinutesValue.Location = new System.Drawing.Point(205, 40);
+            this.lblTotalMinutesValue.Location = new System.Drawing.Point(273, 49);
+            this.lblTotalMinutesValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalMinutesValue.Name = "lblTotalMinutesValue";
-            this.lblTotalMinutesValue.Size = new System.Drawing.Size(42, 17);
+            this.lblTotalMinutesValue.Size = new System.Drawing.Size(53, 22);
             this.lblTotalMinutesValue.TabIndex = 1;
             this.lblTotalMinutesValue.Text = "value";
             // 
@@ -229,9 +268,10 @@
             // 
             this.lblTotalMinutes.AutoSize = true;
             this.lblTotalMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalMinutes.Location = new System.Drawing.Point(7, 40);
+            this.lblTotalMinutes.Location = new System.Drawing.Point(9, 49);
+            this.lblTotalMinutes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalMinutes.Name = "lblTotalMinutes";
-            this.lblTotalMinutes.Size = new System.Drawing.Size(116, 17);
+            this.lblTotalMinutes.Size = new System.Drawing.Size(143, 22);
             this.lblTotalMinutes.TabIndex = 0;
             this.lblTotalMinutes.Text = "Total Minutes :";
             // 
@@ -246,17 +286,20 @@
             this.grpHoursCalculations.Controls.Add(this.label1);
             this.grpHoursCalculations.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpHoursCalculations.Location = new System.Drawing.Point(0, 0);
+            this.grpHoursCalculations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grpHoursCalculations.Name = "grpHoursCalculations";
-            this.grpHoursCalculations.Size = new System.Drawing.Size(384, 220);
+            this.grpHoursCalculations.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpHoursCalculations.Size = new System.Drawing.Size(511, 271);
             this.grpHoursCalculations.TabIndex = 0;
             this.grpHoursCalculations.TabStop = false;
             this.grpHoursCalculations.Text = "Hours";
             // 
             // btnCalculateTotalMinutes
             // 
-            this.btnCalculateTotalMinutes.Location = new System.Drawing.Point(117, 149);
+            this.btnCalculateTotalMinutes.Location = new System.Drawing.Point(156, 183);
+            this.btnCalculateTotalMinutes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCalculateTotalMinutes.Name = "btnCalculateTotalMinutes";
-            this.btnCalculateTotalMinutes.Size = new System.Drawing.Size(230, 37);
+            this.btnCalculateTotalMinutes.Size = new System.Drawing.Size(307, 46);
             this.btnCalculateTotalMinutes.TabIndex = 6;
             this.btnCalculateTotalMinutes.Text = "Calculate Total Minutes";
             this.btnCalculateTotalMinutes.UseVisualStyleBackColor = true;
@@ -264,18 +307,20 @@
             // 
             // dtEndDate
             // 
-            this.dtEndDate.Location = new System.Drawing.Point(116, 112);
+            this.dtEndDate.Location = new System.Drawing.Point(155, 138);
+            this.dtEndDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtEndDate.Name = "dtEndDate";
-            this.dtEndDate.Size = new System.Drawing.Size(230, 20);
+            this.dtEndDate.Size = new System.Drawing.Size(305, 22);
             this.dtEndDate.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 115);
+            this.label3.Location = new System.Drawing.Point(8, 142);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 17);
+            this.label3.Size = new System.Drawing.Size(99, 22);
             this.label3.TabIndex = 4;
             this.label3.Text = "End Date:";
             // 
@@ -283,36 +328,40 @@
             // 
             this.dtStartTime.CustomFormat = "hh:mm tt";
             this.dtStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtStartTime.Location = new System.Drawing.Point(118, 67);
+            this.dtStartTime.Location = new System.Drawing.Point(157, 82);
+            this.dtStartTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtStartTime.Name = "dtStartTime";
             this.dtStartTime.ShowUpDown = true;
-            this.dtStartTime.Size = new System.Drawing.Size(230, 20);
+            this.dtStartTime.Size = new System.Drawing.Size(305, 22);
             this.dtStartTime.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 69);
+            this.label2.Location = new System.Drawing.Point(8, 85);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 17);
+            this.label2.Size = new System.Drawing.Size(134, 22);
             this.label2.TabIndex = 2;
             this.label2.Text = "Select Time : ";
             // 
             // dtStartDate
             // 
-            this.dtStartDate.Location = new System.Drawing.Point(118, 27);
+            this.dtStartDate.Location = new System.Drawing.Point(157, 33);
+            this.dtStartDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtStartDate.Name = "dtStartDate";
-            this.dtStartDate.Size = new System.Drawing.Size(230, 20);
+            this.dtStartDate.Size = new System.Drawing.Size(305, 22);
             this.dtStartDate.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 29);
+            this.label1.Location = new System.Drawing.Point(8, 36);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 17);
+            this.label1.Size = new System.Drawing.Size(119, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Start Date : ";
             // 
@@ -327,6 +376,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnCalculationHours, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.469388F));
@@ -334,16 +384,16 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.959184F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.591837F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85.30612F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1389, 980);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1853, 1206);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // txtInput90
             // 
             this.txtInput90.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtInput90.Location = new System.Drawing.Point(3, 71);
-            this.txtInput90.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtInput90.Location = new System.Drawing.Point(4, 87);
+            this.txtInput90.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtInput90.Name = "txtInput90";
-            this.txtInput90.Size = new System.Drawing.Size(1383, 20);
+            this.txtInput90.Size = new System.Drawing.Size(1845, 22);
             this.txtInput90.TabIndex = 36;
             // 
             // txtInput180
@@ -351,33 +401,33 @@
             this.txtInput180.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInput180.Location = new System.Drawing.Point(3, 2);
-            this.txtInput180.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtInput180.Location = new System.Drawing.Point(4, 2);
+            this.txtInput180.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtInput180.Name = "txtInput180";
-            this.txtInput180.Size = new System.Drawing.Size(1383, 20);
+            this.txtInput180.Size = new System.Drawing.Size(1845, 22);
             this.txtInput180.TabIndex = 33;
             // 
             // txtInput120
             // 
             this.txtInput120.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtInput120.Location = new System.Drawing.Point(3, 36);
-            this.txtInput120.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtInput120.Location = new System.Drawing.Point(4, 43);
+            this.txtInput120.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtInput120.Name = "txtInput120";
-            this.txtInput120.Size = new System.Drawing.Size(1383, 20);
+            this.txtInput120.Size = new System.Drawing.Size(1845, 22);
             this.txtInput120.TabIndex = 35;
             // 
             // gvHours
             // 
             this.gvHours.AllowUserToAddRows = false;
             this.gvHours.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvHours.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvHours.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gvHours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvHours.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colTotalMint,
@@ -387,93 +437,80 @@
             this.colTimeOfDay});
             this.gvHours.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvHours.GridColor = System.Drawing.SystemColors.Control;
-            this.gvHours.Location = new System.Drawing.Point(3, 146);
+            this.gvHours.Location = new System.Drawing.Point(4, 179);
+            this.gvHours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gvHours.Name = "gvHours";
-            this.gvHours.Size = new System.Drawing.Size(1383, 831);
+            this.gvHours.RowHeadersWidth = 51;
+            this.gvHours.Size = new System.Drawing.Size(1845, 1023);
             this.gvHours.TabIndex = 38;
             this.gvHours.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             // 
             // colTotalMint
             // 
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle2;
             this.colTotalMint.HeaderText = "Total Mins";
+            this.colTotalMint.MinimumWidth = 6;
             this.colTotalMint.Name = "colTotalMint";
             this.colTotalMint.Width = 200;
             // 
             // colTotalHours
             // 
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTotalHours.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalHours.DefaultCellStyle = dataGridViewCellStyle3;
             this.colTotalHours.HeaderText = "Total Hrs";
+            this.colTotalHours.MinimumWidth = 6;
             this.colTotalHours.Name = "colTotalHours";
             this.colTotalHours.Width = 250;
             // 
             // colExactHours
             // 
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colExactHours.DefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colExactHours.DefaultCellStyle = dataGridViewCellStyle4;
             this.colExactHours.HeaderText = "Exact Hours";
+            this.colExactHours.MinimumWidth = 6;
             this.colExactHours.Name = "colExactHours";
             this.colExactHours.Width = 300;
             // 
             // colDayHoursMin
             // 
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colDayHoursMin.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colDayHoursMin.DefaultCellStyle = dataGridViewCellStyle5;
             this.colDayHoursMin.HeaderText = "Day, Hrs, Min";
+            this.colDayHoursMin.MinimumWidth = 6;
             this.colDayHoursMin.Name = "colDayHoursMin";
             this.colDayHoursMin.Width = 350;
             // 
             // colTimeOfDay
             // 
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTimeOfDay.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTimeOfDay.DefaultCellStyle = dataGridViewCellStyle6;
             this.colTimeOfDay.HeaderText = "Time of Day";
+            this.colTimeOfDay.MinimumWidth = 6;
             this.colTimeOfDay.Name = "colTimeOfDay";
             this.colTimeOfDay.Width = 350;
             // 
             // btnCalculationHours
             // 
             this.btnCalculationHours.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCalculationHours.Location = new System.Drawing.Point(3, 101);
+            this.btnCalculationHours.Location = new System.Drawing.Point(4, 124);
+            this.btnCalculationHours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCalculationHours.Name = "btnCalculationHours";
-            this.btnCalculationHours.Size = new System.Drawing.Size(1383, 39);
+            this.btnCalculationHours.Size = new System.Drawing.Size(1845, 47);
             this.btnCalculationHours.TabIndex = 39;
             this.btnCalculationHours.Text = "Find Matches In Range";
             this.btnCalculationHours.UseVisualStyleBackColor = true;
             this.btnCalculationHours.Click += new System.EventHandler(this.btnCalculationHours_Click);
             // 
-            // chkShowMatchOnly
-            // 
-            this.chkShowMatchOnly.AutoSize = true;
-            this.chkShowMatchOnly.Checked = true;
-            this.chkShowMatchOnly.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowMatchOnly.Location = new System.Drawing.Point(184, 34);
-            this.chkShowMatchOnly.Name = "chkShowMatchOnly";
-            this.chkShowMatchOnly.Size = new System.Drawing.Size(15, 14);
-            this.chkShowMatchOnly.TabIndex = 74;
-            this.chkShowMatchOnly.UseVisualStyleBackColor = true;
-            this.chkShowMatchOnly.CheckedChanged += new System.EventHandler(this.btnCalculationHours_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(17, 31);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(151, 17);
-            this.label7.TabIndex = 75;
-            this.label7.Text = "Show Matches only:";
-            // 
             // cntrlHours
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.splitContainer1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "cntrlHours";
-            this.Size = new System.Drawing.Size(1777, 980);
+            this.Size = new System.Drawing.Size(2369, 1206);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
