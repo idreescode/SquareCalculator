@@ -148,7 +148,7 @@ namespace SquareCalculator.TabControls
             // Call PopulateGridWithRange to process and display the values
             PopulateGridWithRange(minRange, maxRange, variation);
             gvHours.Sort(gvHours.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
-            HighlightMatchingCells(gvHours, allDataSets);
+            HighlightMatchingCells(gvHours, allDataSets, double.Parse(nbrMatchTolerance.Value.ToString()));
         }
 
         public void PopulateGridWithRange(double minRange, double maxRange, int variation)
