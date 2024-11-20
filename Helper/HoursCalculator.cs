@@ -156,6 +156,20 @@ namespace SquareCalculator.Helper
         }
 
 
+        public void AddGridData(List<GridData> gridList, double totalMinutes, double totalHrs, double originalExtraHours, double daysHrsMinValueToMatch, DateTime TimeofDay)
+        {
+            string timeofDayTimeFormatted = TimeofDay.ToString("hhmm");
+            var gridData = new GridData()
+            {
+                TotalMints = totalMinutes,
+                TotalHours = totalHrs,
+                ExactHour = originalExtraHours,
+                HourMins = daysHrsMinValueToMatch,
+                TimeofDay = timeofDayTimeFormatted
+            };
+
+            gridList.Add(gridData);
+        }
 
 
     }

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\GridData.cs" />
     <Compile Include="Helper\HoursCalculator.cs" />
     <Compile Include="Helper\SQR9Helper.cs" />
     <Compile Include="TabControls\cntrlHours.cs">

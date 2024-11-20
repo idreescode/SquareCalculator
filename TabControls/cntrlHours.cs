@@ -23,6 +23,8 @@ namespace SquareCalculator.TabControls
         private List<double> range120 = new List<double>();
         private List<double> range90 = new List<double>();
         private List<double> combinedRange = new List<double>();
+        private List<double> allDataSets = new List<double>();
+        private List<GridData> gridList = new List<GridData>();
         public cntrlHours()
         {
             InitializeComponent();
@@ -39,19 +41,19 @@ namespace SquareCalculator.TabControls
 
             CenterAlignAllDataGridViewColumns(this);
 
-             //Set the start date (e.g., October 20, 2024)
-            dtStartDate.Value = new DateTime(2024, 10, 20);
+            ////Set the start date (e.g., October 20, 2024)
+            //dtStartDate.Value = new DateTime(2024, 10, 20);
 
-            // Set the select time (e.g., 8:32:00 PM)
-            dtStartTime.Value = DateTime.Today.AddHours(20).AddMinutes(32); // Set time for 8:32 PM
+            //// Set the select time (e.g., 8:32:00 PM)
+            //dtStartTime.Value = DateTime.Today.AddHours(20).AddMinutes(32); // Set time for 8:32 PM
 
-            // Set the end date (e.g., October 23, 2024)
-            dtEndDate.Value = new DateTime(2024, 10, 23);
+            //// Set the end date (e.g., October 23, 2024)
+            //dtEndDate.Value = new DateTime(2024, 10, 23);
 
-            txtInput180.Text = "4.3, 8.3, 15.7, 23.7, 35.1, 47.1, 62.5, 78.5, 97.8, 117.8, 141.2, 165.2, 192.6, 220.6, 252.0, 284.0, 319.3, 355.3, 394.7, 434.7, 478.1, 522.1, 569.5, 617.5, 668.8, 720.8, 776.2, 832.2, 891.6, 951.6, 1015.0, 1079.0, 1146.3, 1214.3, 1285.7, 1357.7, 1433.1, 1509.1, 1588.5, 1668.5, 1751.8, 1835.8, 1923.2, 2011.2, 2102.6, 2194.6, 2290.0, 2386.0, 2485.3, 2585.3, 2688.7, 2792.7, 2900.1, 3008.1, 3119.5, 3231.5, 3346.8, 3462.8, 3582.2, 3702.2, 3825.6, 3949.6, 4077.0, 4205.0, 4336.3, 4468.3, 4603.7, 4739.7, 4879.1, 5019.1, 5162.5, 5306.5, 5453.8, 5601.8, 5753.2, 5905.2, 6060.6, 6216.6, 6376.0, 6536.0, 6699.3, 6863.3, 7030.7, 7198.7, 7370.1, 7542.1, 7717.5, 7893.5, 8072.8, 8252.8, 8436.2, 8620.2, 8807.6, 8995.6, 9187.0, 9379.0, 9574.3, 9770.3, 9969.7, 10169.7, 10373.1, 10577.1, 10784.5, 10992.5, 11203.8, 11415.8, 11631.2, 11847.2, 12066.6, 12286.6, 12510.0, 12734.0, 12961.3, 13189.3, 13420.7, 13652.7, 13888.1, 14124.1, 14363.5, 14603.5, 14846.8, 15090.8, 15338.2, 15586.2, 15837.6, 16089.6, 16345.0, 16601.0, 16860.3, 17120.3, 17383.7, 17647.7, 17915.1, 18183.1, 18454.5, 18726.5, 19001.8, 19277.8, 19557.2, 19837.2, 20120.6, 20404.6, 20692.0, 20980.0, 21271.3, 21563.3, 21858.7, 22154.7, 22454.1, 22754.1, 23057.5, 23361.5, 23668.8, 23976.8, 24288.2, 24600.2, 24915.6, 25231.6, 25551.0, 25871.0, 26194.3, 26518.3, 26845.7, 27173.7, 27505.1, 27837.1, 28172.5, 28508.5, 28847.8, 29187.8, 29531.2, 29875.2, 30222.6, 30570.6, 30922.0, 31274.0, 31629.3, 31985.3, 32344.7, 32704.7, 33068.1, 33432.1, 33799.5, 34167.5, 34538.8, 34910.8, 35286.2, 35662.2, 36041.6, 36421.6, 36805.0, 37189.0, 37576.3, 37964.3, 38355.7, 38747.7, 39143.1, 39539.1, 39938.5, 40338.5, 40741.8, 41145.8, 41553.2, 41961.2, 42372.6, 42784.6, 43200.0, 43616.0, 44035.3, 44455.3, 44878.7, 45302.7, 45730.1, 46158.1, 46589.5, 47021.5, 47456.8, 47892.8, 48332.2, 48772.2, 49215.6, 49659.6";
+            //txtInput180.Text = "10,100,1000,3000,3500,4000";
 
-       
-        
+
+
         }
 
         private void btnCalculateTotalMinutes_Click(object sender, EventArgs e)
@@ -112,30 +114,41 @@ namespace SquareCalculator.TabControls
         {
             // Parse values from textboxes
             combinedRange.Clear();
+            gridList.Clear();
+            allDataSets.Clear();
             if (txtInput180.Text != null && txtInput180.Text != "Input 180")
             {
                 range180 = GetInputRanges(txtInput180);
                 combinedRange.AddRange(range180);
+                allDataSets.AddRange(range180);
             }
             if (txtInput120.Text != null && txtInput120.Text != "Input 120")
             {
                 range120 = GetInputRanges(txtInput120);
                 combinedRange.AddRange(range120);
+                allDataSets.AddRange(range120);
             }
             if (txtInput90.Text != null && txtInput90.Text != "Input 90")
             {
                 range90 = GetInputRanges(txtInput90);
                 combinedRange.AddRange(range90);
+                allDataSets.AddRange(range90);
             }
-            combinedRange = combinedRange.Distinct().ToList();
-
             // Define the min and max range (example: 3089-4529.99) and variation (e.g., 10)
             double minRange = RangeInHours;
             double maxRange = TotalMinutes;
+            allDataSets = allDataSets.Distinct().ToList();
+            // Filter the range and ensure values are distinct
+            combinedRange = combinedRange
+                .Where(x => x >= minRange && x <= maxRange) // Keep only values within the range
+                .Distinct()                                // Ensure uniqueness
+                .ToList();
+
             int variation = Convert.ToInt32(numberVariation.Value);
             // Call PopulateGridWithRange to process and display the values
             PopulateGridWithRange(minRange, maxRange, variation);
             gvHours.Sort(gvHours.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+            HighlightMatchingCells(gvHours, allDataSets);
         }
 
         public void PopulateGridWithRange(double minRange, double maxRange, int variation)
@@ -227,9 +240,11 @@ namespace SquareCalculator.TabControls
             double[] resultArraysHrsMin = hoursCalculator.CalculateHourMinsArray(daysHrsMinValueToMatch);
             double[] resultArraysTimeofDay = hoursCalculator.CalculateTimeofDayArray(DateTime.Parse(timeOfDay));
 
+
+
             // Distinguish core values from variation values visually
             bool matchRow = false;
-            if (isCoreValue || resultArrayTotalMints.Any(value => combinedRange.Contains(value)))
+            if (isCoreValue || resultArrayTotalMints.Any(combinedRange.Contains))
             {
                 matchRow = true;
                 row.Cells[0].Style.ForeColor = Color.Black;
@@ -238,22 +253,22 @@ namespace SquareCalculator.TabControls
             }
 
             // Highlight matches in yellow if found in combinedRange
-            if (resultArrayTotalHours.Any(value => combinedRange.Contains(value)))
+            if (resultArrayTotalHours.Any(combinedRange.Contains))
             {
                 matchRow = true;
                 row.Cells[1].Style.BackColor = Color.Yellow; // Highlight Total Hrs column
             }
-            if (resultArrayExtraHours.Any(value => combinedRange.Contains(value)))
+            if (resultArrayExtraHours.Any(combinedRange.Contains))
             {
                 matchRow = true;
                 row.Cells[2].Style.BackColor = Color.Yellow; // Highlight Exact Hrs column
             }
-            if (resultArraysHrsMin.Any(value => combinedRange.Contains(value)))
+            if (resultArraysHrsMin.Any(combinedRange.Contains))
             {
                 matchRow = true;
                 row.Cells[3].Style.BackColor = Color.Yellow; // Highlight Days, Hrs, Min column
             }
-            if (resultArraysTimeofDay.Any(value => combinedRange.Contains(value)))
+            if (resultArraysTimeofDay.Any(combinedRange.Contains))
             {
                 matchRow = true;
                 row.Cells[4].Style.BackColor = Color.Yellow; // Highlight Time of Day 
@@ -262,6 +277,8 @@ namespace SquareCalculator.TabControls
             if (!chkShowMatchOnly.Checked || matchRow)
             {
                 gvHours.Rows.Add(row);
+
+                hoursCalculator.AddGridData(gridList, totalMinutes, totalHrs, exactHours, daysHrsMinValueToMatch, DateTime.Parse(timeOfDay));
 
             }
         }
@@ -311,5 +328,47 @@ namespace SquareCalculator.TabControls
 
             return inputRanges;
         }
+
+        private void HighlightMatchingCells(DataGridView dataGridView, List<double> allDataSets, double tolerance = 1.0)
+        {
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                // Skip the new row placeholder (if AllowUserToAddRows is true)
+                if (row.IsNewRow) continue;
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    string columnName = dataGridView.Columns[cell.ColumnIndex].Name;
+
+                    // Apply different logic for a specific column
+                    string cellVlaue = cell.Value?.ToString();
+
+                    if (columnName == "colTimeOfDay") // Replace with the actual column name
+                    {
+                        cellVlaue = Convert.ToDateTime(cell.Value.ToString()).ToString("hhmm");
+                    }
+                    // Check if the cell value is numeric
+                    if (double.TryParse(hoursCalculator.RemoveNonNumeric(cellVlaue), out double cellValue))
+                    {
+                        // Calculate the tolerance range
+                        double minValue = cellValue - tolerance;
+                        double maxValue = cellValue + tolerance;
+
+                        // Check if any value in allDataSets falls within the range
+                        if (allDataSets.Any(datasetValue => datasetValue >= minValue && datasetValue <= maxValue))
+                        {
+                            // Highlight the cell if there's a match
+                            cell.Style.BackColor = Color.Yellow;
+                        }
+                        else
+                        {
+                            // Optionally, reset the cell color if no match is found
+                            cell.Style.BackColor = Color.White;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

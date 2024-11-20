@@ -37,6 +37,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gpVariation = new System.Windows.Forms.GroupBox();
+            this.nbrMatchTolerance = new System.Windows.Forms.NumericUpDown();
+            this.lblMatchTolerance = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.chkShowMatchOnly = new System.Windows.Forms.CheckBox();
             this.numberVariation = new System.Windows.Forms.NumericUpDown();
@@ -75,6 +77,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.gpVariation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nbrMatchTolerance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberVariation)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grpHoursCalculations.SuspendLayout();
@@ -86,7 +89,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -105,19 +108,45 @@
             // 
             // gpVariation
             // 
+            this.gpVariation.Controls.Add(this.nbrMatchTolerance);
+            this.gpVariation.Controls.Add(this.lblMatchTolerance);
             this.gpVariation.Controls.Add(this.label7);
             this.gpVariation.Controls.Add(this.chkShowMatchOnly);
             this.gpVariation.Controls.Add(this.numberVariation);
             this.gpVariation.Controls.Add(this.label6);
             this.gpVariation.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gpVariation.Location = new System.Drawing.Point(0, 865);
-            this.gpVariation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpVariation.Location = new System.Drawing.Point(0, 607);
+            this.gpVariation.Margin = new System.Windows.Forms.Padding(4);
             this.gpVariation.Name = "gpVariation";
-            this.gpVariation.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gpVariation.Size = new System.Drawing.Size(511, 341);
+            this.gpVariation.Padding = new System.Windows.Forms.Padding(4);
+            this.gpVariation.Size = new System.Drawing.Size(511, 599);
             this.gpVariation.TabIndex = 2;
             this.gpVariation.TabStop = false;
             this.gpVariation.Text = "Variation";
+            // 
+            // nbrMatchTolerance
+            // 
+            this.nbrMatchTolerance.Location = new System.Drawing.Point(190, 132);
+            this.nbrMatchTolerance.Margin = new System.Windows.Forms.Padding(4);
+            this.nbrMatchTolerance.Name = "nbrMatchTolerance";
+            this.nbrMatchTolerance.Size = new System.Drawing.Size(111, 22);
+            this.nbrMatchTolerance.TabIndex = 77;
+            this.nbrMatchTolerance.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblMatchTolerance
+            // 
+            this.lblMatchTolerance.AutoSize = true;
+            this.lblMatchTolerance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMatchTolerance.Location = new System.Drawing.Point(23, 132);
+            this.lblMatchTolerance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMatchTolerance.Name = "lblMatchTolerance";
+            this.lblMatchTolerance.Size = new System.Drawing.Size(165, 22);
+            this.lblMatchTolerance.TabIndex = 76;
+            this.lblMatchTolerance.Text = "Match Tolerance:";
             // 
             // label7
             // 
@@ -136,7 +165,7 @@
             this.chkShowMatchOnly.Checked = true;
             this.chkShowMatchOnly.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkShowMatchOnly.Location = new System.Drawing.Point(245, 42);
-            this.chkShowMatchOnly.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkShowMatchOnly.Margin = new System.Windows.Forms.Padding(4);
             this.chkShowMatchOnly.Name = "chkShowMatchOnly";
             this.chkShowMatchOnly.Size = new System.Drawing.Size(18, 17);
             this.chkShowMatchOnly.TabIndex = 74;
@@ -145,8 +174,8 @@
             // 
             // numberVariation
             // 
-            this.numberVariation.Location = new System.Drawing.Point(155, 82);
-            this.numberVariation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numberVariation.Location = new System.Drawing.Point(190, 81);
+            this.numberVariation.Margin = new System.Windows.Forms.Padding(4);
             this.numberVariation.Name = "numberVariation";
             this.numberVariation.Size = new System.Drawing.Size(111, 22);
             this.numberVariation.TabIndex = 73;
@@ -179,9 +208,9 @@
             this.groupBox1.Controls.Add(this.lblTotalMinutes);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 271);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(511, 935);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
@@ -286,9 +315,9 @@
             this.grpHoursCalculations.Controls.Add(this.label1);
             this.grpHoursCalculations.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpHoursCalculations.Location = new System.Drawing.Point(0, 0);
-            this.grpHoursCalculations.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpHoursCalculations.Margin = new System.Windows.Forms.Padding(4);
             this.grpHoursCalculations.Name = "grpHoursCalculations";
-            this.grpHoursCalculations.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpHoursCalculations.Padding = new System.Windows.Forms.Padding(4);
             this.grpHoursCalculations.Size = new System.Drawing.Size(511, 271);
             this.grpHoursCalculations.TabIndex = 0;
             this.grpHoursCalculations.TabStop = false;
@@ -297,7 +326,7 @@
             // btnCalculateTotalMinutes
             // 
             this.btnCalculateTotalMinutes.Location = new System.Drawing.Point(156, 183);
-            this.btnCalculateTotalMinutes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCalculateTotalMinutes.Margin = new System.Windows.Forms.Padding(4);
             this.btnCalculateTotalMinutes.Name = "btnCalculateTotalMinutes";
             this.btnCalculateTotalMinutes.Size = new System.Drawing.Size(307, 46);
             this.btnCalculateTotalMinutes.TabIndex = 6;
@@ -308,7 +337,7 @@
             // dtEndDate
             // 
             this.dtEndDate.Location = new System.Drawing.Point(155, 138);
-            this.dtEndDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtEndDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtEndDate.Name = "dtEndDate";
             this.dtEndDate.Size = new System.Drawing.Size(305, 22);
             this.dtEndDate.TabIndex = 5;
@@ -329,7 +358,7 @@
             this.dtStartTime.CustomFormat = "hh:mm tt";
             this.dtStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtStartTime.Location = new System.Drawing.Point(157, 82);
-            this.dtStartTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtStartTime.Margin = new System.Windows.Forms.Padding(4);
             this.dtStartTime.Name = "dtStartTime";
             this.dtStartTime.ShowUpDown = true;
             this.dtStartTime.Size = new System.Drawing.Size(305, 22);
@@ -349,7 +378,7 @@
             // dtStartDate
             // 
             this.dtStartDate.Location = new System.Drawing.Point(157, 33);
-            this.dtStartDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtStartDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtStartDate.Name = "dtStartDate";
             this.dtStartDate.Size = new System.Drawing.Size(305, 22);
             this.dtStartDate.TabIndex = 1;
@@ -376,7 +405,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnCalculationHours, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.469388F));
@@ -419,6 +448,7 @@
             // gvHours
             // 
             this.gvHours.AllowUserToAddRows = false;
+            this.gvHours.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvHours.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -438,7 +468,7 @@
             this.gvHours.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvHours.GridColor = System.Drawing.SystemColors.Control;
             this.gvHours.Location = new System.Drawing.Point(4, 179);
-            this.gvHours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gvHours.Margin = new System.Windows.Forms.Padding(4);
             this.gvHours.Name = "gvHours";
             this.gvHours.RowHeadersWidth = 51;
             this.gvHours.Size = new System.Drawing.Size(1845, 1023);
@@ -452,7 +482,6 @@
             this.colTotalMint.HeaderText = "Total Mins";
             this.colTotalMint.MinimumWidth = 6;
             this.colTotalMint.Name = "colTotalMint";
-            this.colTotalMint.Width = 200;
             // 
             // colTotalHours
             // 
@@ -461,7 +490,6 @@
             this.colTotalHours.HeaderText = "Total Hrs";
             this.colTotalHours.MinimumWidth = 6;
             this.colTotalHours.Name = "colTotalHours";
-            this.colTotalHours.Width = 250;
             // 
             // colExactHours
             // 
@@ -470,7 +498,6 @@
             this.colExactHours.HeaderText = "Exact Hours";
             this.colExactHours.MinimumWidth = 6;
             this.colExactHours.Name = "colExactHours";
-            this.colExactHours.Width = 300;
             // 
             // colDayHoursMin
             // 
@@ -479,7 +506,6 @@
             this.colDayHoursMin.HeaderText = "Day, Hrs, Min";
             this.colDayHoursMin.MinimumWidth = 6;
             this.colDayHoursMin.Name = "colDayHoursMin";
-            this.colDayHoursMin.Width = 350;
             // 
             // colTimeOfDay
             // 
@@ -488,13 +514,12 @@
             this.colTimeOfDay.HeaderText = "Time of Day";
             this.colTimeOfDay.MinimumWidth = 6;
             this.colTimeOfDay.Name = "colTimeOfDay";
-            this.colTimeOfDay.Width = 350;
             // 
             // btnCalculationHours
             // 
             this.btnCalculationHours.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCalculationHours.Location = new System.Drawing.Point(4, 124);
-            this.btnCalculationHours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCalculationHours.Margin = new System.Windows.Forms.Padding(4);
             this.btnCalculationHours.Name = "btnCalculationHours";
             this.btnCalculationHours.Size = new System.Drawing.Size(1845, 47);
             this.btnCalculationHours.TabIndex = 39;
@@ -508,7 +533,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "cntrlHours";
             this.Size = new System.Drawing.Size(2369, 1206);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -517,6 +542,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.gpVariation.ResumeLayout(false);
             this.gpVariation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nbrMatchTolerance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberVariation)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -566,5 +592,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTimeOfDay;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox chkShowMatchOnly;
+        private System.Windows.Forms.NumericUpDown nbrMatchTolerance;
+        private System.Windows.Forms.Label lblMatchTolerance;
     }
 }
