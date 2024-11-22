@@ -36,6 +36,7 @@ namespace SquareCalculator
             InitializeComponent();
             this.Resize += SQR9_Resize; // Attach the resize event
 
+
         }
         private void SQR9_Load(object sender, System.EventArgs e)
         {
@@ -47,8 +48,8 @@ namespace SquareCalculator
             ClearControls("SPO");
             BindMEDropdown();
             FormatTab();
-
             CenterAlignAllDataGridViewColumns(this); // Apply to the entire form
+            SQR9_Resize(null,null);
 
         }
 
