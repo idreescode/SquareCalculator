@@ -567,6 +567,9 @@ namespace SquareCalculator.TabControls
                 senderCheckBox.Checked = true;
             if (senderCheckBox.CheckState == CheckState.Unchecked)
                 senderCheckBox.Checked = false;
+
+
+            btnCalculationHours_Click(null, null);
         }
 
 
@@ -618,7 +621,7 @@ namespace SquareCalculator.TabControls
         private void chkShowMatchOnly_CheckedChanged(object sender, EventArgs e)
         {
             EnsureSingleCheck((System.Windows.Forms.CheckBox)sender);
-            btnCalculationHours_Click(null, null);
+            
         }
 
         private void FillData()
