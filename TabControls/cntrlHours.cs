@@ -54,8 +54,26 @@ namespace SquareCalculator.TabControls
 
             //txtInput180.Text = "10,100,1000,3000,3500,4000";
 
+            // Fix the left panel
+            splitContainer1.FixedPanel = FixedPanel.Panel1;
 
+            splitContainer1.SplitterDistance = 350;
 
+            // Handle splitter moving event to prevent leftward movement
+            splitContainer1.SplitterMoving += SplitContainer1_SplitterMoving;
+
+            // Ensure right panel resizes with the form
+            splitContainer1.Panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
+        }
+
+        private void SplitContainer1_SplitterMoving(object sender, SplitterCancelEventArgs e)
+        {
+            int fixedWidth = 350; // Fixed width for the left panel
+            if (e.SplitX != fixedWidth)
+            {
+                e.Cancel = true; // Prevent the splitter from moving
+            }
         }
 
         private void btnCalculateTotalMinutes_Click(object sender, EventArgs e)
