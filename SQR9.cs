@@ -49,7 +49,7 @@ namespace SquareCalculator
             BindMEDropdown();
             FormatTab();
             CenterAlignAllDataGridViewColumns(this); // Apply to the entire form
-            SQR9_Resize(null,null);
+            SQR9_Resize(null, null);
 
         }
 
@@ -106,8 +106,8 @@ namespace SquareCalculator
         {
             int numberOfControls = 5;
             int padding = 5;  // Space between controls
-            int controlWidth = 360;  // Desired width of each control
-            int controlHeight = 1020;  // Full height with padding
+            int controlWidth = 390;  // Desired width of each control
+            int controlHeight = 950;  // Full height with padding10
             int separatorWidth = 3;  // Width of the separator line
 
             // Clear existing controls in pnlSPI to avoid duplicates
@@ -131,6 +131,7 @@ namespace SquareCalculator
                 pnlSPI.Controls.Add(myCntrlSPI);
 
             }
+
 
             // Initialize and add myCntrlSPIdata separately, if required
             myCntrlSPIdata = new cntrlSPIData();
