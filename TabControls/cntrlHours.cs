@@ -123,41 +123,91 @@ namespace SquareCalculator.TabControls
         {
             // Parse values from textboxes
             ClearList();
-            if (txtInput180.Text != null && txtInput180.Text != "Input 180" && chkShowMatch180Only.Checked)
+
+            // Load ranges from textboxes
+            if (!string.IsNullOrWhiteSpace(txtInput180.Text) && txtInput180.Text != "Input 180")
             {
                 range180 = GetInputRanges(txtInput180);
-                combinedRange.AddRange(range180);
-                allDataSets.AddRange(range180);
             }
-            if (txtInput120.Text != null && txtInput120.Text != "Input 120" && chkShowMatch120Only.Checked)
+            if (!string.IsNullOrWhiteSpace(txtInput120.Text) && txtInput120.Text != "Input 120")
             {
                 range120 = GetInputRanges(txtInput120);
-                combinedRange.AddRange(range120);
-                allDataSets.AddRange(range120);
             }
-            if (txtInput90.Text != null && txtInput90.Text != "Input 90" && chkShowMatch90Only.Checked)
+            if (!string.IsNullOrWhiteSpace(txtInput90.Text) && txtInput90.Text != "Input 90")
             {
                 range90 = GetInputRanges(txtInput90);
-                combinedRange.AddRange(range90);
-                allDataSets.AddRange(range90);
+            }
+
+            // Reset allDataSets based on the checkbox selection
+            if (chkShowMatch180Only.Checked)
+            {
+                combinedRange = range180;
+                range120 = null; // Clear other lists
+                range90 = null;
+                allDataSets = new List<double>(range180 ?? new List<double>()); // Update allDataSets
+            }
+            else if (chkShowMatch120Only.Checked)
+            {
+                combinedRange = range120;
+                range180 = null; // Clear other lists
+                range90 = null;
+                allDataSets = new List<double>(range120 ?? new List<double>()); // Update allDataSets
+            }
+            else if (chkShowMatch90Only.Checked)
+            {
+                combinedRange = range90;
+                range180 = null; // Clear other lists
+                range120 = null;
+                allDataSets = new List<double>(range90 ?? new List<double>()); // Update allDataSets
+            }
+            else
+            {
+                // Default case: Combine all ranges if no specific checkbox is selected
+                combinedRange = new List<double>();
+                allDataSets.Clear();
+
+                if (range180 != null)
+                {
+                    combinedRange.AddRange(range180);
+                    allDataSets.AddRange(range180);
+                }
+                if (range120 != null)
+                {
+                    combinedRange.AddRange(range120);
+                    allDataSets.AddRange(range120);
+                }
+                if (range90 != null)
+                {
+                    combinedRange.AddRange(range90);
+                    allDataSets.AddRange(range90);
+                }
             }
 
             // Define the min and max range (example: 3089-4529.99) and variation (e.g., 10)
             double minRange = RangeInHours;
             double maxRange = TotalMinutes;
-            allDataSets = allDataSets.Distinct().ToList();
-            // Filter the range and ensure values are distinct
-            combinedRange = combinedRange
+
+            // Filter combinedRange based on min and max range
+            combinedRange = combinedRange?
                 .Where(x => x >= minRange && x <= maxRange) // Keep only values within the range
                 .Distinct()                                // Ensure uniqueness
                 .ToList();
 
-            int variation = Convert.ToInt32(numberVariation.Value);
-            // Call PopulateGridWithRange to process and display the values
-            PopulateGridWithRange(minRange, maxRange, variation);
-            gvHours.Sort(gvHours.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
-            HighlightMatchingCells(gvHours, allDataSets, double.Parse(nbrMatchTolerance.Value.ToString()));
+            // Update allDataSets after range filtering
+            allDataSets = allDataSets
+                .Distinct()
+                .ToList();
 
+            int variation = Convert.ToInt32(numberVariation.Value);
+
+            // Populate grid with the filtered range
+            PopulateGridWithRange(minRange, maxRange, variation);
+
+            // Sort the grid for better readability
+            gvHours.Sort(gvHours.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+
+            // Highlight cells based on matching tolerance
+            HighlightMatchingCells(gvHours, allDataSets ?? new List<double>(), double.Parse(nbrMatchTolerance.Value.ToString()));
         }
 
         public void PopulateGridWithRange(double minRange, double maxRange, int variation)
@@ -172,17 +222,17 @@ namespace SquareCalculator.TabControls
 
             // Process each dataset with visual distinction
 
-            if (range180 != null && range180.Count > 0 && chkShowMatch180Only.Checked)
+            if (range180 != null && range180.Count > 0)
             {
                 ProcessDataset(range180, minRange, maxRange, variation, startDateTime, Color.White);
 
             }
-            if (range120 != null && range120.Count > 0 && chkShowMatch120Only.Checked)
+            if (range120 != null && range120.Count > 0)
             {
                 ProcessDataset(range120, minRange, maxRange, variation, startDateTime, Color.LightGray);
 
             }
-            if (range90 != null && range90.Count > 0 && chkShowMatch90Only.Checked)
+            if (range90 != null && range90.Count > 0)
             {
                 ProcessDataset(range90, minRange, maxRange, variation, startDateTime, Color.FromArgb(169, 169, 169));
 
@@ -466,15 +516,23 @@ namespace SquareCalculator.TabControls
 
         private void ClearList()
         {
-            combinedRange.Clear();
-            gridList.Clear();
-            allDataSets.Clear();
-            nestedTimeDataList.Clear();
-            timeData.Clear();
+            if (combinedRange != null)
+                combinedRange.Clear();
+
+            if (gridList != null)
+                gridList.Clear();
+
+            if (allDataSets != null)
+                allDataSets.Clear();
+
+            if (nestedTimeDataList != null)
+                nestedTimeDataList.Clear();
+
+            if (timeData != null)
+                timeData.Clear();
+
 
         }
-
-     
 
         private void chkShowMatch180Only_CheckedChanged(object sender, EventArgs e)
         {
@@ -504,8 +562,11 @@ namespace SquareCalculator.TabControls
                     checkbox.Checked = false;
                 }
             }
-            senderCheckBox.Checked = true;
 
+            if (senderCheckBox.CheckState == CheckState.Checked)
+                senderCheckBox.Checked = true;
+            if (senderCheckBox.CheckState == CheckState.Unchecked)
+                senderCheckBox.Checked = false;
         }
 
 
@@ -551,10 +612,7 @@ namespace SquareCalculator.TabControls
             {
                 FilterRowsByCellColor(gvHours);
             }
-            else
-            {
-                btnCalculationHours_Click(null, null);
-            }
+            
         }
 
         private void chkShowMatchOnly_CheckedChanged(object sender, EventArgs e)
