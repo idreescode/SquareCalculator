@@ -615,13 +615,13 @@ namespace SquareCalculator.TabControls
             {
                 FilterRowsByCellColor(gvHours);
             }
-            
+
         }
 
         private void chkShowMatchOnly_CheckedChanged(object sender, EventArgs e)
         {
             EnsureSingleCheck((System.Windows.Forms.CheckBox)sender);
-            
+
         }
 
         private void FillData()
