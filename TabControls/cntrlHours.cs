@@ -60,7 +60,7 @@ namespace SquareCalculator.TabControls
             splitContainer1.SplitterDistance = 350;
 
             // Handle splitter moving event to prevent leftward movement
-            splitContainer1.SplitterMoving += SplitContainer1_SplitterMoving;
+       
 
             // Ensure right panel resizes with the form
             splitContainer1.Panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
