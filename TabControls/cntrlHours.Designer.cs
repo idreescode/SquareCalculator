@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gpVariation = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -196,7 +196,7 @@
             this.chkShowMatch90Only.Size = new System.Drawing.Size(18, 17);
             this.chkShowMatch90Only.TabIndex = 82;
             this.chkShowMatch90Only.UseVisualStyleBackColor = true;
-            this.chkShowMatch90Only.CheckedChanged += new System.EventHandler(this.chkShowMatch180Only_CheckedChanged);
+            this.chkShowMatch90Only.Click += new System.EventHandler(this.chkShowMatch90Only_CheckedChanged);
             // 
             // label9
             // 
@@ -224,7 +224,7 @@
             this.chkShowMatch120Only.Size = new System.Drawing.Size(18, 17);
             this.chkShowMatch120Only.TabIndex = 80;
             this.chkShowMatch120Only.UseVisualStyleBackColor = true;
-            this.chkShowMatch120Only.CheckedChanged += new System.EventHandler(this.chkShowMatch180Only_CheckedChanged);
+            this.chkShowMatch120Only.Click += new System.EventHandler(this.chkShowMatch120Only_CheckedChanged);
             // 
             // label8
             // 
@@ -252,7 +252,7 @@
             this.chkShowMatch180Only.Size = new System.Drawing.Size(18, 17);
             this.chkShowMatch180Only.TabIndex = 78;
             this.chkShowMatch180Only.UseVisualStyleBackColor = true;
-            this.chkShowMatch180Only.CheckedChanged += new System.EventHandler(this.chkShowMatch180Only_CheckedChanged);
+            this.chkShowMatch180Only.Click += new System.EventHandler(this.chkShowMatch180Only_CheckedChanged);
             // 
             // nbrMatchTolerance
             // 
@@ -309,7 +309,7 @@
             this.chkShowMatchOnly.Size = new System.Drawing.Size(18, 17);
             this.chkShowMatchOnly.TabIndex = 74;
             this.chkShowMatchOnly.UseVisualStyleBackColor = true;
-            this.chkShowMatchOnly.CheckedChanged += new System.EventHandler(this.btnCalculationHours_Click);
+            this.chkShowMatchOnly.Click += new System.EventHandler(this.chkShowMatchOnly_CheckedChanged);
             // 
             // numberVariation
             // 
@@ -358,12 +358,11 @@
             // 
             // lblRanginHrsValue
             // 
-            this.lblRanginHrsValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRanginHrsValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblRanginHrsValue.AutoSize = true;
             this.lblRanginHrsValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRanginHrsValue.Location = new System.Drawing.Point(340, 207);
+            this.lblRanginHrsValue.Location = new System.Drawing.Point(261, 207);
             this.lblRanginHrsValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRanginHrsValue.Name = "lblRanginHrsValue";
             this.lblRanginHrsValue.Size = new System.Drawing.Size(53, 22);
@@ -372,12 +371,11 @@
             // 
             // lblRange1DayValue
             // 
-            this.lblRange1DayValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRange1DayValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblRange1DayValue.AutoSize = true;
             this.lblRange1DayValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRange1DayValue.Location = new System.Drawing.Point(337, 150);
+            this.lblRange1DayValue.Location = new System.Drawing.Point(258, 150);
             this.lblRange1DayValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRange1DayValue.Name = "lblRange1DayValue";
             this.lblRange1DayValue.Size = new System.Drawing.Size(53, 22);
@@ -414,12 +412,11 @@
             // 
             // lblMinutesToMidNightValue
             // 
-            this.lblMinutesToMidNightValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMinutesToMidNightValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblMinutesToMidNightValue.AutoSize = true;
             this.lblMinutesToMidNightValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMinutesToMidNightValue.Location = new System.Drawing.Point(337, 100);
+            this.lblMinutesToMidNightValue.Location = new System.Drawing.Point(258, 100);
             this.lblMinutesToMidNightValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMinutesToMidNightValue.Name = "lblMinutesToMidNightValue";
             this.lblMinutesToMidNightValue.Size = new System.Drawing.Size(53, 22);
@@ -442,12 +439,11 @@
             // 
             // lblTotalMinutesValue
             // 
-            this.lblTotalMinutesValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalMinutesValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalMinutesValue.AutoSize = true;
             this.lblTotalMinutesValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalMinutesValue.Location = new System.Drawing.Point(337, 49);
+            this.lblTotalMinutesValue.Location = new System.Drawing.Point(258, 49);
             this.lblTotalMinutesValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalMinutesValue.Name = "lblTotalMinutesValue";
             this.lblTotalMinutesValue.Size = new System.Drawing.Size(53, 22);
@@ -641,14 +637,14 @@
             this.gvHours.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvHours.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gvHours.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvHours.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvHours.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.gvHours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvHours.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colTotalMint,
@@ -668,40 +664,40 @@
             // 
             // colTotalMint
             // 
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalMint.DefaultCellStyle = dataGridViewCellStyle8;
             this.colTotalMint.HeaderText = "Total Mins";
             this.colTotalMint.MinimumWidth = 6;
             this.colTotalMint.Name = "colTotalMint";
             // 
             // colTotalHours
             // 
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTotalHours.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTotalHours.DefaultCellStyle = dataGridViewCellStyle9;
             this.colTotalHours.HeaderText = "Total Hrs";
             this.colTotalHours.MinimumWidth = 6;
             this.colTotalHours.Name = "colTotalHours";
             // 
             // colExactHours
             // 
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colExactHours.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colExactHours.DefaultCellStyle = dataGridViewCellStyle10;
             this.colExactHours.HeaderText = "Exact Hours";
             this.colExactHours.MinimumWidth = 6;
             this.colExactHours.Name = "colExactHours";
             // 
             // colDayHoursMin
             // 
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colDayHoursMin.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colDayHoursMin.DefaultCellStyle = dataGridViewCellStyle11;
             this.colDayHoursMin.HeaderText = "Day, Hrs, Min";
             this.colDayHoursMin.MinimumWidth = 6;
             this.colDayHoursMin.Name = "colDayHoursMin";
             // 
             // colTimeOfDay
             // 
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTimeOfDay.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTimeOfDay.DefaultCellStyle = dataGridViewCellStyle12;
             this.colTimeOfDay.HeaderText = "Time of Day";
             this.colTimeOfDay.MinimumWidth = 6;
             this.colTimeOfDay.Name = "colTimeOfDay";
