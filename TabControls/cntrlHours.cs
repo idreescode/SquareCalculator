@@ -43,16 +43,7 @@ namespace SquareCalculator.TabControls
 
             CenterAlignAllDataGridViewColumns(this);
 
-            //Set the start date (e.g., October 20, 2024)
-            //dtStartDate.Value = new DateTime(2024, 10, 20);
-
-            //// Set the select time (e.g., 8:32:00 PM)
-            //dtStartTime.Value = DateTime.Today.AddHours(20).AddMinutes(32); // Set time for 8:32 PM
-
-            //// Set the end date (e.g., October 23, 2024)
-            //dtEndDate.Value = new DateTime(2024, 10, 23);
-
-            //txtInput180.Text = "10,100,1000,3000,3500,4000";
+            FillData();
 
             // Fix the left panel
             splitContainer1.FixedPanel = FixedPanel.Panel1;
@@ -60,7 +51,7 @@ namespace SquareCalculator.TabControls
             splitContainer1.SplitterDistance = 350;
 
             // Handle splitter moving event to prevent leftward movement
-       
+
 
             // Ensure right panel resizes with the form
             splitContainer1.Panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -483,15 +474,26 @@ namespace SquareCalculator.TabControls
 
         }
 
+     
+
         private void chkShowMatch180Only_CheckedChanged(object sender, EventArgs e)
         {
             EnsureSingleCheck((System.Windows.Forms.CheckBox)sender);
+        }
 
+        private void chkShowMatch120Only_CheckedChanged(object sender, EventArgs e)
+        {
+            EnsureSingleCheck((System.Windows.Forms.CheckBox)sender);
+        }
+
+        private void chkShowMatch90Only_CheckedChanged(object sender, EventArgs e)
+        {
+            EnsureSingleCheck((System.Windows.Forms.CheckBox)sender);
         }
         private void EnsureSingleCheck(System.Windows.Forms.CheckBox senderCheckBox)
         {
             // List of all checkboxes
-            System.Windows.Forms.CheckBox[] checkboxes = { chkShowMatch180Only, chkShowMatch120Only, chkShowMatch90Only };
+            System.Windows.Forms.CheckBox[] checkboxes = { chkShowMatch180Only, chkShowMatch120Only, chkShowMatch90Only, chkShowMatchOnly };
 
             // Loop through each checkbox
             foreach (var checkbox in checkboxes)
@@ -502,7 +504,11 @@ namespace SquareCalculator.TabControls
                     checkbox.Checked = false;
                 }
             }
+            senderCheckBox.Checked = true;
+
         }
+
+
         private void FilterRowsByCellColor(DataGridView gridView)
         {
             // List to store rows that meet the condition
@@ -549,6 +555,26 @@ namespace SquareCalculator.TabControls
             {
                 btnCalculationHours_Click(null, null);
             }
+        }
+
+        private void chkShowMatchOnly_CheckedChanged(object sender, EventArgs e)
+        {
+            EnsureSingleCheck((System.Windows.Forms.CheckBox)sender);
+            btnCalculationHours_Click(null, null);
+        }
+
+        private void FillData()
+        {
+            ///Set the start date(e.g., October 20, 2024)
+            dtStartDate.Value = new DateTime(2024, 10, 20);
+
+            // Set the select time (e.g., 8:32:00 PM)
+            dtStartTime.Value = DateTime.Today.AddHours(20).AddMinutes(32); // Set time for 8:32 PM
+
+            // Set the end date (e.g., October 23, 2024)
+            dtEndDate.Value = new DateTime(2024, 10, 23);
+
+            txtInput180.Text = "10,100,1000,3000,3500,4000";
         }
     }
 }
