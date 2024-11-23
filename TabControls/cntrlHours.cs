@@ -43,7 +43,7 @@ namespace SquareCalculator.TabControls
 
             CenterAlignAllDataGridViewColumns(this);
 
-            FillData();
+           /// FillData();
 
             // Fix the left panel
             splitContainer1.FixedPanel = FixedPanel.Panel1;
