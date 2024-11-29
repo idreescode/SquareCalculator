@@ -105,32 +105,65 @@ namespace SquareCalculator
         public void AddControlsDynamically()
         {
             int numberOfControls = 5;
-            int padding = 5;  // Space between controls
-            int controlWidth = 390;  // Desired width of each control
-            int controlHeight = 950;  // Full height with padding10
-            int separatorWidth = 3;  // Width of the separator line
+            //int padding = 5;  // Space between controls
+            //int controlWidth = 390;  // Desired width of each control
+            //int controlHeight = 950;  // Full height with padding10
+            //int separatorWidth = 3;  // Width of the separator line
 
-            // Clear existing controls in pnlSPI to avoid duplicates
-            pnlSPI.Controls.Clear();
+            //// Clear existing controls in pnlSPI to avoid duplicates
+            //pnlSPI.Controls.Clear();
 
+            //for (int i = 0; i < numberOfControls; i++)
+            //{
+            //    // Create a new instance of myCntrlSPI
+            //    var myCntrlSPI = new cntrlSPI();
+
+            //    // Set the size and position of the control
+            //    myCntrlSPI.Width = controlWidth;
+            //    myCntrlSPI.Height = controlHeight;
+            //    myCntrlSPI.Left = padding + i * (controlWidth + padding + separatorWidth);  // Account for separator width
+            //    myCntrlSPI.Top = padding;
+
+            //    // Optionally, give each control a unique name if needed
+            //    myCntrlSPI.Name = $"myCntrlSPI_{i + 1}";
+            //    myCntrlSPI.AutoSize = true;
+
+            //    // Add the control to pnlSPI instead of tabSPI
+            //    pnlSPI.Controls.Add(myCntrlSPI);
+
+            //}
+
+
+            // Initialize the TableLayoutPanel
+            TableLayoutPanel tableLayoutPanel = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill, // Ensures it resizes with the parent
+                ColumnCount = numberOfControls,
+                RowCount = 1, // One row for all controls
+                AutoSize = false,
+                GrowStyle = TableLayoutPanelGrowStyle.FixedSize // Avoids unexpected behavior
+            };
+
+            // Adjust column widths to distribute space evenly
             for (int i = 0; i < numberOfControls; i++)
             {
-                // Create a new instance of myCntrlSPI
-                var myCntrlSPI = new cntrlSPI();
-
-                // Set the size and position of the control
-                myCntrlSPI.Width = controlWidth;
-                myCntrlSPI.Height = controlHeight;
-                myCntrlSPI.Left = padding + i * (controlWidth + padding + separatorWidth);  // Account for separator width
-                myCntrlSPI.Top = padding;
-
-                // Optionally, give each control a unique name if needed
-                myCntrlSPI.Name = $"myCntrlSPI_{i + 1}";
-
-                // Add the control to pnlSPI instead of tabSPI
-                pnlSPI.Controls.Add(myCntrlSPI);
-
+                tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / numberOfControls));
             }
+
+            // Add controls to the TableLayoutPanel
+            for (int i = 0; i < numberOfControls; i++)
+            {
+                var myCntrlSPI = new cntrlSPI
+                {
+                    Dock = DockStyle.Fill, // Ensures it stretches to fit its cell
+                    Name = $"myCntrlSPI_{i + 1}"
+                };
+                tableLayoutPanel.Controls.Add(myCntrlSPI, i, 0);
+            }
+
+            // Clear existing controls and add the TableLayoutPanel to the parent panel
+            pnlSPI.Controls.Clear();
+            pnlSPI.Controls.Add(tableLayoutPanel);
 
 
             // Initialize and add myCntrlSPIdata separately, if required

@@ -43,7 +43,7 @@ namespace SquareCalculator.TabControls
 
             CenterAlignAllDataGridViewColumns(this);
 
-           FillData();
+            FillData();
 
             // Fix the left panel
             splitContainer1.FixedPanel = FixedPanel.Panel1;
@@ -315,25 +315,26 @@ namespace SquareCalculator.TabControls
             if (resultArrayTotalHours.Any(combinedRange.Contains))
             {
                 matchRow = true;
-                row.Cells[1].Style.BackColor = Color.LightGreen; // Highlight Total Hrs column
+                row.Cells[1].Style.BackColor = Color.Yellow; // Highlight Total Hrs column
             }
             if (resultArrayExtraHours.Any(combinedRange.Contains))
             {
                 matchRow = true;
-                row.Cells[2].Style.BackColor = Color.LightGreen; // Highlight Exact Hrs column
+                row.Cells[2].Style.BackColor = Color.Yellow; // Highlight Exact Hrs column
             }
             if (resultArraysHrsMin.Any(combinedRange.Contains))
             {
                 matchRow = true;
-                row.Cells[3].Style.BackColor = Color.LightGreen; // Highlight Days, Hrs, Min column
+                row.Cells[3].Style.BackColor = Color.Yellow; // Highlight Days, Hrs, Min column
             }
             if (resultArraysTimeofDay.Any(combinedRange.Contains))
             {
                 matchRow = true;
-                row.Cells[4].Style.BackColor = Color.LightGreen; // Highlight Time of Day 
+                row.Cells[4].Style.BackColor = Color.Yellow; // Highlight Time of Day 
             }
 
-            if (!chkShowMatchOnly.Checked || matchRow)
+            if ((chkShowMatchOnly.Checked || chkShowMatch180Only.Checked || chkShowMatch120Only.Checked || chkShowMatch90Only.Checked) && matchRow)
+
             {
                 row.Tag = "ParentRow";
                 gvHours.Rows.Add(row);
@@ -349,6 +350,22 @@ namespace SquareCalculator.TabControls
 
                 hoursCalculator.AddGridData(gridList, totalMinutes, totalHrs, exactHours, daysHrsMinValueToMatch, DateTime.Parse(timeOfDay));
 
+            }
+            else if (!chkShowMatchOnly.Checked && !chkShowMatch180Only.Checked && !chkShowMatch120Only.Checked && !chkShowMatch90Only.Checked)
+            {
+                row.Tag = "ParentRow";
+                gvHours.Rows.Add(row);
+
+                List<TimeData> variations = hoursCalculator.PopulateTimeData(
+                    resultArrayTotalMints.ToList(),
+                    resultArrayTotalHours.ToList(),
+                    resultArrayExtraHours.ToList(),
+                    resultArraysHrsMin.ToList(),
+                    resultArraysTimeofDay.ToList()
+                );
+                nestedTimeDataList.Add(variations);
+
+                hoursCalculator.AddGridData(gridList, totalMinutes, totalHrs, exactHours, daysHrsMinValueToMatch, DateTime.Parse(timeOfDay));
             }
         }
 
@@ -426,7 +443,7 @@ namespace SquareCalculator.TabControls
                         if (allDataSets.Any(datasetValue => datasetValue >= minValue && datasetValue <= maxValue))
                         {
                             // Highlight the cell if there's a match
-                            cell.Style.BackColor = Color.LightGreen;
+                            cell.Style.BackColor = Color.Yellow;
                         }
                         else
                         {
@@ -577,6 +594,7 @@ namespace SquareCalculator.TabControls
         {
             // List to store rows that meet the condition
             List<DataGridViewRow> rowsToKeep = new List<DataGridViewRow>();
+            List<(int RowIndex, int ColumnIndex)> indices = new List<(int RowIndex, int ColumnIndex)>();
 
             // Iterate through each row in the grid
             foreach (DataGridViewRow row in gridView.Rows)
@@ -586,9 +604,10 @@ namespace SquareCalculator.TabControls
                 // Count how many cells in this row have LightGreen background color
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    if (cell.Style.BackColor == Color.LightGreen)
+                    if (cell.Style.BackColor == Color.Yellow)
                     {
                         lightGreenCount++;
+                        indices.Add((row.Index, cell.ColumnIndex)); // Collect indices of cells
                     }
                 }
 
@@ -597,6 +616,12 @@ namespace SquareCalculator.TabControls
                 {
                     rowsToKeep.Add(row);
                 }
+            }
+
+            // Change the color of specific cells in the collected indices
+            foreach (var (rowIndex, columnIndex) in indices)
+            {
+                gridView.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.LightGreen;
             }
 
             // Remove all rows not in the keep list
@@ -609,11 +634,16 @@ namespace SquareCalculator.TabControls
             }
         }
 
+
         private void chkShowMatch2plusOnly_CheckedChanged(object sender, EventArgs e)
         {
             if (chkShowMatch2plusOnly.Checked)
             {
                 FilterRowsByCellColor(gvHours);
+            }
+            else
+            {
+                btnCalculationHours_Click(null, null);
             }
 
         }

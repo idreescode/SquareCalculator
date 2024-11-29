@@ -85,8 +85,8 @@ namespace SquareCalculator.Helper
                 return new double[]
                 {
                     dropFirstDigit,                   // Drop the first digit
-                    originalValue * 10,              // First variation * 10
-                    originalValue * 100,             // First variation * 100
+                    dropFirstDigit * 10,              // DropFirst variation * 10
+                    dropFirstDigit * 100,             // DropFirst variation * 100
                     originalValue,                   // Original value
                     originalValue * 10,              // Original value * 10
                     originalValue + 1000             // Original value + 1000
@@ -152,7 +152,7 @@ namespace SquareCalculator.Helper
         public double[] CalculateHourMinsArray(string originalValue)
         {
             // Parse the input string to remove all non-numeric characters
-    
+
             double totalHrsValueToMatch = double.Parse(RemoveNonNumeric(originalValue.ToString()));
 
             // Standard Calculation
@@ -187,10 +187,11 @@ namespace SquareCalculator.Helper
             }
 
             // Convert to total minutes
-            int totalMinutes = (days * 24 * 60) + (hours * 60) + minutes;
+            int totalMinutes = Convert.ToInt32(days.ToString() + ((hours * 60) + minutes).ToString());
+
 
             // Alternate calculations
-            double alternatePlus1 = totalMinutes + 1;
+            double alternatePlus1 = double.Parse("1" + (totalMinutes.ToString()).ToString());
             double alternateDividedBy10 = totalMinutes / 10.0;
 
             // Return results as an array
