@@ -378,5 +378,18 @@ namespace SquareCalculator
         {
 
         }
+
+        private void cntrlSPIData_Resize(object sender, EventArgs e)
+        {
+            //// Adjust DataGridView size dynamically
+            //dgView180.Width = this.Width - 20; // Example adjustment
+            //dgView180.Height = this.Height - 20; // Example adjustment
+
+            //dgView120.Width = this.Width - 20; // Example adjustment
+            //dgView120.Height = this.Height - 20; // Example adjustment
+
+            //dgView90.Width = this.Width - 20; // Example adjustment
+            //dgView90.Height = this.Height - 20; // Example adjustment
+        }
     }
 }

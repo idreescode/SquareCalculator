@@ -1153,7 +1153,7 @@ namespace SquareCalculator
             if (selectedTab != null)
             {
                 // Check if selected tab needs dynamic layout management
-                if (new[] { "tabDateData", "tabSPOData", "tabSPO", "tabSPIData", "tabSPI" }.Contains(selectedTab.Name))
+                if (new[] { "tabDateData", "tabSPOData", "tabSPO", "tabSPI" }.Contains(selectedTab.Name))
                 {
                     ArrangeTabControls(selectedTab, padding, buttonWidth, textBoxHeight, cButtonWidth);
                 }
